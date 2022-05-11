@@ -27,6 +27,11 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+      #pinggirno{
+        margin-left: 14%;
+      }
+  </style>
 </head>
 
 <body>
@@ -56,33 +61,22 @@
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Motto</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      <form action="../Proyek_V2/controllers/auth.php" method="POST">
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+            <li><a class="nav-link scrollto" href="#about">About</a></li>
+            <li><a class="nav-link scrollto" href="#services">Motto</a></li>
+            <li><a class="nav-link scrollto" href="#team">Team</a></li>
+  
+            <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" name="login">Login</a></li>
+            <li><button type="submit" name="regis" class="btn btn-info" id="pinggirno">Register</button></li>
+            <li></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+      </form>
 
     </div>
   </header><!-- End Header -->
@@ -422,9 +416,51 @@
       </div>
     </section><!-- End Contact Us Section -->
 
+    <!-- Modal Login -->
+    <form action="../Proyek_V2/controllers/auth.php" method="POST">
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="container-fluid">
+                        <div class="row gy-4">
+                            <div class="col-lg-4 col-sm-12 bg-cover">
+                                <img src="assets/img/fotologin.jpg" class="img-fluid" style="min-height:300px" alt="">
+                                <div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <form class="p-lg-5 col-12 row g-3">
+                                    <div>
+                                      <br>
+                                        <h1>Login</h1>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="userName" class="form-label">Email</label>
+                                        <input type="text" class="form-control" placeholder="ivanderkw2@gmail.com" id="userName" name="username">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="userName" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="userName" name="pass">
+                                    </div>
+                                    <br>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary" name="login">Login</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+
   </main><!-- End #main -->
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+  
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
