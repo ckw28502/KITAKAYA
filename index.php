@@ -61,7 +61,7 @@
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <form action="../Proyek_V2/controllers/auth.php" method="POST">
+      <form action="../Proyek_APLIN/controllers/auth.php" method="POST">
         <nav id="navbar" class="navbar">
           <ul>
             <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
@@ -417,7 +417,7 @@
     </section><!-- End Contact Us Section -->
 
     <!-- Modal Login -->
-    <form action="../Proyek_V2/controllers/auth.php" method="POST">
+    <form action="../Proyek_APLIN/controllers/auth.php" method="POST">
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">

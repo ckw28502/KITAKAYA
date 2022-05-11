@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Static Navigation - SB Admin</title>
+        <title>Dashboard Admin</title>
         <link href="../assets/css/punyaadmin.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -50,7 +50,7 @@
                                 Add Chart
                             </a>
                             <div class="sb-sidenav-menu-heading">Charts</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="../public/halamanchartumur.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Chart Umur
                                 <!-- <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div> -->
@@ -61,7 +61,7 @@
                                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div> -->
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <a class="nav-link collapsed" href="../public/halamanchartperkembangan.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Chart Perkembangan Member
                                 <!-- <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div> -->
