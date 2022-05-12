@@ -91,7 +91,7 @@
                             <!-- Add Watchlist nama harus sesuai dengan di trading view kalo gak error-->
                             <h3>Add Watchlist</h3>
                             <div class="col-lg-6">
-                                <label for="userName" class="form-label">Nama</label>
+                                <label for="userName" class="form-label">Nama asjifhkajshkjasdhfklajsfdh</label>
                                 <input type="text" class="form-control" placeholder="AAPL" id="nama" name="nama">
                             </div>
                             <div class="col-lg-6">
