@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2022 at 03:07 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: May 12, 2022 at 03:47 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -22,6 +22,129 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `proyek_aplin` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `proyek_aplin`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bab`
+--
+
+DROP TABLE IF EXISTS `bab`;
+CREATE TABLE `bab` (
+  `no` int(11) NOT NULL,
+  `name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat`
+--
+
+DROP TABLE IF EXISTS `chat`;
+CREATE TABLE `chat` (
+  `id` int(11) NOT NULL,
+  `service` int(11) NOT NULL,
+  `isi` text NOT NULL,
+  `tanggal` date NOT NULL,
+  `pengirim` int(11) NOT NULL COMMENT '0 = member,\r\n1 = CS'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `thread` int(11) NOT NULL,
+  `member` int(11) NOT NULL,
+  `isi` text NOT NULL,
+  `tanggal` date NOT NULL,
+  `reply` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `completion`
+--
+
+DROP TABLE IF EXISTS `completion`;
+CREATE TABLE `completion` (
+  `bab` int(11) NOT NULL,
+  `member` int(11) NOT NULL,
+  `completion` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_member`
+--
+
+DROP TABLE IF EXISTS `data_member`;
+CREATE TABLE `data_member` (
+  `tanggal` date NOT NULL,
+  `jumlah member` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rekomendasi`
+--
+
+DROP TABLE IF EXISTS `rekomendasi`;
+CREATE TABLE `rekomendasi` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `keterangan` text NOT NULL,
+  `source` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service`
+--
+
+DROP TABLE IF EXISTS `service`;
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
+  `judul` text NOT NULL,
+  `member` int(11) NOT NULL,
+  `rate` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thread`
+--
+
+DROP TABLE IF EXISTS `thread`;
+CREATE TABLE `thread` (
+  `id` int(11) NOT NULL,
+  `judul` text NOT NULL,
+  `video` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi`
+--
+
+DROP TABLE IF EXISTS `transaksi`;
+CREATE TABLE `transaksi` (
+  `id` int(11) NOT NULL,
+  `id_member` int(11) NOT NULL,
+  `bulan` int(11) NOT NULL,
+  `subtotal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 

@@ -85,6 +85,7 @@
                                 <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
                                 <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
                                 <script type="text/javascript">
+                                    var arr=[]; 
                                     new TradingView.widget(
                                         {
                                         "container_id": "watchlist-chart-demo",
@@ -100,45 +101,74 @@
                                         "withdateranges": true,
                                         "allow_symbol_change": true,
                                         "save_image": false,
-                                        "watchlist": [
-                                            "AAPL",
-                                            "IBM",
-                                            "TSLA",
-                                            "AMD",
-                                            "MSFT",
-                                            "GOOG"
-                                        ],
+                                        "watchlist": arr,
                                         "locale": "en"
                                         }
                                     );
                                 </script>
                             </div>
                             <!-- TradingView Widget END -->
-                            
                         </div>
-                        <div style="height: 100vh"></div>
+                        <div style="height: 100vh">
+                            <!-- Add chart nama harus sesuai dengan di trading view kalo gak error-->
+                            <form action="../controllers/chart.php" method="post">
+                                <h3>Add Perusahaan</h3>
+                                <div class="col-lg-6">
+                                    <label for="userName" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" placeholder="AAPL" id="userName" name="nama">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="keterangan" class="form-label">Keterangan</label><br>
+                                    <textarea name="keterangan" id="" cols="30" rows="10"></textarea>
+                                </div>
+                                <br>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary" name="addchart">Add</button>
+                                </div>
+                            </form>
+                        </div>
                         <div class="card mb-4"><div class="card-body">Ini Untuk Bagian Bawah jika diperlukan</div></div>
                     </div>
-                    <!-- Add chart -->
-                    <form action="../controllers/auth.php" method="post">
-                        <h3>Add Perusahaan</h3>
-                        <div class="col-lg-6">
-                            <label for="userName" class="form-label">Simbol</label>
-                            <input type="text" class="form-control" placeholder="ivanderkw2@gmail.com" id="userName" name="username">
-                        </div>
-                        <div class="col-lg-6">
-                            <label for="userName" class="form-label">Keterangan</label>
-                            <input type="password" class="form-control" id="userName" name="pass">
-                        </div>
-                        <br>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary" name="login">Add</button>
-                        </div>
-                    </form>
                 </main>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../assets/js/scripts.js"></script>
+        <script src="../utils/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(new function(){
+                cekupdate=()=>{
+                    let temp=-1;
+                    $.ajax({
+                        method:"get",
+                        url:"../controllers/chart.php",
+                        data:{
+                            action:"getmax"
+                        }
+                    }).done((data)=>{
+                        temp=JSON.parse(data,true);
+                        console.log(temp);
+                        if (temp>id) {
+                            id=temp;
+                            $.ajax({
+                                method:"get",
+                                url:"../controllers/chart.php",
+                                data:{
+                                    action:"getall"
+                                }
+                            }).done((d)=>{
+                                arr=JSON.parse(d,true);
+                                console.log(arr);
+                            });
+                        }
+                    });
+                };
+                var id=-1;
+                if (id<0) {
+                    cekupdate();
+                    //setInterval(cekupdate,1000);
+                };
+            });            
+        </script>
     </body>
 </html>
