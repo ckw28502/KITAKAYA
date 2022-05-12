@@ -89,21 +89,19 @@
                         </div>
                         <div style="height: 100vh">
                             <!-- Add Watchlist nama harus sesuai dengan di trading view kalo gak error-->
-                            <form action="../controllers/chart.php" method="post">
-                                <h3>Add Watchlist</h3>
-                                <div class="col-lg-6">
-                                    <label for="userName" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" placeholder="AAPL" id="userName" name="nama">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="keterangan" class="form-label">Keterangan</label><br>
-                                    <textarea name="keterangan" id="" cols="30" rows="10"></textarea>
-                                </div>
-                                <br>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary" name="addchart">Add</button>
-                                </div>
-                            </form>
+                            <h3>Add Watchlist</h3>
+                            <div class="col-lg-6">
+                                <label for="userName" class="form-label">Nama</label>
+                                <input type="text" class="form-control" placeholder="AAPL" id="nama" name="nama">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="keterangan" class="form-label">Keterangan</label><br>
+                                <textarea name="keterangan" id="keterangan" cols="30" rows="10"></textarea>
+                            </div>
+                            <br>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary" name="addchart" onclick="addchart()">Add</button>
+                            </div>
                         </div>
                         <div class="card mb-4"><div class="card-body">Ini Untuk Bagian Bawah jika diperlukan</div></div>
                     </div>
@@ -115,6 +113,28 @@
         <script src="../utils/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(new function(){
+                addchart=()=>{
+                    const nama=$("#nama").val();
+                    const keterangan=$("#keterangan").val();
+                    $("#nama").val("");
+                    $("#keterangan").val("");
+                    //Pengecekan inputan kosong
+                    if (nama==""||keterangan=="") {
+                        alert("Inputan ada yang kosong!");
+                    } else {
+                        $.ajax({
+                            method:"post",
+                            url:"../controllers/chart.php",
+                            data:{
+                                action:"addchart",
+                                nama:nama,
+                                keterangan:keterangan
+                            }
+                        }).done(()=>{
+                            cekupdate();
+                        })
+                    }
+                }
                 cekupdate=()=>{
                     let temp=-1;
                     //get max id

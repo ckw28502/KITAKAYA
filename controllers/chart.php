@@ -3,22 +3,15 @@
     use Models\chart;
     use Utils\Message;
     //Untuk tambah chart
-    if (isset($_POST["addchart"])) {
-        $nama=$_POST["nama"];
-        $keterangan=$_POST["keterangan"];
-        //cek yang kosong
-        if ($nama==""||$keterangan=="") {
-            Message::add("nputan kosong","Inputan ada yang kosong!");
+    function addchart($nama,$keterangan)
+    {
+        //cek ada yang kembar
+        if (!chart::getbyname($nama)) {
+            $chart=new chart($nama,$keterangan);
+            $chart->addchart();
         } else {
-            //cek ada yang kembar
-            if (!chart::getbyname($nama)) {
-                $chart=new chart($nama,$keterangan);
-                $chart->addchart();
-            } else {
-                Message::add("Nama kembar","Nama ini sudah dipakai!");
-            }
+            Message::add("Nama kembar","Nama ini sudah dipakai!");
         }
-        header("Location: ../public/halamanaddchart.php");
     }
     function getall()
     {
@@ -40,5 +33,11 @@
             echo json_encode($arr)."\n";
         }
     }
-    
+    if (isset($_POST["action"])) {
+        if ($_POST["action"]=="addchart") {
+            $nama=$_POST["nama"];
+            $keterangan=$_POST["keterangan"];
+            addchart($nama,$keterangan);
+        }
+    }
 ?>
