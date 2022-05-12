@@ -78,35 +78,63 @@
                             <li class="breadcrumb-item active">Saham</li>
                         </ol>
                         <br>
-                        <div class="card mb-4">
+                        <div class="card mb-4" style="height : 500px;">
                             <!-- TradingView Widget BEGIN -->
                             <div class="tradingview-widget-container">
-                            <div id="tradingview_25124"></div>
-                            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
+                                <div id="watchlist-chart-demo"></div>
+                                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
                                 <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
                                 <script type="text/javascript">
-                                new TradingView.widget(
-                                {
-                                "autosize": true,
-                                "symbol": "NASDAQ:AAPL",
-                                "interval": "D",
-                                "timezone": "Etc/UTC",
-                                "theme": "light",
-                                "style": "1",
-                                "locale": "en",
-                                "toolbar_bg": "#f1f3f6",
-                                "enable_publishing": false,
-                                "allow_symbol_change": true,
-                                "container_id": "tradingview_25124"
-                                }
-                                );
+                                    new TradingView.widget(
+                                        {
+                                        "container_id": "watchlist-chart-demo",
+                                        "width": "100%",
+                                        "height": "100%",
+                                        "autosize": true,
+                                        "symbol": "NASDAQ:AAPL",
+                                        "interval": "D",
+                                        "timezone": "exchange",
+                                        "theme": "light",
+                                        "style": "1",
+                                        "toolbar_bg": "#f1f3f6",
+                                        "withdateranges": true,
+                                        "allow_symbol_change": true,
+                                        "save_image": false,
+                                        "watchlist": [
+                                            "AAPL",
+                                            "IBM",
+                                            "TSLA",
+                                            "AMD",
+                                            "MSFT",
+                                            "GOOG"
+                                        ],
+                                        "locale": "en"
+                                        }
+                                    );
                                 </script>
                             </div>
                             <!-- TradingView Widget END -->
+                            
                         </div>
                         <div style="height: 100vh"></div>
                         <div class="card mb-4"><div class="card-body">Ini Untuk Bagian Bawah jika diperlukan</div></div>
                     </div>
+                    <!-- Add chart -->
+                    <form action="../controllers/auth.php" method="post">
+                        <h3>Add Perusahaan</h3>
+                        <div class="col-lg-6">
+                            <label for="userName" class="form-label">Simbol</label>
+                            <input type="text" class="form-control" placeholder="ivanderkw2@gmail.com" id="userName" name="username">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="userName" class="form-label">Keterangan</label>
+                            <input type="password" class="form-control" id="userName" name="pass">
+                        </div>
+                        <br>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary" name="login">Add</button>
+                        </div>
+                    </form>
                 </main>
             </div>
         </div>

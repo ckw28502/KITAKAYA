@@ -415,9 +415,10 @@
 
       </div>
     </section><!-- End Contact Us Section -->
-
+    
     <!-- Modal Login -->
-    <form action="../Proyek_APLIN/controllers/auth.php" method="POST">
+    <!-- Perbaikan action form -->
+    <form action="controllers/auth.php" method="POST">
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
