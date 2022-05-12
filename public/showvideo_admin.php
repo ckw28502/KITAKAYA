@@ -8,8 +8,13 @@
 
     $idkategori = Video::getIDkategori($id);
     // echo $idkategori->f_kategori;
+
+    $kat = Video::getKategoribyId($idkategori->f_kategori);
     $video = Video::getVideobyKategori($idkategori->f_kategori);
     
+    if (isset($_POST['btnback'])) {
+        header("Location: halamanadmin.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +29,7 @@
     
 </head>
 <body>
-    <h1>Kategori <?=$kat->nama_kategori?> INI ERROR</h1>
+    <h1>Kategori <?=$kat->nama_kategori?></h1>
     <table class="table table-dark table-striped">
         <thead>
             <th>No</th>
@@ -36,8 +41,8 @@
                 foreach($video as $idx => $video){
                     ?>
                     <tr>
-                        <td><?= $idx + 1 ?></td>
-                        <td><?= $video->judul ?></td>
+                        <td><label style="line-height: 350px;"> <?= $idx + 1 ?> </label></td>
+                        <td><label style="line-height: 350px;"><?= $video->judul ?></label></td>
                         <td><object width="425" height="350" data="http://www.youtube.com/v/<?=$video->video?>" type="application/x-shockwave-flash"><param name="src" value="http://www.youtube.com/v/<?=$video->video?>" /></object></td> 
                     </tr>
                     <?php
@@ -45,5 +50,8 @@
             ?>
         </tbody>
     </table>
+    <form action="" method="POST">
+        <button type="submit" class="btn btn-primary" name="btnback">Back</button>
+    </form>
 </body>
 </html>
