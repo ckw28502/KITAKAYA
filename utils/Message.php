@@ -7,7 +7,10 @@ class Message{
         if (isset($_SESSION[$key])){
             $messages = $_SESSION[$key];
             $_SESSION[$key] = [];
-            echo implode($sep,$messages);
+            $msg = implode($sep,$messages);
+            if ($msg!="") {
+                echo "<script> alert('$msg') </script>";
+            }
         }
     }
 
