@@ -31,15 +31,13 @@
     if (isset($_GET["action"])) {
         if ($_GET["action"]=="getmax") {
             echo json_encode(getmax()->id);
-            json_encode(getmax()->id);
         } else if ($_GET["action"]=="getall") {
-            $temp=array();
-            foreach (getall() as $k => $v) {
-                $nama=$v->name;
-                array_push($temp,$nama);
+            $temp=getall();
+            $arr=array();
+            foreach ($temp as $k => $v) {
+                array_push($arr,$v->name);
             }
-            var_dump($temp);
-            echo json_encode($temp)."\n";
+            echo json_encode($arr)."\n";
         }
     }
     

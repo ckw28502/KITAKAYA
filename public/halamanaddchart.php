@@ -84,35 +84,13 @@
                                 <div id="watchlist-chart-demo"></div>
                                 <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
                                 <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                                <script type="text/javascript">
-                                    var arr=[]; 
-                                    new TradingView.widget(
-                                        {
-                                        "container_id": "watchlist-chart-demo",
-                                        "width": "100%",
-                                        "height": "100%",
-                                        "autosize": true,
-                                        "symbol": "NASDAQ:AAPL",
-                                        "interval": "D",
-                                        "timezone": "exchange",
-                                        "theme": "light",
-                                        "style": "1",
-                                        "toolbar_bg": "#f1f3f6",
-                                        "withdateranges": true,
-                                        "allow_symbol_change": true,
-                                        "save_image": false,
-                                        "watchlist": arr,
-                                        "locale": "en"
-                                        }
-                                    );
-                                </script>
                             </div>
                             <!-- TradingView Widget END -->
                         </div>
                         <div style="height: 100vh">
-                            <!-- Add chart nama harus sesuai dengan di trading view kalo gak error-->
+                            <!-- Add Watchlist nama harus sesuai dengan di trading view kalo gak error-->
                             <form action="../controllers/chart.php" method="post">
-                                <h3>Add Perusahaan</h3>
+                                <h3>Add Watchlist</h3>
                                 <div class="col-lg-6">
                                     <label for="userName" class="form-label">Nama</label>
                                     <input type="text" class="form-control" placeholder="AAPL" id="userName" name="nama">
@@ -139,6 +117,7 @@
             $(document).ready(new function(){
                 cekupdate=()=>{
                     let temp=-1;
+                    //get max id
                     $.ajax({
                         method:"get",
                         url:"../controllers/chart.php",
@@ -147,7 +126,7 @@
                         }
                     }).done((data)=>{
                         temp=JSON.parse(data,true);
-                        console.log(temp);
+                        //Kalau max id > id sekarang, data diupdate
                         if (temp>id) {
                             id=temp;
                             $.ajax({
@@ -158,15 +137,33 @@
                                 }
                             }).done((d)=>{
                                 arr=JSON.parse(d,true);
-                                console.log(arr);
+                                new TradingView.widget(
+                                    {
+                                    "container_id": "watchlist-chart-demo",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "autosize": true,
+                                    "symbol": "NASDAQ:"+arr[arr.length-1],
+                                    "interval": "D",
+                                    "timezone": "exchange",
+                                    "theme": "light",
+                                    "style": "1",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "withdateranges": true,
+                                    "allow_symbol_change": true,
+                                    "save_image": false,
+                                    "watchlist": arr,
+                                    "locale": "en"
+                                    }
+                                );
                             });
                         }
                     });
                 };
                 var id=-1;
+                //Untuk cek update per detik
                 if (id<0) {
-                    cekupdate();
-                    //setInterval(cekupdate,1000);
+                    setInterval(cekupdate,1000);
                 };
             });            
         </script>

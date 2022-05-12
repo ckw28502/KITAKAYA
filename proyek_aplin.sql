@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2022 at 03:47 AM
+-- Generation Time: May 12, 2022 at 09:08 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -101,9 +101,19 @@ DROP TABLE IF EXISTS `rekomendasi`;
 CREATE TABLE `rekomendasi` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
-  `keterangan` text NOT NULL,
-  `source` text NOT NULL
+  `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rekomendasi`
+--
+
+INSERT INTO `rekomendasi` (`id`, `name`, `keterangan`) VALUES
+(5, 'AAPL', 'Apple'),
+(6, 'TWTR', 'Twitter'),
+(7, 'GOOG', 'Google'),
+(8, 'TSLA', 'Tesla'),
+(9, 'FB', 'Meta');
 
 -- --------------------------------------------------------
 
@@ -178,6 +188,48 @@ INSERT INTO `user` (`id`, `email`, `password`, `nama`, `umur`, `role`, `status`)
 --
 
 --
+-- Indexes for table `bab`
+--
+ALTER TABLE `bab`
+  ADD PRIMARY KEY (`no`);
+
+--
+-- Indexes for table `chat`
+--
+ALTER TABLE `chat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rekomendasi`
+--
+ALTER TABLE `rekomendasi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `thread`
+--
+ALTER TABLE `thread`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -186,6 +238,42 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `chat`
+--
+ALTER TABLE `chat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `rekomendasi`
+--
+ALTER TABLE `rekomendasi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `thread`
+--
+ALTER TABLE `thread`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
