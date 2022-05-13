@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2022 at 09:08 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: May 13, 2022 at 02:39 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `bab` (
   `name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- ---------------------------------------------------------
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `chat`
@@ -94,6 +94,29 @@ CREATE TABLE `data_member` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kategori_vid`
+--
+
+DROP TABLE IF EXISTS `kategori_vid`;
+CREATE TABLE `kategori_vid` (
+  `id` int(11) NOT NULL,
+  `nama_kategori` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kategori_vid`
+--
+
+INSERT INTO `kategori_vid` (`id`, `nama_kategori`) VALUES
+(1, 'tesKategori'),
+(2, 'tes'),
+(3, 'pemula'),
+(4, 'ivander cupu'),
+(5, 'kategori baru');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rekomendasi`
 --
 
@@ -139,8 +162,20 @@ DROP TABLE IF EXISTS `thread`;
 CREATE TABLE `thread` (
   `id` int(11) NOT NULL,
   `judul` text NOT NULL,
-  `video` int(11) NOT NULL
+  `video` text NOT NULL,
+  `status_video` int(11) NOT NULL,
+  `f_kategori` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `thread`
+--
+
+INSERT INTO `thread` (`id`, `judul`, `video`, `status_video`, `f_kategori`) VALUES
+(3, 'testing', 'HLLofrwRlBg', 1, 2),
+(4, 'testing video', 'XqZsoesa55w', 1, 4),
+(5, 'asdasd', 'pL8XPZp4-5c', 1, 5),
+(6, '11asasdasdad', 'fDek6cYijxI', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -206,6 +241,12 @@ ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `kategori_vid`
+--
+ALTER TABLE `kategori_vid`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `rekomendasi`
 --
 ALTER TABLE `rekomendasi`
@@ -221,7 +262,8 @@ ALTER TABLE `service`
 -- Indexes for table `thread`
 --
 ALTER TABLE `thread`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `refkategori` (`f_kategori`);
 
 --
 -- Indexes for table `transaksi`
@@ -252,6 +294,12 @@ ALTER TABLE `comment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `kategori_vid`
+--
+ALTER TABLE `kategori_vid`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `rekomendasi`
 --
 ALTER TABLE `rekomendasi`
@@ -267,7 +315,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `thread`
 --
 ALTER TABLE `thread`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
@@ -280,6 +328,16 @@ ALTER TABLE `transaksi`
 --
 ALTER TABLE `user`
   MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `thread`
+--
+ALTER TABLE `thread`
+  ADD CONSTRAINT `refkategori` FOREIGN KEY (`f_kategori`) REFERENCES `kategori_vid` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
