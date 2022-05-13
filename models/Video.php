@@ -57,10 +57,19 @@
             return $temp->fetch();
         }
 
+        public static function getKategoribyName($nama)
+        {
+            $db=Database::instance();
+            $temp=$db->query("SELECT id FROM kategori_vid WHERE nama_kategori=:nama",[
+                "nama"=>$nama
+            ]);
+            return $temp->fetch();
+        }
+
         public static function getVideo()
         {
             $db=Database::instance();
-            $temp=$db->query("SELECT t.id, t.judul, t.video, k.nama_kategori FROM thread t, kategori_vid k WHERE t.f_kategori=k.id and t.status_video = 1");
+            $temp=$db->query("SELECT t.id, t.judul, t.video, k.nama_kategori FROM  kategori_vid k LEFT JOIN thread t  ON t.f_kategori=k.id AND t.status_video = 1");
             return $temp->fetchAll();
         }
 
