@@ -35,7 +35,7 @@ CREATE TABLE `bab` (
   `name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
+-- ---------------------------------------------------------
 
 --
 -- Table structure for table `chat`
