@@ -2,15 +2,18 @@
 <?php
     require_once "../config/config.php";
     use Models\Video;
-    $id = $_SESSION['idvideo'];
 
+    $kategori = $_SESSION['namakategori'];
     
+    // if((int)$id <=0) {
+    //     echo 'The variable is NULL';
+    // }else{}
 
-    $idkategori = Video::getIDkategori($id);
+    $idkategori = Video::getKategoribyName($kategori);
     // echo $idkategori->f_kategori;
 
-    $kat = Video::getKategoribyId($idkategori->f_kategori);
-    $video = Video::getVideobyKategori($idkategori->f_kategori);
+    $kat = Video::getKategoribyId($idkategori->id);
+    $video = Video::getVideobyKategori($idkategori->id);
     
     if (isset($_POST['btnback'])) {
         header("Location: halamanadmin.php");
@@ -29,7 +32,7 @@
     
 </head>
 <body>
-    <h1>Kategori <?=$kat->nama_kategori?></h1>
+    <h1>Kategori <?=$kategori?></h1>
     <table class="table table-dark table-striped">
         <thead>
             <th>No</th>
@@ -43,7 +46,7 @@
                     <tr>
                         <td><label style="line-height: 350px;"> <?= $idx + 1 ?> </label></td>
                         <td><label style="line-height: 350px;"><?= $video->judul ?></label></td>
-                        <td><object width="425" height="350" data="http://www.youtube.com/v/<?=$video->video?>" type="application/x-shockwave-flash"><param name="src" value="http://www.youtube.com/v/<?=$video->video?>" /></object></td> 
+                        <td><object width="615" height="350" data="http://www.youtube.com/v/<?=$video->video?>" type="application/x-shockwave-flash"><param name="src" value="http://www.youtube.com/v/<?=$video->video?>" /></object></td> 
                     </tr>
                     <?php
                 }

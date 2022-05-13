@@ -39,8 +39,8 @@
 
     if(isset($_GET['idvid'])){
         $id = $_GET['id'];
-        unset($_SESSION['idvideo']);
-        $_SESSION['idvideo'] = $id;
+        unset($_SESSION['namakategori']);
+        $_SESSION['namakategori'] = $id;
         // $id = $_SESSION['idvideo'];
         // echo $id;
         header("Location: ../public/showvideo_admin.php");

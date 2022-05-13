@@ -126,7 +126,7 @@
                                             <td><?= $idx + 1 ?></td>
                                             <td><?= $video->nama_kategori ?></td>
                                             <td>
-                                                <a href="../controllers/vid.php?idvid=true&id=<?=$video->id?>">Detail</a>
+                                                <a href="../controllers/vid.php?idvid=true&id=<?=$video->nama_kategori?>">Detail</a>
                                             </td>
                                         </tr>
                                         <?php
