@@ -61,7 +61,7 @@
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <form action="../Proyek_APLIN/controllers/auth.php" method="POST">
+      <form action="../KitaKaya/controllers/auth.php" method="POST">
         <nav id="navbar" class="navbar">
           <ul>
             <li><a class="nav-link scrollto active" href="#hero">Home</a></li>

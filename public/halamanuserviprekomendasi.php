@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Halaman User Biasa</title>
+        <title>Halaman User VIP</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="../assets/css/punyaadmin.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -24,7 +24,7 @@
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <h3 style="color: white;">Welcome, User</h3>
+                    <h3 style="color: white;">Welcome, User Vip</h3>
                 </div>
             </form>
             <!-- Navbar-->
@@ -43,16 +43,20 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Menu User</div>
-                            <a class="nav-link" href="../public/halamanuserbiasa.php">
+                            <a class="nav-link" href="../public/halamanuservip.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Video
                             </a>
-                            <a class="nav-link" href="../public/halamanuserbiasaforum.php">
+                            <a class="nav-link" href="../public/halamanuserviprekomendasi.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Rekomendasi Saham
+                            </a>
+                            <a class="nav-link" href="../public/halamanuservipforum.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Forum
                             </a>
-                            <div class="sb-sidenav-menu-heading">Charts</div>
-                            <a class="nav-link" href="../public/halamanuserbiasacs.php">
+                            <div class="sb-sidenav-menu-heading">Service</div>
+                            <a class="nav-link" href="../public/halamanuservipcs.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Customer Service 
                             </a>   
@@ -63,7 +67,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Kumpulan Video</h1>
+                        <h1 class="mt-4">Rekomendasi Saham</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Saham</li>
                         </ol>

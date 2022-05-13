@@ -27,17 +27,36 @@ if(isset($_POST["login"])){
         }
 
         if ($ecustomer == true) {
+
+            // cek dia udah verify email belum
             $cek = User::getStatus($_POST["username"],1);
             if ($cek == true) {
-                header("Location: ../public/halamanuserbiasa.php");
-                exit;
+                // cek dia vip atau tidak
+                $cekuservip = User::getRole($_POST["username"],1);
+                if ($cekuservip == true) {
+                    header("Location: ../public/halamanuservip.php");
+                    exit;
+                }
+                else{
+                    $cekusercs = User::getRole($_POST["username"],2);
+                    if ($cekusercs == true) {
+                        header("Location: ../public/halamancs.php");
+                        exit;
+                    }
+                    else{
+                        header("Location: ../public/halamanuserbiasa.php");
+                        exit;
+                    }
+                }
             }
             else{
                 header("Location: ../index.php");
+                exit;
             }
         }
         else{
             header("Location: ../index.php");
+            exit;
         }
     }
 }

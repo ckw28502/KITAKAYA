@@ -43,6 +43,15 @@ class User {
         ])->fetch();
     }
 
+    static function getRole($email, $role){
+        $db = Database::instance();
+        return $db->query("SELECT * FROM user WHERE email = :email and role = :role",
+        [
+            "email"=>$email,
+            "role"=>$role
+        ])->fetch();
+    }
+
     static function getAll(){
         $db = Database::instance();
         return $db->query("SELECT * FROM user")->fetchAll();
