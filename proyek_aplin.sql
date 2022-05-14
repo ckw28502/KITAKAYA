@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2022 at 09:21 AM
+-- Generation Time: May 14, 2022 at 11:18 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -269,7 +269,8 @@ ALTER TABLE `rekomendasi`
 -- Indexes for table `service`
 --
 ALTER TABLE `service`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `member` (`member`);
 
 --
 -- Indexes for table `thread`
@@ -358,6 +359,12 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `service`
+--
+ALTER TABLE `service`
+  ADD CONSTRAINT `service_ibfk_1` FOREIGN KEY (`member`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `thread`
