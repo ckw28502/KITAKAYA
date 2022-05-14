@@ -1,5 +1,9 @@
 <?php
     require_once "../config/config.php";
+
+    // untuk nampilkan nama
+    $user = $_SESSION["user"];
+    $munculkan = $user->nama;
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +18,12 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="../assets/css/punyaadmin.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+        <style>
+            #btnkeluar{
+                margin-left: 45px;
+            }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -24,7 +34,7 @@
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <h3 style="color: white;">Welcome, User</h3>
+                    <h3 style="color: white;">Welcome, <?= $munculkan?></h3>
                 </div>
             </form>
             <!-- Navbar-->
@@ -32,7 +42,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="../index.php">Logout</a></li>
+                        <!-- <li><a class="dropdown-item" href="../index.php">Logout</a></li> -->
+                        <li><a href="../controllers/auth.php?logoutcusbiasa"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
                     </ul>
                 </li>
             </ul>
@@ -51,7 +62,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Forum
                             </a>
-                            <div class="sb-sidenav-menu-heading">Charts</div>
+                            <div class="sb-sidenav-menu-heading">Service</div>
                             <a class="nav-link" href="../public/halamanuserbiasacs.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Customer Service 

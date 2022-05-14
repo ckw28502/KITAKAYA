@@ -30,31 +30,54 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <title>Video</title>
     
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #9600FF 10%,#AEBAF8 50%);
+        }
+        #buatkata{
+            text-align: center;
+        }
+        #tulisan{
+            color: black;
+        }
+    </style>
 </head>
 <body>
-    <h1>Kategori <?=$kategori?></h1>
-    <table class="table table-dark table-striped">
-        <thead>
-            <th>No</th>
-            <th>Judul</th>
-            <th>Video</th>
-        </thead>
-        <tbody>
-            <?php 
-                foreach($video as $idx => $video){
-                    ?>
-                    <tr>
-                        <td><label style="line-height: 350px;"> <?= $idx + 1 ?> </label></td>
-                        <td><label style="line-height: 350px;"><?= $video->judul ?></label></td>
-                        <td><object width="615" height="350" data="http://www.youtube.com/v/<?=$video->video?>" type="application/x-shockwave-flash"><param name="src" value="http://www.youtube.com/v/<?=$video->video?>" /></object></td> 
-                    </tr>
-                    <?php
-                }
-            ?>
-        </tbody>
-    </table>
-    <form action="" method="POST">
-        <button type="submit" class="btn btn-primary" name="btnback">Back</button>
-    </form>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 id="buatkata">Kategori <?=$kategori?></h1>
+                <ol class="breadcrumb mb-4">
+                    <li id="tulisan">Kumpulan Video</li>
+                </ol>
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <th>No</th>
+                        <th>Judul</th>
+                        <th>Video</th>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            foreach($video as $idx => $video){
+                                ?>
+                                <tr>
+                                    <td><label style="line-height: 350px;"> <?= $idx + 1 ?> </label></td>
+                                    <td><label style="line-height: 350px;"><?= $video->judul ?></label></td>
+                                    <td><object width="500" height="300" data="http://www.youtube.com/v/<?=$video->video?>" type="application/x-shockwave-flash"><param name="src" value="http://www.youtube.com/v/<?=$video->video?>" /></object></td> 
+                                </tr>
+                                <?php
+                            }
+                        ?>
+                    </tbody>
+                </table>
+
+                <form action="" method="POST">
+                    <button type="submit" class="btn btn-primary" name="btnback" id="kembali">Back</button>
+                </form>
+            </div>
+        </main>
+    </div>
 </body>
 </html>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2022 at 11:18 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: May 14, 2022 at 04:29 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -226,9 +226,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `nama`, `umur`, `role`, `status`) VALUES
-(1, 'ibw25', '123', 'Ivander', 19, 0, 0),
+(1, 'ibw25', '123', 'Ivander', 19, 2, 1),
 (2, 'admin', '000', 'Admin Bewe', 19, 3, 0),
-(29, 'ivanderberwyn2002@gmail.com', '5677', 'CobaGambars', 17, 0, 0),
+(29, 'ivanderberwyn2002@gmail.com', '5677', 'CobaGambars', 17, 1, 1),
 (31, 'ibewe25@gmail.com', '12345', 'qwe', 17, 0, 1);
 
 --

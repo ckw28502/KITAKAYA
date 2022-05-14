@@ -34,17 +34,19 @@ if(isset($_POST["login"])){
                 // cek dia vip atau tidak
                 $cekuservip = User::getRole($_POST["username"],1);
                 if ($cekuservip == true) {
+                    $_SESSION["user"] = $ecustomer;
                     header("Location: ../public/halamanuservip.php");
                     exit;
                 }
                 else{
                     $cekusercs = User::getRole($_POST["username"],2);
-                    $_SESSION["user"] = $ecustomer;
                     if ($cekusercs == true) {
+                        $_SESSION["user"] = $ecustomer;
                         header("Location: ../public/halamancs.php");
                         exit;
                     }
                     else{
+                        $_SESSION["user"] = $ecustomer;
                         header("Location: ../public/halamanuserbiasa.php");
                         exit;
                     }
@@ -65,6 +67,19 @@ if(isset($_POST["login"])){
 // button gae pindah ke regis tok
 if (isset($_POST["regis"])) {
     header("Location: ../public/halamanregister.php");
+    exit;
+}
+
+// untuk logout
+if(isset($_GET["logoutcusbiasa"])){
+    unset($_SESSION["user"]);
+    header("Location: ../index.php");
+    exit;
+}
+
+if(isset($_GET["logoutcusvip"])){
+    unset($_SESSION["user"]);
+    header("Location: ../index.php");
     exit;
 }
 
