@@ -1,4 +1,7 @@
 <?php
+    use Utils\Message;
+    use Models\service;
+
     require_once "../config/config.php";
 ?>
 
@@ -67,6 +70,50 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Saham</li>
                         </ol>
+                        <form action="../controllers/service.php" method="POST">
+                            <label class="control-label"  for="namamenu">Pertanyaan</label>
+                            <div class="controls">
+                                <input type="text" id="namamenu" name="judul" placeholder="Pertanyaan" class="input-xlarge">
+                            </div>   
+                            <div class="col-12">
+                                    <button type="submit" class="btn btn-primary" name="btnaddser" >Add</button>
+                            </div>  
+                        </form>
+                        <?php 
+                            $user = json_decode(json_encode($_SESSION["user"]), true);
+                            $idmember = $user["id"];
+                            $services = service::getbyidmember($idmember);
+
+                        ?>
+                        <table border=1  >
+                            <thead>
+                            <th>ID</th>
+
+                                <th>Judul Pertanyaan</th>
+                                <th>Rate</th>
+                                <th>Chat</th>
+
+                            </thead>
+                            <tbody>
+                                <?php 
+                            
+                                
+                                    
+                                    foreach($services as $idx=> $service){
+                                        ?>
+                                        <tr>
+                                            
+                                            <td><?=  $idx + 1?></td>
+                                            <td><?=  $service->judul?></td>
+                                            <td><?= $service->rate ?></td>
+                                            <td><a href="../controllers/barang.php?delete=true&id=<?=$service->id?>"><button>Chat</button></a></td>
+                                        </tr>
+                                        <?php
+                                    }
+
+                                ?>
+                        </tbody>
+                    </table>
                     </div>
                 </main>
             </div>
@@ -79,4 +126,8 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../assets/js/datatables-simple-demo.js"></script>
     </body>
+    <?php 
+                    Message::print("error");
+                    Message::print("success");
+    ?>
 </html>

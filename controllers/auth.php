@@ -39,6 +39,7 @@ if(isset($_POST["login"])){
                 }
                 else{
                     $cekusercs = User::getRole($_POST["username"],2);
+                    $_SESSION["user"] = $ecustomer;
                     if ($cekusercs == true) {
                         header("Location: ../public/halamancs.php");
                         exit;
