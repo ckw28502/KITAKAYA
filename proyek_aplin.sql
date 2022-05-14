@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2022 at 02:39 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: May 14, 2022 at 09:21 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -180,6 +180,19 @@ INSERT INTO `thread` (`id`, `judul`, `video`, `status_video`, `f_kategori`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `thread_forum`
+--
+
+DROP TABLE IF EXISTS `thread_forum`;
+CREATE TABLE `thread_forum` (
+  `id` int(11) NOT NULL,
+  `Judul` text NOT NULL,
+  `Video` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `transaksi`
 --
 
@@ -266,6 +279,13 @@ ALTER TABLE `thread`
   ADD KEY `refkategori` (`f_kategori`);
 
 --
+-- Indexes for table `thread_forum`
+--
+ALTER TABLE `thread_forum`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `Video` (`Video`);
+
+--
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
@@ -318,6 +338,12 @@ ALTER TABLE `thread`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `thread_forum`
+--
+ALTER TABLE `thread_forum`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
@@ -338,6 +364,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `thread`
   ADD CONSTRAINT `refkategori` FOREIGN KEY (`f_kategori`) REFERENCES `kategori_vid` (`id`);
+
+--
+-- Constraints for table `thread_forum`
+--
+ALTER TABLE `thread_forum`
+  ADD CONSTRAINT `thread_forum_ibfk_1` FOREIGN KEY (`Video`) REFERENCES `thread` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
