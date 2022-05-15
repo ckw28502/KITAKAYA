@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2022 at 04:29 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: May 15, 2022 at 04:03 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -245,13 +245,24 @@ ALTER TABLE `bab`
 -- Indexes for table `chat`
 --
 ALTER TABLE `chat`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `service` (`service`);
 
 --
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `member` (`member`),
+  ADD KEY `thread` (`thread`),
+  ADD KEY `reply` (`reply`);
+
+--
+-- Indexes for table `completion`
+--
+ALTER TABLE `completion`
+  ADD KEY `bab` (`bab`),
+  ADD KEY `member` (`member`);
 
 --
 -- Indexes for table `kategori_vid`
@@ -290,7 +301,8 @@ ALTER TABLE `thread_forum`
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_member` (`id_member`);
 
 --
 -- Indexes for table `user`
@@ -361,6 +373,27 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `chat`
+--
+ALTER TABLE `chat`
+  ADD CONSTRAINT `chat_ibfk_1` FOREIGN KEY (`service`) REFERENCES `service` (`id`);
+
+--
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`member`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`thread`) REFERENCES `thread` (`id`),
+  ADD CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`reply`) REFERENCES `comment` (`id`);
+
+--
+-- Constraints for table `completion`
+--
+ALTER TABLE `completion`
+  ADD CONSTRAINT `completion_ibfk_1` FOREIGN KEY (`bab`) REFERENCES `bab` (`no`),
+  ADD CONSTRAINT `completion_ibfk_2` FOREIGN KEY (`member`) REFERENCES `user` (`id`);
+
+--
 -- Constraints for table `service`
 --
 ALTER TABLE `service`
@@ -377,6 +410,12 @@ ALTER TABLE `thread`
 --
 ALTER TABLE `thread_forum`
   ADD CONSTRAINT `thread_forum_ibfk_1` FOREIGN KEY (`Video`) REFERENCES `thread` (`id`);
+
+--
+-- Constraints for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_member`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
