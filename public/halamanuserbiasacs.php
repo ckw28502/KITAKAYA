@@ -95,6 +95,7 @@
                             $services = service::getbyidmember($idmember);
 
                         ?>
+                         <form action="../controllers/service.php" method="POST">
                         <table border=1  >
                             <thead>
                             <th>ID</th>
@@ -116,7 +117,8 @@
                                             <td><?=  $idx + 1?></td>
                                             <td><?=  $service->judul?></td>
                                             <td><?= $service->rate ?></td>
-                                            <td><a href="../controllers/barang.php?delete=true&id=<?=$service->id?>"><button>Chat</button></a></td>
+                                            <td><button name="chat[<?=$service->id?>]">Chat</button></a></td>
+
                                         </tr>
                                         <?php
                                     }
@@ -124,6 +126,7 @@
                                 ?>
                         </tbody>
                     </table>
+                    </form>
                     </div>
                 </main>
             </div>

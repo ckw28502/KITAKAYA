@@ -25,13 +25,19 @@
         exit;
     }
 
-    if(isset($_GET['idvid'])){
+    if(isset($_POST['chat'])){
         $id = $_GET['id'];
         unset($_SESSION['namakategori']);
         $_SESSION['namakategori'] = $id;
         // $id = $_SESSION['idvideo'];
         // echo $id;
         header("Location: ../public/showvideo_admin.php");
+    }
+    if(isset($_POST['chat'])){
+        $_SESSION['idservice']=key($_POST['chat']);
+        header("Location: ../public/chat.php");
+
+
     }
     
 ?>
