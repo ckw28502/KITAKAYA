@@ -82,34 +82,32 @@
                         </ol>
                         <form action="../controllers/service.php" method="POST">
                             <label class="control-label"  for="namamenu">Pertanyaan</label>
+                            <br>
+                            <br>
                             <div class="controls">
-                                <input type="text" id="namamenu" name="judul" placeholder="Pertanyaan" class="input-xlarge">
+                                <input type="text" class="form-control" id="namamenu" name="judul" placeholder="Pertanyaan">
                             </div>   
+                            <br>
                             <div class="col-12">
-                                    <button type="submit" class="btn btn-primary" name="btnaddser" >Add</button>
+                                <button type="submit" class="btn btn-primary" name="btnaddser">Add</button>
                             </div>  
                         </form>
+                        <br>
                         <?php 
                             $user = json_decode(json_encode($_SESSION["user"]), true);
                             $idmember = $user["id"];
                             $services = service::getbyidmember($idmember);
-
                         ?>
                          <form action="../controllers/service.php" method="POST">
-                        <table border=1  >
+                        <table class="table table-dark table-striped">
                             <thead>
                             <th>ID</th>
-
                                 <th>Judul Pertanyaan</th>
                                 <th>Rate</th>
                                 <th>Chat</th>
-
                             </thead>
                             <tbody>
                                 <?php 
-                            
-                                
-                                    
                                     foreach($services as $idx=> $service){
                                         ?>
                                         <tr>
@@ -117,7 +115,7 @@
                                             <td><?=  $idx + 1?></td>
                                             <td><?=  $service->judul?></td>
                                             <td><?= $service->rate ?></td>
-                                            <td><button name="chat[<?=$service->id?>]">Chat</button></a></td>
+                                            <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
 
                                         </tr>
                                         <?php
@@ -140,7 +138,7 @@
         <script src="../assets/js/datatables-simple-demo.js"></script>
     </body>
     <?php 
-                    Message::print("error");
-                    Message::print("success");
+        Message::print("error");
+        Message::print("success");
     ?>
 </html>

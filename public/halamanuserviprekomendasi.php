@@ -80,6 +80,15 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Saham</li>
                         </ol>
+                        <div class="card mb-4" style="height : 500px;">
+                            <!-- TradingView Widget BEGIN -->
+                            <div class="tradingview-widget-container">
+                                <div id="watchlist-chart-demo"></div>
+                                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                            </div>
+                            <!-- TradingView Widget END -->
+                        </div>
                     </div>
                 </main>
             </div>
@@ -91,5 +100,60 @@
         <script src="../assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../assets/js/datatables-simple-demo.js"></script>
+        <script src="../utils/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(new function(){
+                cekupdate=()=>{
+                    let temp=-1;
+                    //get max id
+                    $.ajax({
+                        method:"get",
+                        url:"../controllers/chart.php",
+                        data:{
+                            action:"getmax"
+                        }
+                    }).done((data)=>{
+                        temp=JSON.parse(data,true);
+                        //Kalau max id > id sekarang, data diupdate
+                        if (temp>id) {
+                            id=temp;
+                            $.ajax({
+                                method:"get",
+                                url:"../controllers/chart.php",
+                                data:{
+                                    action:"getall"
+                                }
+                            }).done((d)=>{
+                                arr=JSON.parse(d,true);
+                                new TradingView.widget(
+                                    {
+                                    "container_id": "watchlist-chart-demo",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "autosize": true,
+                                    "symbol": "NASDAQ:"+arr[arr.length-1],
+                                    "interval": "D",
+                                    "timezone": "exchange",
+                                    "theme": "light",
+                                    "style": "1",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "withdateranges": true,
+                                    "allow_symbol_change": true,
+                                    "save_image": false,
+                                    "watchlist": arr,
+                                    "locale": "en"
+                                    }
+                                );
+                            });
+                        }
+                    });
+                };
+                var id=-1;
+                //Untuk cek update per detik
+                if (id<0) {
+                    setInterval(cekupdate,1000);
+                };
+            });
+        </script>
     </body>
 </html>

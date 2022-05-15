@@ -84,13 +84,17 @@
                         </ol>
                         <form action="../controllers/service.php" method="POST">
                             <label class="control-label"  for="namamenu">Pertanyaan</label>
+                            <br>
+                            <br>
                             <div class="controls">
-                                <input type="text" id="namamenu" name="judul" placeholder="Pertanyaan" class="input-xlarge">
+                                <input type="text" class="form-control" id="namamenu" name="judul" placeholder="Pertanyaan">
                             </div>   
+                            <br>
                             <div class="col-12">
-                                    <button type="submit" class="btn btn-primary" name="btnaddser" >Add</button>
+                                <button type="submit" class="btn btn-primary" name="btnaddser">Add</button>
                             </div>  
                         </form>
+                        <br>
                         <?php 
                             $user = json_decode(json_encode($_SESSION["user"]), true);
                             $idmember = $user["id"];
@@ -98,7 +102,7 @@
 
                         ?>
                          <form action="../controllers/service.php" method="POST">
-                        <table border=1  >
+                        <table class="table table-dark table-striped">
                             <thead>
                             <th>ID</th>
 
@@ -116,7 +120,7 @@
                                             <td><?=  $idx + 1?></td>
                                             <td><?=  $service->judul?></td>
                                             <td><?= $service->rate ?></td>
-                                            <td><button name="chat[<?=$service->id?>]">Chat</button></a></td>
+                                            <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
 
                                         </tr>
                                         <?php

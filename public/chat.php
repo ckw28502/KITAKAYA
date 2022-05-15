@@ -28,10 +28,10 @@ use Models\chat;
             margin:10px 10px 10px 0px;
         }
         #chat1{
-            color:lightskyblue;
+            background-color:lightskyblue;
         }
         #chat2{
-            color:blanchedalmond;
+            background-color:blanchedalmond;
         }
     </style>
 
