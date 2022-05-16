@@ -4,6 +4,10 @@
     // untuk nampilkan nama
     $user = $_SESSION["user"];
     $munculkan = $user->nama;
+
+    if (isset($_REQUEST["btnBeli1"])) {
+        header("Location: ../public/halamantransaksi.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -143,7 +147,9 @@
                                     <p class="card-text" id="biarterlihat">*Pembayaran Langsung 1 Bulan di depan</p>
                                     </ul>
                                     <div class="card-body text-center">
-                                    <button class="btn btn-outline-primary btn-lg" style="border-radius:30px">Beli</button>
+                                    <form action="../controllers/auth.php" method="POST">
+                                        <a href="../public/halamantransaksi.php?harga=120.000&namacus=<?=$munculkan?>" class="btn btn-outline-primary btn-lg" style="border-radius:30px" name="btnbeli">Beli</a>
+                                    </form>
                                     </div>
                                 </div>
                                 </div>
@@ -172,7 +178,9 @@
                                     <p class="card-text" id="biarterlihat">*Pembayaran Langsung 6 Bulan di depan</p>
                                     </ul>
                                     <div class="card-body text-center">
-                                    <button class="btn btn-outline-primary btn-lg" style="border-radius:30px">Beli</button>
+                                    <form action="../controllers/auth.php" method="POST">
+                                        <a href="../public/halamantransaksi.php?harga=500.000&namacus=<?=$munculkan?>" class="btn btn-outline-primary btn-lg" style="border-radius:30px">Beli</a>
+                                    </form>
                                     </div>
                                 </div>
                                 </div>
@@ -201,7 +209,9 @@
                                     <p class="card-text" id="biarterlihat">*Pembayaran Langsung 12 Bulan di depan</p>
                                     </ul>
                                     <div class="card-body text-center">
-                                    <button class="btn btn-outline-primary btn-lg" style="border-radius:30px">Beli</button>
+                                    <form action="../controllers/auth.php" method="POST">
+                                        <a href="../public/halamantransaksi.php?harga=1.100.000&namacus=<?=$munculkan?>" class="btn btn-outline-primary btn-lg" style="border-radius:30px">Beli</a>
+                                    </form>
                                     </div>
                                 </div>
                             </div>
