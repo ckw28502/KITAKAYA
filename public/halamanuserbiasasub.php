@@ -42,6 +42,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <!-- <li><a class="dropdown-item" href="../index.php">Logout</a></li> -->
                         <li><a href="../controllers/auth.php?logoutcusbiasa"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
                     </ul>
                 </li>
@@ -68,7 +69,7 @@
                             <div class="sb-sidenav-menu-heading">Service</div>
                             <a class="nav-link" href="../public/halamanuserbiasacs.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Customer Service 
+                                Customer Service
                             </a>   
                         </div>
                     </div>
@@ -77,9 +78,9 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Forum</h1>
+                        <h1 class="mt-4">Upgrade To VIP</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Saham</li>
+                            <li class="breadcrumb-item active"></li>
                         </ol>
                     </div>
                 </main>

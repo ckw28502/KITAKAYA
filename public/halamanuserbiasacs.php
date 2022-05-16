@@ -64,6 +64,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Forum
                             </a>
+                            <a class="nav-link" href="../public/halamanuserbiasasub.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Upgrade To VIP Member
+                            </a>
                             <div class="sb-sidenav-menu-heading">Service</div>
                             <a class="nav-link" href="../public/halamanuserbiasacs.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
