@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2022 at 03:42 PM
+-- Generation Time: May 16, 2022 at 03:54 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -201,7 +201,8 @@ CREATE TABLE `transaksi` (
   `id` int(11) NOT NULL,
   `id_member` int(11) NOT NULL,
   `bulan` int(11) NOT NULL,
-  `subtotal` int(11) NOT NULL
+  `subtotal` int(11) NOT NULL,
+  `bukti` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -218,18 +219,19 @@ CREATE TABLE `user` (
   `nama` varchar(250) NOT NULL,
   `umur` int(100) NOT NULL,
   `role` int(15) NOT NULL COMMENT '0 = Member Biasa\r\n1 = Member VIP\r\n2 = CS\r\n3 = Admin',
-  `status` int(15) NOT NULL
+  `status` int(15) NOT NULL,
+  `expired` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `password`, `nama`, `umur`, `role`, `status`) VALUES
-(1, 'ibw25', '123', 'Ivander', 19, 2, 1),
-(2, 'admin', '000', 'Admin Bewe', 19, 3, 0),
-(29, 'ivanderberwyn2002@gmail.com', '5677', 'CobaGambars', 17, 1, 1),
-(31, 'ibewe25@gmail.com', '12345', 'qwe', 17, 0, 1);
+INSERT INTO `user` (`id`, `email`, `password`, `nama`, `umur`, `role`, `status`, `expired`) VALUES
+(1, 'ibw25', '123', 'Ivander', 19, 2, 1, NULL),
+(2, 'admin', '000', 'Admin Bewe', 19, 3, 0, NULL),
+(29, 'ivanderberwyn2002@gmail.com', '5677', 'CobaGambars', 17, 1, 1, NULL),
+(31, 'ibewe25@gmail.com', '12345', 'qwe', 17, 0, 1, NULL);
 
 --
 -- Indexes for dumped tables
