@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2022 at 04:03 PM
+-- Generation Time: May 16, 2022 at 03:42 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -254,8 +254,8 @@ ALTER TABLE `chat`
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `member` (`member`),
-  ADD KEY `thread` (`thread`),
-  ADD KEY `reply` (`reply`);
+  ADD KEY `reply` (`reply`),
+  ADD KEY `comment_ibfk_2` (`thread`);
 
 --
 -- Indexes for table `completion`
@@ -383,7 +383,7 @@ ALTER TABLE `chat`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`member`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`thread`) REFERENCES `thread` (`id`),
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`thread`) REFERENCES `thread_forum` (`id`),
   ADD CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`reply`) REFERENCES `comment` (`id`);
 
 --
