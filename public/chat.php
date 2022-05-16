@@ -70,7 +70,7 @@ use Models\chat;
                     <form action="../controllers/service.php" method="POST">
                         <h1>Chat</h1>
                         
-                        <input type="text" id="namamenu" name="isi" placeholder="Chat Yang ingin disampaikan ke customer" class="form-control">
+                        <input type="text" id="namamenu" name="isi" placeholder="Chat Yang ingin disampaikan" class="form-control">
                         <br>
                         <button type="submit" class="btn btn-primary" name="btnaddchat" >Chat</button>
                         <br>
