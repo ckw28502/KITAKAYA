@@ -2,6 +2,8 @@
 
 require_once "../config/config.php";
 
+// include "../alert.php";
+
 use Models\User;
 use Models\toko;
 
@@ -20,6 +22,7 @@ if(isset($_POST["login"])){
 
     if ($username == "" || $password == "") {
         header("Location: ../index.php");
+        $title = "Field Kosong"; $msg = ""; $icon = "warning";
     }else{
         if ($username == "admin" && $password == "000") {
             header("Location: ../public/halamanadmin.php");
