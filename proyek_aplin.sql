@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2022 at 03:54 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: May 17, 2022 at 07:06 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -200,10 +200,18 @@ DROP TABLE IF EXISTS `transaksi`;
 CREATE TABLE `transaksi` (
   `id` int(11) NOT NULL,
   `id_member` int(11) NOT NULL,
-  `bulan` int(11) NOT NULL,
+  `bulan` datetime NOT NULL DEFAULT current_timestamp(),
   `subtotal` int(11) NOT NULL,
   `bukti` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id`, `id_member`, `bulan`, `subtotal`, `bukti`) VALUES
+(5, 31, '2022-05-17 12:03:07', 120, 'uploads/31.png'),
+(6, 31, '2022-05-17 12:04:42', 120, 'uploads/31.png');
 
 -- --------------------------------------------------------
 
@@ -231,7 +239,7 @@ INSERT INTO `user` (`id`, `email`, `password`, `nama`, `umur`, `role`, `status`,
 (1, 'ibw25', '123', 'Ivander', 19, 2, 1, NULL),
 (2, 'admin', '000', 'Admin Bewe', 19, 3, 0, NULL),
 (29, 'ivanderberwyn2002@gmail.com', '5677', 'CobaGambars', 17, 1, 1, NULL),
-(31, 'ibewe25@gmail.com', '12345', 'qwe', 17, 0, 1, NULL);
+(31, 'ibewe25@gmail.com', '12345', 'qwe', 17, 1, 1, NULL);
 
 --
 -- Indexes for dumped tables
@@ -362,7 +370,7 @@ ALTER TABLE `thread_forum`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
