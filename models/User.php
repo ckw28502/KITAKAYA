@@ -57,6 +57,15 @@ class User {
         return $db->query("SELECT * FROM user")->fetchAll();
     }
 
+    static function updaterole($id,$role){
+        $db = Database::instance();
+        return $db->query("UPDATE user SET role = :role WHERE id = :id",
+        [
+            "id"=>$id,
+            "role"=>$role
+        ])->fetch();
+    }
+
     function save(){
         $db = Database::instance();
         $cekemail = self::getByUsername($this->email);
