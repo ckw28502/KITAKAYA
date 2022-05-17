@@ -1,7 +1,7 @@
 <?php
     require_once "../config/config.php";
 
-    // untuk nampilkan nama
+    // untuk nampilkan namaa
     $user = $_SESSION["user"];
     $munculkan = $user->nama;
 
