@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2022 at 07:06 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: May 17, 2022 at 09:04 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -22,18 +22,6 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `proyek_aplin` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `proyek_aplin`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bab`
---
-
-DROP TABLE IF EXISTS `bab`;
-CREATE TABLE `bab` (
-  `no` int(11) NOT NULL,
-  `name` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -74,21 +62,9 @@ CREATE TABLE `comment` (
 
 DROP TABLE IF EXISTS `completion`;
 CREATE TABLE `completion` (
-  `bab` int(11) NOT NULL,
+  `kategori` int(11) NOT NULL,
   `member` int(11) NOT NULL,
   `completion` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `data_member`
---
-
-DROP TABLE IF EXISTS `data_member`;
-CREATE TABLE `data_member` (
-  `tanggal` date NOT NULL,
-  `jumlah member` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -187,7 +163,7 @@ DROP TABLE IF EXISTS `thread_forum`;
 CREATE TABLE `thread_forum` (
   `id` int(11) NOT NULL,
   `Judul` text NOT NULL,
-  `Video` int(11) NOT NULL
+  `Kategori` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -200,7 +176,8 @@ DROP TABLE IF EXISTS `transaksi`;
 CREATE TABLE `transaksi` (
   `id` int(11) NOT NULL,
   `id_member` int(11) NOT NULL,
-  `bulan` datetime NOT NULL DEFAULT current_timestamp(),
+  `tgl` date NOT NULL,
+  `bulan` int(11) NOT NULL,
   `subtotal` int(11) NOT NULL,
   `bukti` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -209,9 +186,11 @@ CREATE TABLE `transaksi` (
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id`, `id_member`, `bulan`, `subtotal`, `bukti`) VALUES
-(5, 31, '2022-05-17 12:03:07', 120, 'uploads/31.png'),
-(6, 31, '2022-05-17 12:04:42', 120, 'uploads/31.png');
+INSERT INTO `transaksi` (`id`, `id_member`, `tgl`, `bulan`, `subtotal`, `bukti`) VALUES
+(1, 31, '2022-05-17', 6, 500000, NULL),
+(2, 31, '2022-05-26', 6, 500000, NULL),
+(3, 31, '2022-04-05', 6, 500000, NULL),
+(4, 31, '2021-04-07', 6, 500000, NULL);
 
 -- --------------------------------------------------------
 
@@ -239,17 +218,11 @@ INSERT INTO `user` (`id`, `email`, `password`, `nama`, `umur`, `role`, `status`,
 (1, 'ibw25', '123', 'Ivander', 19, 2, 1, NULL),
 (2, 'admin', '000', 'Admin Bewe', 19, 3, 0, NULL),
 (29, 'ivanderberwyn2002@gmail.com', '5677', 'CobaGambars', 17, 1, 1, NULL),
-(31, 'ibewe25@gmail.com', '12345', 'qwe', 17, 1, 1, NULL);
+(31, 'ibewe25@gmail.com', '12345', 'qwe', 17, 0, 1, NULL);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `bab`
---
-ALTER TABLE `bab`
-  ADD PRIMARY KEY (`no`);
 
 --
 -- Indexes for table `chat`
@@ -271,8 +244,8 @@ ALTER TABLE `comment`
 -- Indexes for table `completion`
 --
 ALTER TABLE `completion`
-  ADD KEY `bab` (`bab`),
-  ADD KEY `member` (`member`);
+  ADD KEY `member` (`member`),
+  ADD KEY `completion_ibfk_1` (`kategori`);
 
 --
 -- Indexes for table `kategori_vid`
@@ -305,7 +278,7 @@ ALTER TABLE `thread`
 --
 ALTER TABLE `thread_forum`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `Video` (`Video`);
+  ADD KEY `Video` (`Kategori`);
 
 --
 -- Indexes for table `transaksi`
@@ -370,7 +343,7 @@ ALTER TABLE `thread_forum`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -400,7 +373,7 @@ ALTER TABLE `comment`
 -- Constraints for table `completion`
 --
 ALTER TABLE `completion`
-  ADD CONSTRAINT `completion_ibfk_1` FOREIGN KEY (`bab`) REFERENCES `bab` (`no`),
+  ADD CONSTRAINT `completion_ibfk_1` FOREIGN KEY (`Kategori`) REFERENCES `kategori_vid` (`id`),
   ADD CONSTRAINT `completion_ibfk_2` FOREIGN KEY (`member`) REFERENCES `user` (`id`);
 
 --
@@ -419,7 +392,7 @@ ALTER TABLE `thread`
 -- Constraints for table `thread_forum`
 --
 ALTER TABLE `thread_forum`
-  ADD CONSTRAINT `thread_forum_ibfk_1` FOREIGN KEY (`Video`) REFERENCES `thread` (`id`);
+  ADD CONSTRAINT `thread_forum_ibfk_1` FOREIGN KEY (`Kategori`) REFERENCES `kategori_vid` (`id`);
 
 --
 -- Constraints for table `transaksi`
