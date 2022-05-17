@@ -22,7 +22,8 @@ if(isset($_POST["login"])){
 
     if ($username == "" || $password == "") {
         header("Location: ../index.php");
-        $title = "Field Kosong"; $msg = ""; $icon = "warning";
+        // data ini harus kembali ke index.php
+        //$title = "Field Kosong"; $msg = ""; $icon = "warning";
     }else{
         if ($username == "admin" && $password == "000") {
             header("Location: ../public/halamanadmin.php");
