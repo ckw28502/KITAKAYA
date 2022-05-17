@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2022 at 07:25 AM
+-- Generation Time: May 17, 2022 at 09:04 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -62,21 +62,9 @@ CREATE TABLE `comment` (
 
 DROP TABLE IF EXISTS `completion`;
 CREATE TABLE `completion` (
-  `bab` int(11) NOT NULL,
+  `kategori` int(11) NOT NULL,
   `member` int(11) NOT NULL,
   `completion` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `data_member`
---
-
-DROP TABLE IF EXISTS `data_member`;
-CREATE TABLE `data_member` (
-  `tanggal` date NOT NULL,
-  `jumlah member` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -175,7 +163,7 @@ DROP TABLE IF EXISTS `thread_forum`;
 CREATE TABLE `thread_forum` (
   `id` int(11) NOT NULL,
   `Judul` text NOT NULL,
-  `Bab` int(11) NOT NULL
+  `Kategori` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -257,7 +245,7 @@ ALTER TABLE `comment`
 --
 ALTER TABLE `completion`
   ADD KEY `member` (`member`),
-  ADD KEY `completion_ibfk_1` (`bab`);
+  ADD KEY `completion_ibfk_1` (`kategori`);
 
 --
 -- Indexes for table `kategori_vid`
@@ -290,7 +278,7 @@ ALTER TABLE `thread`
 --
 ALTER TABLE `thread_forum`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `Video` (`Bab`);
+  ADD KEY `Video` (`Kategori`);
 
 --
 -- Indexes for table `transaksi`
@@ -385,7 +373,7 @@ ALTER TABLE `comment`
 -- Constraints for table `completion`
 --
 ALTER TABLE `completion`
-  ADD CONSTRAINT `completion_ibfk_1` FOREIGN KEY (`bab`) REFERENCES `kategori_vid` (`id`),
+  ADD CONSTRAINT `completion_ibfk_1` FOREIGN KEY (`Kategori`) REFERENCES `kategori_vid` (`id`),
   ADD CONSTRAINT `completion_ibfk_2` FOREIGN KEY (`member`) REFERENCES `user` (`id`);
 
 --
@@ -404,7 +392,7 @@ ALTER TABLE `thread`
 -- Constraints for table `thread_forum`
 --
 ALTER TABLE `thread_forum`
-  ADD CONSTRAINT `thread_forum_ibfk_1` FOREIGN KEY (`Bab`) REFERENCES `kategori_vid` (`id`);
+  ADD CONSTRAINT `thread_forum_ibfk_1` FOREIGN KEY (`Kategori`) REFERENCES `kategori_vid` (`id`);
 
 --
 -- Constraints for table `transaksi`
