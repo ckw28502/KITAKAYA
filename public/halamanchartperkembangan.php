@@ -78,13 +78,57 @@
                             <li class="breadcrumb-item active">Members</li>
                         </ol>
                         <br>
+                        <select name="" id="tahun"></select>
+                        <canvas id="chart"></canvas>
                         <div style="height: 100vh"></div>
                         <div class="card mb-4"><div class="card-body">Ini Untuk Bagian Bawah jika diperlukan</div></div>
                     </div>
                 </main>
             </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../assets/js/scripts.js"></script>
+        <script src="../utils/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                console.log("HI");
+                $.ajax({
+                    method:"get",
+                    url:"../controllers/trans.php",
+                    data:{
+                        action:"gettahun"
+                    }
+                }).done((data)=>{
+                    let temp=JSON.parse(data);
+                    temp.forEach(el => {
+                        let opt=document.createElement("option");
+                        opt.value=el["tahun"];
+                        opt.innerHTML=el["tahun"];
+                        $("#tahun").append(opt);
+                    });
+                    getdata();
+                });
+                function getdata() {
+                    $.ajax({
+                    method:"get",
+                    url:"../controllers/trans.php",
+                    data:{
+                        action:"getbyyear",
+                        tahun:document.getElementById("tahun").value
+                    }
+                }).done((data)=>{
+                    let temp=JSON.parse(data);
+                    console.log("hi");
+                    const bulan=["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agt","Sep","Okt","Nov","Des"];
+                    let k=1;
+                    let qty=[];
+                    console.log(bulan);
+                    console.log(qty);
+                });
+                };
+                $("select").on("change",getdata);
+            });
+        </script>
     </body>
 </html>
