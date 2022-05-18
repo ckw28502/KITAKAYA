@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2022 at 09:04 AM
+-- Generation Time: May 18, 2022 at 04:23 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -163,6 +163,7 @@ DROP TABLE IF EXISTS `thread_forum`;
 CREATE TABLE `thread_forum` (
   `id` int(11) NOT NULL,
   `Judul` text NOT NULL,
+  `isi` text NOT NULL,
   `Kategori` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
