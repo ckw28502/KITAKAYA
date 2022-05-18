@@ -80,8 +80,8 @@
                         <br>
                         <!-- <select name="" id="angka"></select> -->
                         <canvas id="chart"></canvas>
-                        <div style="height: 100vh"></div>
-                        <div class="card mb-4"><div class="card-body">Ini Untuk Bagian Bawah jika diperlukan</div></div>
+                        <!-- <div style="height: 100vh"></div>
+                        <div class="card mb-4"><div class="card-body">Ini Untuk Bagian Bawah jika diperlukan</div></div> -->
                     </div>
                 </main>
             </div>
