@@ -54,7 +54,7 @@ if(isset($_POST["login"])){
                         header("Location: ../public/halamanuserbiasa.php");
                         exit;
                     }
-                }
+                } 
             }
             else{
                 header("Location: ../index.php");
