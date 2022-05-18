@@ -81,6 +81,44 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Saham</li>
                         </ol>
+                        <form action="../controllers/chat.php" method="POST">
+                        <h1>Forum</h1>
+                        
+                        <div class="coba">
+                            <?php 
+                                $idservice=$_SESSION['idservice'];
+                                
+                            ?>       
+                                <?php                     
+                                    foreach($chats as $chat){
+                                        if ($chat->pengirim==1) {         
+                                        ?> 
+                                            <input id="punyaecs" class="form-control" type="text" value="Customer Service : <?= $chat->isi?>" aria-label="readonly input example" readonly>
+                                            <br>
+                                        <?php
+                                        }
+                                        else {
+                                            ?> 
+                                            <input id="punyaeuser" class="form-control" type="text" value="Me : <?= $chat->isi?>" aria-label="readonly input example" readonly>
+                                            <br>
+                                            <?php
+                                        }
+                                    }
+                                ?>
+                            <br>
+                        </div>
+                        
+                        <form action="../controllers/service.php" method="POST">
+                            <h1>Chat</h1>
+                            
+                            <input type="text" id="namamenu" name="isi" placeholder="Chat Yang ingin disampaikan" class="form-control">
+                            <br>
+                            <button type="submit" class="btn btn-primary" name="btnaddchat" >Chat</button>
+                            <br>
+                            <br>
+                            <button type="submit" class="btn btn-danger" name="balikae">Back To Dashboard</button>
+                        </form>
+                </form>
                     </div>
                 </main>
             </div>
