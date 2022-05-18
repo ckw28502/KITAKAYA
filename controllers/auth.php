@@ -54,7 +54,7 @@ if(isset($_POST["login"])){
                         header("Location: ../public/halamanuserbiasa.php");
                         exit;
                     }
-                }
+                } 
             }
             else{
                 header("Location: ../index.php");
@@ -86,7 +86,7 @@ if(isset($_GET["logoutcusvip"])){
     header("Location: ../index.php");
     exit;
 }
-
+ 
 
 
 ?>
