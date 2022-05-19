@@ -1,9 +1,14 @@
 <?php
     require_once "../config/config.php";
+    use Utils\Message;
+    use Models\Video;
 
     // untuk nampilkan nama
     $user = $_SESSION["user"];
     $munculkan = $user->nama;
+
+    
+    
 ?>
 
 <!DOCTYPE html>
@@ -78,9 +83,35 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Kumpulan Video</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Saham</li>
-                        </ol>
+                        <?php 
+                            $video = Video::getVideo();
+                        ?>
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <th>No</th>
+                                <th>Kategori</th>
+                                <th>Progress</th>
+                                <th>Action</th>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                    foreach($video as $idx => $video){
+                                        $max = Video::jumlahVideo($video->id);
+                                        $max = $max->c;
+                                        ?>
+                                        <tr>
+                                            <td><?= $idx + 1 ?></td>
+                                            <td><?= $video->nama_kategori ?></td>
+                                            <td><progress id="pb" value="0" max="<?=$max?>"></progress></td>
+                                            <td>
+                                                <a href="../controllers/vid.php?idvidVIP=true&id=<?=$video->nama_kategori?>">Detail</a>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                 </main>
             </div>

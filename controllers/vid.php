@@ -45,5 +45,23 @@
         // echo $id;
         header("Location: ../public/showvideo_admin.php");
     }
+
+    if(isset($_GET['idvidVIP'])){
+        $id = $_GET['id'];
+        unset($_SESSION['namakategori']);
+        $_SESSION['namakategori'] = $id;
+        // $id = $_SESSION['idvideo'];
+        // echo $id;
+        header("Location: ../public/showvideo_uservip.php");
+    }
+
+    if(isset($_GET['watch'])){
+        $id = $_GET['idyt'];
+        unset($_SESSION['yt']);
+        $_SESSION['yt'] = $id;
+        // $id = $_SESSION['idvideo'];
+        // echo $id;
+        header("Location: ../public/ytplayer.php");
+    }
     
 ?>
