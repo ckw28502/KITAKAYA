@@ -69,7 +69,7 @@
         public static function getVideo()
         {
             $db=Database::instance();
-            $temp=$db->query("SELECT t.id, t.judul, t.video, k.nama_kategori FROM  kategori_vid k LEFT JOIN thread t  ON t.f_kategori=k.id AND t.status_video = 1");
+            $temp=$db->query("SELECT distinct k.nama_kategori FROM  kategori_vid k LEFT JOIN thread t  ON t.f_kategori=k.id AND t.status_video = 1");
             return $temp->fetchAll();
         }
 
