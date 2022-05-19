@@ -1,5 +1,7 @@
 <?php
     require_once "../config/config.php";
+    use Utils\Message;
+    use Models\Video;
 
     // untuk nampilkan nama
     $user = $_SESSION["user"];
@@ -76,12 +78,47 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                <main>
+            <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Kumpulan Video</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Saham</li>
-                        </ol>
+                        <?php 
+                            $video = Video::getVideo();
+                        ?>
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <th>No</th>
+                                <th>Kategori</th>
+                                <th>Progress</th>
+                                <th>Action</th>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                    $user = $_SESSION["user"];
+                                    $userid = $user->id;
+                                    // $kategori = $_SESSION['namakategori'];
+                                    // $idkategori = Video::getKategoribyName($kategori);
+                                    // $idkategori = $idkategori->id;
+                                    
+                                    foreach($video as $idx => $video){
+                                        $max = Video::jumlahVideo($video->id);
+                                        $max = $max->c;
+
+                                        $min = Video::VideoWatchedPB($userid, $video->id);
+                                        $min = $min->c;
+                                        ?>
+                                        <tr>
+                                            <td><?= $idx + 1 ?></td>
+                                            <td><?= $video->nama_kategori ?></td>
+                                            <td><progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress></td>
+                                            <td>
+                                                <a href="../controllers/vid.php?idvidBIASA=true&id=<?=$video->nama_kategori?>">Detail</a>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                 </main>
             </div>
