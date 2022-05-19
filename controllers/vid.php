@@ -41,8 +41,7 @@
         $id = $_GET['id'];
         unset($_SESSION['namakategori']);
         $_SESSION['namakategori'] = $id;
-        // $id = $_SESSION['idvideo'];
-        // echo $id;
+
         header("Location: ../public/showvideo_admin.php");
     }
 
@@ -50,8 +49,7 @@
         $id = $_GET['id'];
         unset($_SESSION['namakategori']);
         $_SESSION['namakategori'] = $id;
-        // $id = $_SESSION['idvideo'];
-        // echo $id;
+
         header("Location: ../public/showvideo_uservip.php");
     }
 
@@ -59,9 +57,31 @@
         $id = $_GET['idyt'];
         unset($_SESSION['yt']);
         $_SESSION['yt'] = $id;
-        // $id = $_SESSION['idvideo'];
-        // echo $id;
-        header("Location: ../public/ytplayer.php");
+
+        //save ke pb
+        $user = $_SESSION["user"];
+        $userid = $user->id;
+        // $munculkan = $user->nama;
+        $kategori = $_SESSION['namakategori'];
+        $idkategori = Video::getKategoribyName($kategori);
+        $idkategori = $idkategori->id;
+        $idvideo = $_GET['idv'];
+        //cek sudah ada apa belum
+        $cek = Video::cekPB($userid, $idkategori, $idvideo);
+        // echo $cek->c;
+        if ($cek->c == 0) {
+            Video::insertPB($userid, $idkategori, $idvideo);
+        }
+         header("Location: ../public/ytplayer.php");
     }
+
+    if(isset($_GET['idvidBIASA'])){
+        $id = $_GET['id'];
+        unset($_SESSION['namakategori']);
+        $_SESSION['namakategori'] = $id;
+
+        header("Location: ../public/showvideo_userbiasa.php");
+    }
+    
     
 ?>

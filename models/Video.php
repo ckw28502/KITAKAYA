@@ -48,6 +48,15 @@
             return $temp->fetch();
         }
 
+        public static function getIDkategori($id)
+        {
+            $db=Database::instance();
+            $temp=$db->query("SELECT f_kategori FROM thread  WHERE status_video = 1 and id = :id", [
+                "id"=>$id
+            ]);
+            return $temp->fetch();
+        }
+
         public static function getKategoribyId($nama)
         {
             $db=Database::instance();
@@ -84,15 +93,6 @@
             return $temp->fetch();
         }
 
-        public static function getIDkategori($id)
-        {
-            $db=Database::instance();
-            $temp=$db->query("SELECT f_kategori FROM thread  WHERE status_video = 1 and id = :id", [
-                "id"=>$id
-            ]);
-            return $temp->fetch();
-        }
-
         public static function getVideobyKategori($id)
         {
             $db=Database::instance();
@@ -102,19 +102,46 @@
             return $temp->fetchAll();
         }
 
-        // //Ambil semua chart
-        // public static function getAll()
-        // {
-        //     $db=Database::instance();
-        //     $temp=$db->query("SELECT name FROM rekomendasi");
-        //     return $temp->fetchAll();
-        // }
-        // //Ambil id terbesar
-        // public static function getMax()
-        // {
-        //     $db=Database::instance();
-        //     $temp=$db->query("SELECT * FROM rekomendasi WHERE id=(SELECT MAX(id) FROM rekomendasi)");
-        //     return $temp->fetch();
-        // }
+        public static function getVideobyKategoriLIMIT($id)
+        {
+            $db=Database::instance();
+            $temp=$db->query("SELECT t.id, t.judul, t.video, k.nama_kategori FROM thread t, kategori_vid k WHERE t.f_kategori=k.id and t.status_video = 1 and t.f_kategori = :kategori LIMIT 3",[
+                "kategori"=>$id
+            ]);
+            return $temp->fetchAll();
+        }
+
+        //    PROGRESS BAR
+        public static function insertPB($refuser, $refkategori, $refthread)
+        {
+            $db=Database::instance();
+            $temp=$db->query("INSERT INTO progressbar(refuser, refkategori, refthread) VALUES(:refuser, :refkategori, :refthread)",[
+                "refuser"=>$refuser,
+                "refkategori"=>$refkategori,
+                "refthread"=>$refthread,
+            ]);
+            return $temp->fetch();
+        }
+
+        public static function cekPB($refuser, $refkategori, $refthread)
+        {
+            $db=Database::instance();
+            $temp=$db->query("SELECT count(*) as c FROM progressbar WHERE refuser = :refuser AND refkategori = :refkategori AND refthread = :refthread",[
+                "refuser"=>$refuser,
+                "refkategori"=>$refkategori,
+                "refthread"=>$refthread,
+            ]);
+            return $temp->fetch();
+        }
+
+        public static function VideoWatchedPB($refuser, $refkategori)
+        {
+            $db=Database::instance();
+            $temp=$db->query("SELECT count(*) as c FROM progressbar WHERE refuser = :refuser AND refkategori = :refkategori",[
+                "refuser"=>$refuser,
+                "refkategori"=>$refkategori,
+            ]);
+            return $temp->fetch();
+        }
     }
 ?>

@@ -95,14 +95,23 @@
                             </thead>
                             <tbody>
                                 <?php 
+                                    $user = $_SESSION["user"];
+                                    $userid = $user->id;
+                                    // $kategori = $_SESSION['namakategori'];
+                                    // $idkategori = Video::getKategoribyName($kategori);
+                                    // $idkategori = $idkategori->id;
+                                    
                                     foreach($video as $idx => $video){
                                         $max = Video::jumlahVideo($video->id);
                                         $max = $max->c;
+
+                                        $min = Video::VideoWatchedPB($userid, $video->id);
+                                        $min = $min->c;
                                         ?>
                                         <tr>
                                             <td><?= $idx + 1 ?></td>
                                             <td><?= $video->nama_kategori ?></td>
-                                            <td><progress id="pb" value="0" max="<?=$max?>"></progress></td>
+                                            <td><progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress></td>
                                             <td>
                                                 <a href="../controllers/vid.php?idvidVIP=true&id=<?=$video->nama_kategori?>">Detail</a>
                                             </td>

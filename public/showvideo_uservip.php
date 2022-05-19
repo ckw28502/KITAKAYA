@@ -5,16 +5,16 @@
 
     $kategori = $_SESSION['namakategori'];
     
-    // if((int)$id <=0) {
-    //     echo 'The variable is NULL';
-    // }else{}
+
 
     $idkategori = Video::getKategoribyName($kategori);
     // echo $idkategori->f_kategori;
 
-    $kat = Video::getKategoribyId($idkategori->id);
+    $kat = Video::getKategoribyId($idkategori->id); //rasae kok ws g perlu ini
     $video = Video::getVideobyKategori($idkategori->id);
     
+    
+
     if (isset($_POST['btnback'])) {
         header("Location: halamanuservip.php");
     }
@@ -64,9 +64,9 @@
                             foreach($video as $idx => $video){
                                 ?>
                                 <tr>
-                                    <td><label style="line-height: 350px;"> <?= $idx + 1 ?> </label></td>
-                                    <td><label style="line-height: 350px;"><?= $video->judul ?></label></td>
-                                    <td><a style="line-height: 350px;" href="../controllers/vid.php?watch=true&idyt=<?=$video->video?>">Watch</a> </td>
+                                    <td><label > <?= $idx + 1 ?> </label></td>
+                                    <td><label ><?= $video->judul ?></label></td>
+                                    <td><a  href="../controllers/vid.php?watch=true&idyt=<?=$video->video?>&idv=<?=$video->id?>">Watch</a> </td>
                                 </tr>
                                 <?php
                             }
