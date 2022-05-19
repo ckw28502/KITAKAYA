@@ -58,7 +58,7 @@
                                 Add Chart
                             </a>
                             <div class="sb-sidenav-menu-heading">Charts</div>
-                            <a class="nav-link collapsed" href="../public/halamanchartumur.php" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="../public/halamanchartumur.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Chart Umur
                                 <!-- <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div> -->
