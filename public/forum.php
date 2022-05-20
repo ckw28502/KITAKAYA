@@ -20,7 +20,6 @@ use Models\comment;
             width: 100%;
             height: 100vh;
             background-color: #b1bfd8;
-            background-image: linear-gradient(160deg, #b1bfd8 0%, #6782b4 74%);
             /* background: linear-gradient(150deg, #9600FF 10%,#AEBAF8 50%); */
         }
         #punyaeuser{
@@ -52,10 +51,12 @@ use Models\comment;
                         foreach($posts as $post){
                             
                             ?> 
-                            <input id="punyaeuser" class="form-control" type="text" value="<?= $post->judul?>" aria-label="readonly input example" readonly>
-                            <input id="punyaeuser" class="form-control" type="text" value="<?= $post->isi?>" aria-label="readonly input example" readonly>
+                            <input id="punyaeuser" class="form-control" type="text" value="Judul Post : <?= $post->Judul?>" aria-label="readonly input example" readonly>
+                            <input id="punyaeuser" class="form-control" type="text" value="Isi Post : <?= $post->isi?>" aria-label="readonly input example" readonly>
+                            <input id="punyaeuser" class="form-control" type="text" value="Poster : <?= $post->namamember?>" aria-label="readonly input example" readonly>
                             <input type="text" id="namamenu" name="isicomment" placeholder="Isi reply" class="form-control">
                             <td><button class="btn btn-primary" name="comment[<?=$post->id?>]">Reply</button></a></td>
+                            <br>
                             <?php 
                                 
                             ?>   
@@ -66,13 +67,14 @@ use Models\comment;
                                     
                                     ?> 
                                      <form action="../controllers/forum.php" method="POST">
-                                    <input id="punyaeuser" class="form-control" type="text" value="Penulis:<?= $comment->namamember?>" aria-label="readonly input example" readonly>
-
-                                    <input id="punyaeuser" class="form-control" type="text" value="<?= $comment->isi?>" aria-label="readonly input example" readonly>
+                                    <br>
+                                    <input id="punyaeuser" class="form-control" type="text" value="Pereply : <?= $comment->namamember?>" aria-label="readonly input example" readonly>
+                                    <input id="punyaeuser" class="form-control" type="text" value="Isi : <?= $comment->isi?>" aria-label="readonly input example" readonly>
+                                    
                                     <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control">
                                     <td><button class="btn btn-primary" name="replycomment[<?=$idpost?>,<?=$comment->id?>]">Reply</button></a></td>
-                                    </form>
                                     <br>
+                                    </form>
 
                                     <?php
                                         $idcomment=$comment->id;
@@ -80,9 +82,10 @@ use Models\comment;
                                         foreach($comments as $comment){
                                     ?> 
                                      <form action="../controllers/forum.php" method="POST">
-                                    <input id="punyaeuser" class="form-control" type="text" value="Penulis:<?= $comment->namamember?>" aria-label="readonly input example" readonly>
+                                    <br>
+                                    <input id="punyaeuser" class="form-control" type="text" value="Pereply : <?= $comment->namamember?>" aria-label="readonly input example" readonly>
 
-                                        <input id="punyaeuser" class="form-control" type="text" value="<?= $comment->isi?>" aria-label="readonly input example" readonly>
+                                        <input id="punyaeuser" class="form-control" type="text" value="Isi : <?= $comment->isi?>" aria-label="readonly input example" readonly>
                                         <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control">
                                         <td><button class="btn btn-primary" name="replycomment[<?=$idpost?>,<?=$comment->id?>]">Reply</button></a></td>
                                         </form>
@@ -95,9 +98,10 @@ use Models\comment;
                                             foreach($comments as $comment){
                                     
                                                 ?> 
-                                                <input id="punyaeuser" class="form-control" type="text" value="Penulis:<?= $comment->namamember?>" aria-label="readonly input example" readonly>
+                                                <br>
+                                                <input id="punyaeuser" class="form-control" type="text" value="Penulis: <?= $comment->namamember?>" aria-label="readonly input example" readonly>
 
-                                                <input id="punyaeuser" class="form-control" type="text" value="<?= $comment->isi?>" aria-label="readonly input example" readonly>
+                                                <input id="punyaeuser" class="form-control" type="text" value="Reply: <?= $comment->isi?>" aria-label="readonly input example" readonly>
                                                 <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control">
                                                 <td><button class="btn btn-primary" name="replycomment[<?=$idpost?>,<?=$comment->id?>]">Reply</button></a></td>
             
@@ -117,9 +121,11 @@ use Models\comment;
                         <br>
                     </div>
                     </form>
+                    <br>
                     <form action="../controllers/forum.php" method="POST">
                         <h1>Post</h1>
-                        <input type="text" id="namamenu" name="judul" placeholder="Post Yang ingin disampaikan" class="form-control">                
+                        <input type="text" id="namamenu" name="judul" placeholder="Post Yang ingin disampaikan" class="form-control"> 
+                        <br>               
                         <input type="text" id="namamenu" name="isi" placeholder="Isi Yang ingin disampaikan" class="form-control">
                         <br>
                         <button type="submit" class="btn btn-primary" name="btnaddpost" >Post</button>

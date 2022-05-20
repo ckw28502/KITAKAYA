@@ -21,7 +21,7 @@
         $namauser=$user["nama"];
         $isi = $_POST['isi'];  
         $idkategori =$_SESSION['idkategori'];
-        $post = new post($judul,$namauser,$isi,$idkategori);
+        $post = new post($judul,$isi,$namauser,$idkategori);
         $post->addpost();
         
         Message::add("success", "Berhasil Post!");
