@@ -2,7 +2,6 @@
 use Utils\Message;
 use Models\chat;
     require_once "../config/config.php";
-
 ?>
 
 <!DOCTYPE html>

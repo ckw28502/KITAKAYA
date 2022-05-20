@@ -2,8 +2,15 @@
 require_once "../config/config.php";
     $id = $_SESSION['yt'];
 
+    $user = $_SESSION["user"];
+    $role = $user->role;
     if (isset($_POST['btnback'])) {
-        header("Location: showvideo_uservip.php");
+        if ($role == 0) {
+            header("Location: showvideo_userbiasa.php");
+        }else if ($role == 1){
+            header("Location: showvideo_uservip.php");
+        }
+        
     }
 ?>
 
