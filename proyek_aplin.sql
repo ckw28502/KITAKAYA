@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2022 at 04:23 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: May 20, 2022 at 07:58 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -93,6 +93,30 @@ INSERT INTO `kategori_vid` (`id`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `progressbar`
+--
+
+DROP TABLE IF EXISTS `progressbar`;
+CREATE TABLE `progressbar` (
+  `id` int(11) NOT NULL,
+  `refuser` int(11) NOT NULL,
+  `refkategori` int(11) NOT NULL,
+  `refthread` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `progressbar`
+--
+
+INSERT INTO `progressbar` (`id`, `refuser`, `refkategori`, `refthread`) VALUES
+(1, 29, 2, 3),
+(2, 29, 2, 6),
+(3, 29, 4, 4),
+(4, 31, 4, 8);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rekomendasi`
 --
 
@@ -151,7 +175,10 @@ INSERT INTO `thread` (`id`, `judul`, `video`, `status_video`, `f_kategori`) VALU
 (3, 'testing', 'HLLofrwRlBg', 1, 2),
 (4, 'testing video', 'XqZsoesa55w', 1, 4),
 (5, 'asdasd', 'pL8XPZp4-5c', 1, 5),
-(6, '11asasdasdad', 'fDek6cYijxI', 1, 2);
+(6, '11asasdasdad', 'fDek6cYijxI', 1, 2),
+(7, 'tutor saham', 'NjsUrZ1NL0k', 1, 4),
+(8, 'cara beli saham', 'IzsYTb2WdGs', 1, 4),
+(9, 'Luna nglawak', 'Eg35QIxiRg8', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -255,6 +282,15 @@ ALTER TABLE `kategori_vid`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `progressbar`
+--
+ALTER TABLE `progressbar`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `refuserid` (`refuser`),
+  ADD KEY `refkategoriid` (`refkategori`),
+  ADD KEY `refthreadid` (`refthread`);
+
+--
 -- Indexes for table `rekomendasi`
 --
 ALTER TABLE `rekomendasi`
@@ -317,6 +353,12 @@ ALTER TABLE `kategori_vid`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `progressbar`
+--
+ALTER TABLE `progressbar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `rekomendasi`
 --
 ALTER TABLE `rekomendasi`
@@ -332,19 +374,13 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `thread`
 --
 ALTER TABLE `thread`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `thread_forum`
 --
 ALTER TABLE `thread_forum`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transaksi`
---
-ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -357,49 +393,18 @@ ALTER TABLE `user`
 --
 
 --
--- Constraints for table `chat`
+-- Constraints for table `progressbar`
 --
-ALTER TABLE `chat`
-  ADD CONSTRAINT `chat_ibfk_1` FOREIGN KEY (`service`) REFERENCES `service` (`id`);
-
---
--- Constraints for table `comment`
---
-ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`member`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`thread`) REFERENCES `thread_forum` (`id`),
-  ADD CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`reply`) REFERENCES `comment` (`id`);
-
---
--- Constraints for table `completion`
---
-ALTER TABLE `completion`
-  ADD CONSTRAINT `completion_ibfk_1` FOREIGN KEY (`Kategori`) REFERENCES `kategori_vid` (`id`),
-  ADD CONSTRAINT `completion_ibfk_2` FOREIGN KEY (`member`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `service`
---
-ALTER TABLE `service`
-  ADD CONSTRAINT `service_ibfk_1` FOREIGN KEY (`member`) REFERENCES `user` (`id`);
+ALTER TABLE `progressbar`
+  ADD CONSTRAINT `refkategoriid` FOREIGN KEY (`refkategori`) REFERENCES `kategori_vid` (`id`),
+  ADD CONSTRAINT `refthreadid` FOREIGN KEY (`refthread`) REFERENCES `thread` (`id`),
+  ADD CONSTRAINT `refuserid` FOREIGN KEY (`refuser`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `thread`
 --
 ALTER TABLE `thread`
   ADD CONSTRAINT `refkategori` FOREIGN KEY (`f_kategori`) REFERENCES `kategori_vid` (`id`);
-
---
--- Constraints for table `thread_forum`
---
-ALTER TABLE `thread_forum`
-  ADD CONSTRAINT `thread_forum_ibfk_1` FOREIGN KEY (`Kategori`) REFERENCES `kategori_vid` (`id`);
-
---
--- Constraints for table `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_member`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
