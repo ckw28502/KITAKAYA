@@ -1,4 +1,5 @@
 <?php
+    use Models\Video;
     require_once "../config/config.php";
 
     $user = $_SESSION["user"];
@@ -80,6 +81,32 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Saham</li>
                         </ol>
+                        <form action="../controllers/forum.php" method="POST">
+
+                        <table class="table table-dark table-striped">
+                            <thead>
+                            <th>Nama Kategori</th>
+                            <th>Forum</th>
+                            
+                            </thead>
+                            <tbody>
+                            <?php 
+                                $categories = video::getAll();
+                                
+                            ?>       
+                                <?php                     
+                                    foreach($categories as $category){
+                                        ?>
+                                        <tr>
+                                            <td><?=  $category->nama_kategori?></td>
+                                            <td><button class="btn btn-primary" name="forum[<?=$category->id?>]">Forum</button></a></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                        </form>
                     </div>
                 </main>
             </div>

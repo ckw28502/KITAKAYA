@@ -20,6 +20,14 @@
                 "kategori"=>$this->kategori,
             ]);
         }
+        //ambil semua kategorivideo
+        public static function getAll()
+        {
+            $db=Database::instance();
+            $temp=$db->query("SELECT * FROM kategori_vid");
+            return $temp->fetchAll();
+        }
+        
         //Ambil chart dengan nama
         public static function cekKategori($nama)
         {
