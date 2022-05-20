@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2022 at 07:58 AM
+-- Generation Time: May 20, 2022 at 04:06 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -48,7 +48,7 @@ DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `thread` int(11) NOT NULL,
-  `member` int(11) NOT NULL,
+  `namamember` text NOT NULL,
   `isi` text NOT NULL,
   `tanggal` date NOT NULL,
   `reply` int(11) DEFAULT NULL
@@ -191,6 +191,7 @@ CREATE TABLE `thread_forum` (
   `id` int(11) NOT NULL,
   `Judul` text NOT NULL,
   `isi` text NOT NULL,
+  `namamember` text NOT NULL,
   `Kategori` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -264,7 +265,6 @@ ALTER TABLE `chat`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `member` (`member`),
   ADD KEY `reply` (`reply`),
   ADD KEY `comment_ibfk_2` (`thread`);
 
@@ -351,60 +351,6 @@ ALTER TABLE `comment`
 --
 ALTER TABLE `kategori_vid`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `progressbar`
---
-ALTER TABLE `progressbar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `rekomendasi`
---
-ALTER TABLE `rekomendasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `service`
---
-ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `thread`
---
-ALTER TABLE `thread`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `thread_forum`
---
-ALTER TABLE `thread_forum`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `progressbar`
---
-ALTER TABLE `progressbar`
-  ADD CONSTRAINT `refkategoriid` FOREIGN KEY (`refkategori`) REFERENCES `kategori_vid` (`id`),
-  ADD CONSTRAINT `refthreadid` FOREIGN KEY (`refthread`) REFERENCES `thread` (`id`),
-  ADD CONSTRAINT `refuserid` FOREIGN KEY (`refuser`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `thread`
---
-ALTER TABLE `thread`
-  ADD CONSTRAINT `refkategori` FOREIGN KEY (`f_kategori`) REFERENCES `kategori_vid` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
