@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2022 at 04:06 PM
+-- Generation Time: May 20, 2022 at 06:15 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -53,6 +53,13 @@ CREATE TABLE `comment` (
   `tanggal` date NOT NULL,
   `reply` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `thread`, `namamember`, `isi`, `tanggal`, `reply`) VALUES
+(1, 0, 'qwe', 'mosok', '2022-05-20', -1);
 
 -- --------------------------------------------------------
 
@@ -111,8 +118,7 @@ CREATE TABLE `progressbar` (
 INSERT INTO `progressbar` (`id`, `refuser`, `refkategori`, `refthread`) VALUES
 (1, 29, 2, 3),
 (2, 29, 2, 6),
-(3, 29, 4, 4),
-(4, 31, 4, 8);
+(3, 29, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -195,6 +201,13 @@ CREATE TABLE `thread_forum` (
   `Kategori` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `thread_forum`
+--
+
+INSERT INTO `thread_forum` (`id`, `Judul`, `isi`, `namamember`, `Kategori`) VALUES
+(0, 'Saham', 'bagus', 'qwe', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -244,10 +257,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `nama`, `umur`, `role`, `status`, `expired`) VALUES
+(0, 'ibewe25@gmail.com', '$2y$10$jxST0ngvpbGAFAPybvb5ie5WKRsr8h6vLG3T80bqeHetxkcQ3kS5a', 'Ikan', 17, 1, 1, NULL),
 (1, 'ibw25', '123', 'Ivander', 19, 2, 1, NULL),
 (2, 'admin', '000', 'Admin Bewe', 19, 3, 0, NULL),
-(29, 'ivanderberwyn2002@gmail.com', '5677', 'CobaGambars', 17, 1, 1, NULL),
-(31, 'ibewe25@gmail.com', '12345', 'qwe', 17, 0, 1, NULL);
+(29, 'ivanderberwyn2002@gmail.com', '5677', 'CobaGambars', 17, 1, 1, NULL);
 
 --
 -- Indexes for dumped tables
@@ -344,7 +357,7 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `kategori_vid`

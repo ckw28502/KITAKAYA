@@ -31,6 +31,8 @@ if(isset($_POST["login"])){
         }
 
         if ($ecustomer == true) {
+            // cek password
+            $verifyPass = password_verify($_POST["pass"], $ecustomer->password);
 
             // cek dia udah verify email belum
             $cek = User::getStatus($_POST["username"],1);
@@ -38,21 +40,39 @@ if(isset($_POST["login"])){
                 // cek dia vip atau tidak
                 $cekuservip = User::getRole($_POST["username"],1);
                 if ($cekuservip == true) {
-                    $_SESSION["user"] = $ecustomer;
-                    header("Location: ../public/halamanuservip.php");
-                    exit;
+                    // cek pass sama hash sama tidak
+                    if ($verifyPass) {
+                        $_SESSION["user"] = $ecustomer;
+                        header("Location: ../public/halamanuservip.php");
+                        exit;
+                    }
+                    else{
+                        header("Location: ../index.php");
+                    }
+                    
                 }
                 else{
                     $cekusercs = User::getRole($_POST["username"],2);
                     if ($cekusercs == true) {
-                        $_SESSION["user"] = $ecustomer;
-                        header("Location: ../public/halamancs.php");
-                        exit;
+                        // cek pass sama hash sama tidak
+                        if ($verifyPass) {
+                            $_SESSION["user"] = $ecustomer;
+                            header("Location: ../public/halamancs.php");
+                            exit;
+                        }
+                        else{
+                            header("Location: ../index.php");
+                        }
                     }
                     else{
-                        $_SESSION["user"] = $ecustomer;
-                        header("Location: ../public/halamanuserbiasa.php");
-                        exit;
+                        if ($verifyPass) {
+                            $_SESSION["user"] = $ecustomer;
+                            header("Location: ../public/halamanuserbiasa.php");
+                            exit;
+                        }
+                        else{
+                            header("Location: ../index.php");
+                        }
                     }
                 } 
             }

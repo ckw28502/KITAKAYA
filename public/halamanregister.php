@@ -9,7 +9,7 @@
     if (isset($_REQUEST["ayoregis"])) {
         $nama = $_REQUEST["nama"];
         $email = $_REQUEST["email"];
-        $pass = $_REQUEST["pass"];
+        $pass = password_hash($_REQUEST["pass"], PASSWORD_DEFAULT);
         $umur = $_REQUEST["umur"];
 
         if ($nama != "" && $email != "" && $pass != "" && $umur != "") {
@@ -20,7 +20,7 @@
 
             if ($cekemail = true) {
                 echo("email e podo");
-                $user = new User($_POST);
+                $user = new User($nama,$email,$pass,$umur);
                 $user->save();
                 try {
                     $mail = new PHPMailer(true);
@@ -88,7 +88,7 @@
                                                         <table border='0' cellspacing='0' cellpadding='0'>
                                                             <tbody><tr>
                                                                 <td align='center' style='border-radius:10px' bgcolor='#9C5ecb
-                                                                        '><a href='localhost/Proyek_V2/public/verify.php?hash=".$pass.
+                                                                        '><a href='localhost/KitaKaya/public/verify.php?hash=".$pass.
                                                                         "' style='font-size:20px;font-family:Helvetica,Arial,sans-serif;color:#ffffff;text-decoration:none;color:#ffffff;text-decoration:none;padding:15px 25px;border-radius:2px;display:inline-block'>Verify Account</a></td>
                                                             </tr>
                                                         </tbody></table>

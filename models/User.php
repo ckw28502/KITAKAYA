@@ -16,12 +16,12 @@ class User {
     private $role;
     private $status;
 
-    function __construct($body)
+    function __construct($nama,$email,$password,$umur)
     {
-        $this->nama = $body["nama"];
-        $this->email = $body["email"];
-        $this->password = $body["pass"];
-        $this->umur = $body["umur"];
+        $this->nama = $nama;
+        $this->email = $email;
+        $this->password = $password;
+        $this->umur = $umur;
         $this->role = 0;
         $this->status = 0;
     }
