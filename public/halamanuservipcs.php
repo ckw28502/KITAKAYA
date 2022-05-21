@@ -101,7 +101,7 @@
                             $services = service::getbyidmember($idmember);
 
                         ?>
-                         <form action="../controllers/service.php" method="POST">
+                        <form action="../controllers/service.php" method="POST">
                         <table class="table table-dark table-striped">
                             <thead>
                             <th>ID</th>
@@ -119,11 +119,25 @@
                                             
                                             <td><?=  $idx + 1?></td>
                                             <td><?=  $service->judul?></td>
-                                            <td><?= $service->rate ?></td>
+                                            
+                                            <?php
+                                        if ( $service->rate!=null) {
+                                            
+                                            ?> 
+                                            <form action="../controllers/service.php" method="POST">
+                                            <td><?= $service->rate?></td>
                                             <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
-
-                                        </tr>
-                                        <?php
+                                            </form>
+                                            <?php
+                                        }
+                                        else{  
+                                            ?>
+                                            <form action="../controllers/service.php" method="POST">
+                                            <td><input type="text" id="keteranganmenu" name="rate[<?=$service->id?>]"> <input type="submit" class="btn btn-success" name="submit[<?=$service->id?>]" value="Rate"/></input></td>
+                                            <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
+                                            </form>
+                                    <?php
+                                    }
                                     }
 
                                 ?>
@@ -134,6 +148,7 @@
                 </main>
             </div>
         </div>
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../assets/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -142,4 +157,8 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../assets/js/datatables-simple-demo.js"></script>
     </body>
+    <?php 
+                    Message::print("error");
+                    Message::print("success");
+        ?>
 </html>

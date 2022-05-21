@@ -21,6 +21,16 @@
                 "member"=>$this->member
             ]);
         }
+         //update rate service
+        public static function rate($rate,$id)
+        {
+        $db = Database::instance();
+        $db->query("UPDATE service SET rate = :rate WHERE id = :id",
+        [
+            "rate"=>$rate,
+            "id"=>$id
+        ]);
+        }
         //Ambil service dengan nama
         public static function getbyidmember($member)
         {
