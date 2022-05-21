@@ -33,7 +33,16 @@ class User {
             "email"=>$email
         ])->fetch();
     }
+    static function updateexpdate($id,$expired){
+        $db = Database::instance();
+        $db->query("UPDATE user SET expired =:expired WHERE id =:id",
+        [
+            
+            "expired"=>$expired,
+            "id"=>$id
 
+        ]);
+    }
     static function getStatus($email, $status){
         $db = Database::instance();
         return $db->query("SELECT * FROM user WHERE email = :email and status = :status",

@@ -1,6 +1,8 @@
 <?php
     use Utils\Message;
     use Models\Video;
+    use Models\htransaksi;
+
     require_once "../config/config.php";
 ?>
 
@@ -88,10 +90,41 @@
                         <h1 class="mt-4">Validasi</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Transfer</li>
-                        </ol>               
+                        </ol> 
+                        <?php                             
+                            $transactions = htransaksi::getforvalidation();
+                        ?>
+                         <form action="../controllers/transaksi.php" method="POST">
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <th>Nama Member</th>
+                                <th>Bukti Pembayaran</th>
+                                <th>Accept</th>
+                                <th>Reject</th>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                    foreach($transactions as $transaction){
+                                        ?>
+                                        <tr>
+                                            
+                                            <td><?=  $transaction->nama?></td>
+                                            <td><img style="width:120px;height:200px" src="../<?= $transaction->bukti ?>" /> </td>
+                                            <td><button class="btn btn-primary" name="accept[<?=$transaction->id?>,<?=$transaction->id_member?>]">Accept</button></td>
+                                            <td><button class="btn btn-primary" name="reject[<?=$transaction->id?>]">Reject</button></td>
+
+                                        </tr>
+                                        <?php
+                                    }
+
+                                ?>
+                        </tbody>
+                    </table>
+                    </form>              
                     </div>
                 </main>
             </div>
+            
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../assets/js/scripts.js"></script>

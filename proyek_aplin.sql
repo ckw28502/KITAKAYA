@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2022 at 06:15 PM
+-- Generation Time: May 21, 2022 at 08:49 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -38,6 +38,17 @@ CREATE TABLE `chat` (
   `pengirim` int(11) NOT NULL COMMENT '0 = member,\r\n1 = CS'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`id`, `service`, `isi`, `tanggal`, `pengirim`) VALUES
+(4, 0, 'bagus', '2022-05-21', 0),
+(5, 0, 'Baiklah', '2022-05-21', 0),
+(6, 0, 'bagus', '2022-05-21', 1),
+(7, 0, 'turunakan hujans', '2022-05-21', 1),
+(8, 0, 'turunakan hujans', '2022-05-21', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -59,7 +70,8 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id`, `thread`, `namamember`, `isi`, `tanggal`, `reply`) VALUES
-(1, 0, 'qwe', 'mosok', '2022-05-20', -1);
+(3, 0, 'Ikan', 'mosok', '2022-05-21', -1),
+(4, 0, 'Jojo', 'Iya Beneran', '2022-05-21', 3);
 
 -- --------------------------------------------------------
 
@@ -116,6 +128,7 @@ CREATE TABLE `progressbar` (
 --
 
 INSERT INTO `progressbar` (`id`, `refuser`, `refkategori`, `refthread`) VALUES
+(0, 31, 2, 3),
 (1, 29, 2, 3),
 (2, 29, 2, 6),
 (3, 29, 4, 4);
@@ -157,6 +170,13 @@ CREATE TABLE `service` (
   `member` int(11) NOT NULL,
   `rate` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`id`, `judul`, `member`, `rate`) VALUES
+(0, 'Saham', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -206,7 +226,7 @@ CREATE TABLE `thread_forum` (
 --
 
 INSERT INTO `thread_forum` (`id`, `Judul`, `isi`, `namamember`, `Kategori`) VALUES
-(0, 'Saham', 'bagus', 'qwe', 1);
+(0, 'Langit', 'bagus', 'Ikan', 1);
 
 -- --------------------------------------------------------
 
@@ -257,10 +277,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `nama`, `umur`, `role`, `status`, `expired`) VALUES
-(0, 'ibewe25@gmail.com', '$2y$10$jxST0ngvpbGAFAPybvb5ie5WKRsr8h6vLG3T80bqeHetxkcQ3kS5a', 'Ikan', 17, 1, 1, NULL),
-(1, 'ibw25', '123', 'Ivander', 19, 2, 1, NULL),
-(2, 'admin', '000', 'Admin Bewe', 19, 3, 0, NULL),
-(29, 'ivanderberwyn2002@gmail.com', '5677', 'CobaGambars', 17, 1, 1, NULL);
+(1, 'ibewe25@gmail.com', '$2y$10$jxST0ngvpbGAFAPybvb5ie5WKRsr8h6vLG3T80bqeHetxkcQ3kS5a', 'Ikan', 17, 1, 1, NULL),
+(31, 'ivanderkw2@gmail.com', '$2y$10$bgj9OYvbDF2Nn3weOGHv0OTefo3u41TrASE4vhmzOOvsZk8MNqynC', 'Jojo', 17, 0, 1, NULL),
+(33, 'csKITAKAYA@gmail.com', '123', 'Customer Service', 25, 2, 1, NULL);
 
 --
 -- Indexes for dumped tables
@@ -351,19 +370,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `kategori_vid`
 --
 ALTER TABLE `kategori_vid`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

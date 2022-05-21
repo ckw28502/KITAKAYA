@@ -1,4 +1,6 @@
 <?php
+    use Utils\Message;
+
     require_once "../config/config.php";
 
     $bisa = $_GET["harga"];
