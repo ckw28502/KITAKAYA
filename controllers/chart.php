@@ -5,13 +5,8 @@
     //Untuk tambah chart
     function addchart($nama,$keterangan)
     {
-        //cek ada yang kembar
-        if (!chart::getbyname($nama)) {
-            $chart=new chart($nama,$keterangan);
-            $chart->addchart();
-        } else {
-            Message::add("Nama kembar","Nama ini sudah dipakai!");
-        }
+        $chart=new chart($nama,$keterangan);
+        $chart->addchart();
     }
     function getall()
     {
@@ -37,7 +32,14 @@
         if ($_POST["action"]=="addchart") {
             $nama=$_POST["nama"];
             $keterangan=$_POST["keterangan"];
-            addchart($nama,$keterangan);
+            //pengecekan
+            if ($nama==""||$keterangan=="") {
+                Message::add("Inputan Kosong", "Inputan harus terisi semua");
+            } else if (!chart::getbyname($nama)) {
+                addchart($nama,$keterangan);
+            } else {
+                Message::add("Nama kembar","Nama ini sudah dipakai!");
+            }
         }
     }
 ?>

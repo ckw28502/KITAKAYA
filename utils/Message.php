@@ -9,7 +9,27 @@ class Message{
             $_SESSION[$key] = [];
             $msg = implode($sep,$messages);
             if ($msg!="") {
-                echo "<script> alert('$msg') </script>";
+                echo "
+                    <div class='modal' tabindex='-1' id='alert'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h5 class='modal-title'>$key</h5>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    <p>$msg</p>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        var modal=new bootstrap.Modal(document.getElementById('alert'));
+                        modal.toggle();
+                    </script>";
             }
         }
     }

@@ -1,3 +1,7 @@
+<?php
+    require_once "../config/config.php";
+    use Utils\Message;
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -122,22 +126,17 @@
                     const keterangan=$("#keterangan").val();
                     $("#nama").val("");
                     $("#keterangan").val("");
-                    //Pengecekan inputan kosong
-                    if (nama==""||keterangan=="") {
-                        alert("Inputan ada yang kosong!");
-                    } else {
-                        $.ajax({
-                            method:"post",
-                            url:"../controllers/chart.php",
-                            data:{
-                                action:"addchart",
-                                nama:nama,
-                                keterangan:keterangan
-                            }
-                        }).done(()=>{
-                            cekupdate();
-                        })
-                    }
+                    $.ajax({
+                        method:"post",
+                        url:"../controllers/chart.php",
+                        data:{
+                            action:"addchart",
+                            nama:nama,
+                            keterangan:keterangan
+                        }
+                    }).done(()=>{
+                        cekupdate();
+                    })
                 }
                 cekupdate=()=>{
                     let temp=-1;
@@ -161,6 +160,7 @@
                                 }
                             }).done((d)=>{
                                 arr=JSON.parse(d,true);
+                                console.log(arr[arr.length-1]);
                                 new TradingView.widget(
                                     {
                                     "container_id": "watchlist-chart-demo",
@@ -191,5 +191,9 @@
                 };
             });            
         </script>
+        <?php
+            Message::print("Inputan Kosong");
+            Message::print("Nama Kembar");
+        ?>
     </body>
 </html>
