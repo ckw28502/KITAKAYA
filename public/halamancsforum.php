@@ -57,44 +57,11 @@ use Models\service;
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Chats</h1>
+                    <h1 class="mt-4">Forum</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Members</li>
                     </ol>
-                    <form action="../controllers/service.php" method="POST">
-                        <?php 
-                                
-                            $services = service::getAll();
-
-                            ?>
-                            <table class="table table-dark table-striped">
-                                <thead>
-                                <th>ID</th>
-
-                                    <th>Judul Pertanyaan</th>
-                                    <th>Rate</th>
-                                    <th>Chat</th>
-
-                                </thead>
-                                <tbody>
-                                    <?php 
-                                        
-                                foreach($services as $idx=> $service){
-                                    ?>
-                                    <tr>
-                                        
-                                        <td><?=  $idx + 1?></td>
-                                        <td><?=  $service->judul?></td>
-                                        <td><?= $service->rate ?></td>
-                                        <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
-                                    </tr>
-                                    <?php
-                                }
-
-                            ?>
-                            </tbody>
-                        </table>
-                    </form>
+                    
                     <br>
                     <div style="height: 100vh"></div>
                     <div class="card mb-4"><div class="card-body">Ini Untuk Bagian Bawah jika diperlukan</div></div>

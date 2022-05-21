@@ -25,15 +25,20 @@ if(isset($_POST["login"])){
         // data ini harus kembali ke index.php
         //$title = "Field Kosong"; $msg = ""; $icon = "warning";
     }else{
-        if ($username == "admin" && $password == "000") {
+        if ($username == "KITAKAYA@gmail.com" && $password == "000") {
             header("Location: ../public/halamanadmin.php");
+            exit;
+        }
+
+        if ($username == "csKITAKAYA@gmail.com" && $password == "123") {
+            $_SESSION["user"] = $ecustomer;
+            header("Location: ../public/halamancs.php");
             exit;
         }
 
         if ($ecustomer == true) {
             // cek password
             $verifyPass = password_verify($_POST["pass"], $ecustomer->password);
-
             // cek dia udah verify email belum
             $cek = User::getStatus($_POST["username"],1);
             if ($cek == true) {
@@ -52,28 +57,15 @@ if(isset($_POST["login"])){
                     
                 }
                 else{
-                    $cekusercs = User::getRole($_POST["username"],2);
-                    if ($cekusercs == true) {
-                        // cek pass sama hash sama tidak
-                        if ($verifyPass) {
-                            $_SESSION["user"] = $ecustomer;
-                            header("Location: ../public/halamancs.php");
-                            exit;
-                        }
-                        else{
-                            header("Location: ../index.php");
-                        }
+                    if ($verifyPass) {
+                        $_SESSION["user"] = $ecustomer;
+                        header("Location: ../public/halamanuserbiasa.php");
+                        exit;
                     }
                     else{
-                        if ($verifyPass) {
-                            $_SESSION["user"] = $ecustomer;
-                            header("Location: ../public/halamanuserbiasa.php");
-                            exit;
-                        }
-                        else{
-                            header("Location: ../index.php");
-                        }
+                        header("Location: ../index.php");
                     }
+                    
                 } 
             }
             else{
