@@ -1,6 +1,7 @@
 <?php
-use Utils\Message;
-use Models\service;
+    use Models\Video;
+
+
     require_once "../config/config.php";
 ?>
 
@@ -61,10 +62,29 @@ use Models\service;
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Members</li>
                     </ol>
-                    
-                    <br>
-                    <div style="height: 100vh"></div>
-                    <div class="card mb-4"><div class="card-body">Ini Untuk Bagian Bawah jika diperlukan</div></div>
+                    <table class="table table-dark table-striped">
+                            <thead>
+                            <th>Nama Kategori</th>
+                            <th>Forum</th>
+                            
+                            </thead>
+                            <tbody>
+                            <?php 
+                                $categories = video::getAll();
+                                
+                            ?>       
+                                <?php                     
+                                    foreach($categories as $category){
+                                        ?>
+                                        <tr>
+                                            <td><?=  $category->nama_kategori?></td>
+                                            <td><button class="btn btn-primary" name="forum[<?=$category->id?>]">Forum</button></a></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
                 </div>
             </main>
         </div>
