@@ -62,6 +62,7 @@
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Members</li>
                     </ol>
+                    <form action="../controllers/forum.php" method="POST">
                     <table class="table table-dark table-striped">
                             <thead>
                             <th>Nama Kategori</th>
@@ -85,6 +86,7 @@
                                 ?>
                             </tbody>
                         </table>
+                    <form>
                 </div>
             </main>
         </div>
