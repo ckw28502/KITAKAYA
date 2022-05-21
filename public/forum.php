@@ -99,9 +99,9 @@ use Models\comment;
                                     
                                                 ?> 
                                                 <br>
-                                                <input id="punyaeuser" class="form-control" type="text" value="Penulis: <?= $comment->namamember?>" aria-label="readonly input example" readonly>
+                                                <input id="punyaeuser" class="form-control" type="text" value="Penulis : <?= $comment->namamember?>" aria-label="readonly input example" readonly>
 
-                                                <input id="punyaeuser" class="form-control" type="text" value="Reply: <?= $comment->isi?>" aria-label="readonly input example" readonly>
+                                                <input id="punyaeuser" class="form-control" type="text" value="Reply : <?= $comment->isi?>" aria-label="readonly input example" readonly>
                                                 <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control">
                                                 <td><button class="btn btn-primary" name="replycomment[<?=$idpost?>,<?=$comment->id?>]">Reply</button></a></td>
             
