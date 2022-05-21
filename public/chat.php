@@ -75,6 +75,11 @@ use Models\chat;
                         <br>
                         <br>
                         <button type="submit" class="btn btn-danger" name="balikae">Back To Dashboard</button>
+                        <br>
+                        <br>
+                        <div>Sudah Puas dengan jawaban Customer Service Kami? 
+                            <button type="submit" class="btn btn-warning" name="rate">Beri Rating</button>
+                        </div>
                     </form>
                 </form>
                 <br>
