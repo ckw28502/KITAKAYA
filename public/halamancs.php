@@ -44,7 +44,7 @@ use Models\service;
                         <div class="sb-sidenav-menu-heading">Customer Service Menu</div>
                         <a class="nav-link" href="../public/halamancs.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Chats
+                            Chat
                         </a>
                         <a class="nav-link" href="../public/halamancsforum.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
