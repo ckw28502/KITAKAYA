@@ -21,4 +21,25 @@
         header("Location: ../public/halamanuserbiasa.php");
         exit;
     }
+
+    if (isset($_POST["balikae"])) {
+        $user = json_decode(json_encode($_SESSION["user"]), true);
+        $email=$user["email"];
+        $cekusercs = User::getRole($email,2);
+        if ($cekusercs == true) {
+            header("Location: ../public/halamancs.php");
+            exit;
+        }
+        else{
+            $cekuserbv = User::getRole($email,1);
+            if ($cekuserbv == true) {
+                header("Location: ../public/halamanuservipcs.php");
+                exit;
+            }
+            else{
+                header("Location: ../public/halamanuserbiasacs.php");
+                exit;
+            }
+        }
+    }
 ?>

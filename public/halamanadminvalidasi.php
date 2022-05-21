@@ -85,65 +85,12 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Add Video</h1>
+                        <h1 class="mt-4">Validasi</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Saham</li>
-                        </ol>
-                        <form action="../controllers/vid.php" method="POST">
-                            <div>
-                                <div class="col-lg-6">
-                                    <label for="userName" class="form-label">Kategori Video</label>
-                                    <input type="text" class="form-control" placeholder="Beginner (ganti place holder di line 91 halamanadmin.php)" id="nama" name="kategorivideo">
-                                </div>
-                                <br>
-                                <div class="col-lg-6">
-                                    <label for="userName" class="form-label">Judul Video</label>
-                                    <input type="text" class="form-control" placeholder="Saham888" id="nama" name="judulvideo">
-                                </div>
-                                <br>
-                                <div class="col-lg-6">
-                                    <label for="userName" class="form-label">Link Video</label>
-                                    <input type="text" class="form-control" placeholder="https://www.youtube.com/watch?kitakaya" id="nama" name="linkvideo">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="col-12">
-                                    <button type="submit" class="btn btn-primary" name="btnaddvid" >Add</button>
-                            </div>
-                        </form>        
-                        
-                        <h1>Semua Video</h1>
-                        <?php 
-                            $video = Video::getVideo();
-                        ?>
-                        <table class="table table-dark table-striped">
-                            <thead>
-                                <th>No</th>
-                                <th>Kategori</th>
-                                <th>Action</th>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                    foreach($video as $idx => $video){
-                                        ?>
-                                        <tr>
-                                            <td><?= $idx + 1 ?></td>
-                                            <td><?= $video->nama_kategori ?></td>
-                                            <td>
-                                                <a href="../controllers/vid.php?idvid=true&id=<?=$video->nama_kategori?>">Detail</a>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
+                            <li class="breadcrumb-item active">Transfer</li>
+                        </ol>               
                     </div>
                 </main>
-                <?php 
-                    Message::print("error");
-                    Message::print("success");
-                ?>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
