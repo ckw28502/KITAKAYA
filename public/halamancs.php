@@ -65,35 +65,52 @@ use Models\service;
                         <?php 
                                 
                             $services = service::getAll();
-
+                            $user = json_decode(json_encode($_SESSION["user"]), true);
+                            $role=$user["role"];
                             ?>
-                            <table class="table table-dark table-striped">
-                                <thead>
-                                <th>ID</th>
+                            <form action="../controllers/service.php" method="POST">
+                        <table class="table table-dark table-striped">
+                            <thead>
+                            <th>ID</th>
 
-                                    <th>Judul Pertanyaan</th>
-                                    <th>Rate</th>
-                                    <th>Chat</th>
+                                <th>Judul Pertanyaan</th>
+                                <th>Rate</th>
+                                <th>Chat</th>
 
-                                </thead>
-                                <tbody>
-                                    <?php 
-                                        
-                                foreach($services as $idx=> $service){
-                                    ?>
-                                    <tr>
-                                        
-                                        <td><?=  $idx + 1?></td>
-                                        <td><?=  $service->judul?></td>
-                                        <td><?= $service->rate ?></td>
-                                        <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
-                                    </tr>
+                            </thead>
+                            <tbody>
+                                <?php   
+                                    foreach($services as $idx=> $service){
+                                        ?>
+                                        <tr>
+                                            
+                                            <td><?=  $idx + 1?></td>
+                                            <td><?=  $service->judul?></td>
+                                            
+                                            <?php
+                                        if ( $service->rate!=null||$role==2) {
+                                            
+                                            ?> 
+                                            <form action="../controllers/service.php" method="POST">
+                                            <td><?= $service->rate?></td>
+                                            <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
+                                            </form>
+                                            <?php
+                                        }
+                                        else{  
+                                            ?>
+                                            <form action="../controllers/service.php" method="POST">
+                                            <td><input type="text" id="keteranganmenu" name="rate[<?=$service->id?>]"> <input type="submit" class="btn btn-success" name="submit[<?=$service->id?>]" value="Rate"/></input></td>
+                                            <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
+                                            </form>
                                     <?php
-                                }
+                                    }
+                                    }
 
-                            ?>
-                            </tbody>
-                        </table>
+                                ?>
+                        </tbody>
+                    </table>
+                    </form>
                     </form>
                     <br>
                     <div style="height: 100vh"></div>
