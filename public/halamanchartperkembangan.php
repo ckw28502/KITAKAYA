@@ -49,6 +49,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Add Chart
                             </a>
+                            <a class="nav-link" href="../public/halamanadminvalidasi.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Validasi Pembayaran Member
+                            </a>
                             <div class="sb-sidenav-menu-heading">Charts</div>
                             <a class="nav-link collapsed" href="../public/halamanchartumur.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
