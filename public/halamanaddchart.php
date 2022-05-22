@@ -136,7 +136,8 @@
                             keterangan:keterangan
                         },
                     }).done((data)=>{  
-                        $(modal).html(data); 
+                        $("#modal").html(data); 
+                        $()
                         cekupdate();
                     })
                 }

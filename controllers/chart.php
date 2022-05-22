@@ -34,13 +34,15 @@
             $keterangan=$_POST["keterangan"];
             //pengecekan
             if ($nama==""||$keterangan=="") {
-                Message::add("Inputan Kosong", "Inputan harus terisi semua");
-                echo Message::print("Inputan Kosong");
+                Message::add("Inputan Kosong", "Inputan harus terisi semua!");
+                echo json_encode(Message::print("Inputan Kosong"));
             } else if (!chart::getbyname($nama)) {
                 addchart($nama,$keterangan);
+                Message::add("Success", "Berhasil tambah watchlist!");
+                echo json_encode(Message::print("Success"));
             } else {
                 Message::add("Nama Kembar","Nama ini sudah dipakai!");
-                echo Message::print("Nama Kembar");
+                echo json_encode(Message::print("Nama Kembar"));
             }
         }
     }
