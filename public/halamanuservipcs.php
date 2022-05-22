@@ -156,9 +156,9 @@
         <script src="../assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../assets/js/datatables-simple-demo.js"></script>
-    </body>
-    <?php 
-                    Message::print("error");
-                    Message::print("success");
+        <?php 
+            Message::print("error");
+            Message::print("success");
         ?>
+    </body>
 </html>

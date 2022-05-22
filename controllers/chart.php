@@ -2,6 +2,7 @@
     require_once "../config/config.php";
     use Models\chart;
     use Utils\Message;
+    use Utils\Validation;
     //Untuk tambah chart
     function addchart($nama,$keterangan)
     {
@@ -32,8 +33,9 @@
         if ($_POST["action"]=="addchart") {
             $nama=$_POST["nama"];
             $keterangan=$_POST["keterangan"];
+            $cek=Validation::empty($nama,$keterangan);
             //pengecekan
-            if ($nama==""||$keterangan=="") {
+            if (!$cek->status) {
                 Message::add("Inputan Kosong", "Inputan harus terisi semua!");
                 echo json_encode(Message::print("Inputan Kosong"));
             } else if (!chart::getbyname($nama)) {

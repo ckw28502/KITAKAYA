@@ -15,12 +15,12 @@
         $iduser = $user->id;
         $transaksitemp = htransaksi::getByidmember($iduser);
         if($_FILES["fotobukti"]["name"]==""){
-            Message::add("error","Foto tidak boleh kosong");
+            Message::add("Error","Foto tidak boleh kosong");
             header("Location: ../public/halamanuserbiasasub.php");
             exit;
         }
         else if ($transaksitemp!=null) {
-            Message::add("error","sudah transaksi tetapi blm di konfirmasi oleh admin");
+            Message::add("Error","sudah transaksi tetapi blm di konfirmasi oleh admin");
             header("Location: ../public/halamanuserbiasasub.php");
             exit;
         }
