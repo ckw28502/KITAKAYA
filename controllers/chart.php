@@ -35,10 +35,12 @@
             //pengecekan
             if ($nama==""||$keterangan=="") {
                 Message::add("Inputan Kosong", "Inputan harus terisi semua");
+                echo Message::print("Inputan Kosong");
             } else if (!chart::getbyname($nama)) {
                 addchart($nama,$keterangan);
             } else {
-                Message::add("Nama kembar","Nama ini sudah dipakai!");
+                Message::add("Nama Kembar","Nama ini sudah dipakai!");
+                echo Message::print("Nama Kembar");
             }
         }
     }

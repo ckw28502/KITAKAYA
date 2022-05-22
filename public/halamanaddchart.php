@@ -115,6 +115,7 @@
                     </div>
                 </main>
             </div>
+            <div id="modal"></div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../assets/js/scripts.js"></script>
@@ -133,8 +134,9 @@
                             action:"addchart",
                             nama:nama,
                             keterangan:keterangan
-                        }
-                    }).done(()=>{
+                        },
+                    }).done((data)=>{  
+                        $(modal).html(data); 
                         cekupdate();
                     })
                 }
@@ -191,9 +193,5 @@
                 };
             });            
         </script>
-        <?php
-            Message::print("Inputan Kosong");
-            Message::print("Nama Kembar");
-        ?>
     </body>
 </html>
