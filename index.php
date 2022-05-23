@@ -1,3 +1,7 @@
+<?php
+  require_once "config/config.php";
+  use Utils\Message;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -473,7 +477,12 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <?php
+    Message::print("Inputan Kosong");
+    Message::print("Email Tidak Terdaftar");
+    Message::print("Unverified Email");
+    Message::print("Password Salah");
+  ?>
 </body>
 
 </html>
