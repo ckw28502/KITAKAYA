@@ -35,7 +35,7 @@
             $keterangan=$_POST["keterangan"];
             $cek=Validation::empty($nama,$keterangan);
             //pengecekan
-            if (!$cek->status) {
+            if ($nama==""||$keterangan=="") {
                 Message::add("Inputan Kosong", "Inputan harus terisi semua!");
                 echo json_encode(Message::print("Inputan Kosong"));
             } else if (!chart::getbyname($nama)) {

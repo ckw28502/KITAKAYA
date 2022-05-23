@@ -125,6 +125,7 @@
                 addchart=()=>{
                     const nama=$("#nama").val();
                     const keterangan=$("#keterangan").val();
+                    console.log(nama,keterangan);
                     $("#nama").val("");
                     $("#keterangan").val("");
                     $.ajax({
@@ -137,6 +138,7 @@
                         },
                     }).done((data)=>{  
                         $("#modal").html(data); 
+                        $()
                         cekupdate();
                     })
                 }
