@@ -137,7 +137,6 @@
                         },
                     }).done((data)=>{  
                         $("#modal").html(data); 
-                        $()
                         cekupdate();
                     })
                 }
