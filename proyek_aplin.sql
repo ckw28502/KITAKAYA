@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2022 at 08:49 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: May 23, 2022 at 09:25 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,11 +43,8 @@ CREATE TABLE `chat` (
 --
 
 INSERT INTO `chat` (`id`, `service`, `isi`, `tanggal`, `pengirim`) VALUES
-(4, 0, 'bagus', '2022-05-21', 0),
-(5, 0, 'Baiklah', '2022-05-21', 0),
-(6, 0, 'bagus', '2022-05-21', 1),
-(7, 0, 'turunakan hujans', '2022-05-21', 1),
-(8, 0, 'turunakan hujans', '2022-05-21', 0);
+(10, 2, 'bagus', '2022-05-23', 0),
+(11, 2, 'Kok Cerah', '2022-05-23', 1);
 
 -- --------------------------------------------------------
 
@@ -71,7 +68,11 @@ CREATE TABLE `comment` (
 
 INSERT INTO `comment` (`id`, `thread`, `namamember`, `isi`, `tanggal`, `reply`) VALUES
 (3, 0, 'Ikan', 'mosok', '2022-05-21', -1),
-(4, 0, 'Jojo', 'Iya Beneran', '2022-05-21', 3);
+(4, 0, 'Jojo', 'Iya Beneran', '2022-05-21', 3),
+(5, 0, 'Customer Service', 'Iya Beneran', '2022-05-21', 4),
+(6, 0, 'CobaGambars', 'ohya', '2022-05-23', 5),
+(7, 0, 'CobaGambars', 'Iya Beneran', '2022-05-23', 6),
+(8, 3, 'Customer Service', 'mosok', '2022-05-23', -1);
 
 -- --------------------------------------------------------
 
@@ -107,7 +108,8 @@ INSERT INTO `kategori_vid` (`id`, `nama_kategori`) VALUES
 (2, 'tes'),
 (3, 'pemula'),
 (4, 'ivander cupu'),
-(5, 'kategori baru');
+(5, 'kategori baru'),
+(6, 'Coba');
 
 -- --------------------------------------------------------
 
@@ -128,10 +130,7 @@ CREATE TABLE `progressbar` (
 --
 
 INSERT INTO `progressbar` (`id`, `refuser`, `refkategori`, `refthread`) VALUES
-(0, 31, 2, 3),
-(1, 29, 2, 3),
-(2, 29, 2, 6),
-(3, 29, 4, 4);
+(1, 35, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -151,11 +150,13 @@ CREATE TABLE `rekomendasi` (
 --
 
 INSERT INTO `rekomendasi` (`id`, `name`, `keterangan`) VALUES
+(1, 'ASII', 'qwe'),
 (5, 'AAPL', 'Apple'),
 (6, 'TWTR', 'Twitter'),
 (7, 'GOOG', 'Google'),
 (8, 'TSLA', 'Tesla'),
-(9, 'FB', 'Meta');
+(9, 'FB', 'Meta'),
+(10, 'BBRI', 'qwe');
 
 -- --------------------------------------------------------
 
@@ -176,7 +177,8 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`id`, `judul`, `member`, `rate`) VALUES
-(0, 'Saham', 1, NULL);
+(1, 'Saham', 1, 2),
+(2, 'Langit bisakah', 35, 4);
 
 -- --------------------------------------------------------
 
@@ -198,13 +200,15 @@ CREATE TABLE `thread` (
 --
 
 INSERT INTO `thread` (`id`, `judul`, `video`, `status_video`, `f_kategori`) VALUES
+(1, 'Bisa', '-w7KOoMWlNo', 1, 6),
 (3, 'testing', 'HLLofrwRlBg', 1, 2),
 (4, 'testing video', 'XqZsoesa55w', 1, 4),
 (5, 'asdasd', 'pL8XPZp4-5c', 1, 5),
 (6, '11asasdasdad', 'fDek6cYijxI', 1, 2),
 (7, 'tutor saham', 'NjsUrZ1NL0k', 1, 4),
 (8, 'cara beli saham', 'IzsYTb2WdGs', 1, 4),
-(9, 'Luna nglawak', 'Eg35QIxiRg8', 1, 4);
+(9, 'Luna nglawak', 'Eg35QIxiRg8', 1, 4),
+(10, 'Bisa', '_BjLo-BYtjg', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -226,7 +230,10 @@ CREATE TABLE `thread_forum` (
 --
 
 INSERT INTO `thread_forum` (`id`, `Judul`, `isi`, `namamember`, `Kategori`) VALUES
-(0, 'Langit', 'bagus', 'Ikan', 1);
+(1, 'Langit', 'bagus', 'Ikan', 1),
+(2, 'Langit', 'Kok Cerah', 'CobaGambars', 1),
+(3, 'Aku Mau Tanya', 'Rekomen', 'CobaGambars', 1),
+(4, 'Langit', 'Baiklah', 'Customer Service', 1);
 
 -- --------------------------------------------------------
 
@@ -241,18 +248,17 @@ CREATE TABLE `transaksi` (
   `tgl` date NOT NULL,
   `bulan` int(11) NOT NULL,
   `subtotal` int(11) NOT NULL,
-  `bukti` text DEFAULT NULL
+  `bukti` text DEFAULT NULL,
+  `status` int(11) NOT NULL COMMENT '-1 = Rejected,\r\n0 = Belum dikonfirmasi,\r\n1 = Accepted'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id`, `id_member`, `tgl`, `bulan`, `subtotal`, `bukti`) VALUES
-(1, 31, '2022-05-17', 6, 500000, NULL),
-(2, 31, '2022-05-26', 6, 500000, NULL),
-(3, 31, '2022-04-05', 6, 500000, NULL),
-(4, 31, '2021-04-07', 6, 500000, NULL);
+INSERT INTO `transaksi` (`id`, `id_member`, `tgl`, `bulan`, `subtotal`, `bukti`, `status`) VALUES
+(1, -1, '2022-05-17', 6, 500000, NULL, 1),
+(2, -1, '2022-05-26', 6, 500000, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -277,9 +283,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `nama`, `umur`, `role`, `status`, `expired`) VALUES
-(1, 'ibewe25@gmail.com', '$2y$10$jxST0ngvpbGAFAPybvb5ie5WKRsr8h6vLG3T80bqeHetxkcQ3kS5a', 'Ikan', 17, 1, 1, NULL),
-(31, 'ivanderkw2@gmail.com', '$2y$10$bgj9OYvbDF2Nn3weOGHv0OTefo3u41TrASE4vhmzOOvsZk8MNqynC', 'Jojo', 17, 0, 1, NULL),
-(33, 'csKITAKAYA@gmail.com', '123', 'Customer Service', 25, 2, 1, NULL);
+(33, 'csKITAKAYA@gmail.com', '123', 'Customer Service', 25, 2, 1, NULL),
+(34, 'ivanderkw2@gmail.com', '$2y$10$XdcjL5UbDaxOWHv2rCUJE.s5VvU7gYcMfCcyBqZkVQXMVMp6OsKFS', 'Ikan', 17, 0, 0, NULL),
+(35, 'ibewe25@gmail.com', '$2y$10$TIE/0YrNsGWPklaIjbj4b.ZC9lPZKSk10PoRoajaYFoBvwWoB.dzO', 'CobaGambars', 17, 0, 1, '2022-08-23');
 
 --
 -- Indexes for dumped tables
@@ -370,25 +376,61 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `kategori_vid`
 --
 ALTER TABLE `kategori_vid`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `progressbar`
+--
+ALTER TABLE `progressbar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `rekomendasi`
+--
+ALTER TABLE `rekomendasi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `thread`
+--
+ALTER TABLE `thread`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `thread_forum`
+--
+ALTER TABLE `thread_forum`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

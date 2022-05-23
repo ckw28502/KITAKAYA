@@ -21,6 +21,7 @@ if(isset($_POST["login"])){
     $password = $_POST["pass"];
 
     if ($username == "" || $password == "") {
+        Message::add("Inputan Kosong", "Inputan harus terisi semua!");
         header("Location: ../index.php");
         // data ini harus kembali ke index.php
         //$title = "Field Kosong"; $msg = ""; $icon = "warning";
@@ -52,6 +53,7 @@ if(isset($_POST["login"])){
                         exit;
                     }
                     else{
+                        Message::add("Password Salah","Password yang Anda masukkan tidak sesuai!");
                         header("Location: ../index.php");
                     }
                     
@@ -63,17 +65,20 @@ if(isset($_POST["login"])){
                         exit;
                     }
                     else{
+                        Message::add("Password Salah","Password yang Anda masukkan tidak sesuai!");
                         header("Location: ../index.php");
                     }
                     
                 } 
             }
             else{
+                Message::add("Unverified Email","Email Anda belum terverifikasi!");
                 header("Location: ../index.php");
                 exit;
             }
         }
         else{
+            Message::add("Email Tidak Terdaftar","Email Anda tidak ditemukan!");
             header("Location: ../index.php");
             exit;
         }

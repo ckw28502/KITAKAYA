@@ -2,16 +2,12 @@
     require_once "../config/config.php";
     use Models\chart;
     use Utils\Message;
+    use Utils\Validation;
     //Untuk tambah chart
     function addchart($nama,$keterangan)
     {
-        //cek ada yang kembar
-        if (!chart::getbyname($nama)) {
-            $chart=new chart($nama,$keterangan);
-            $chart->addchart();
-        } else {
-            Message::add("Nama kembar","Nama ini sudah dipakai!");
-        }
+        $chart=new chart($nama,$keterangan);
+        $chart->addchart();
     }
     function getall()
     {
@@ -37,7 +33,19 @@
         if ($_POST["action"]=="addchart") {
             $nama=$_POST["nama"];
             $keterangan=$_POST["keterangan"];
-            addchart($nama,$keterangan);
+            $cek=Validation::empty($nama,$keterangan);
+            //pengecekan
+            if ($nama==""||$keterangan=="") {
+                Message::add("Inputan Kosong", "Inputan harus terisi semua!");
+                echo json_encode(Message::print("Inputan Kosong"));
+            } else if (!chart::getbyname($nama)) {
+                addchart($nama,$keterangan);
+                Message::add("Success", "Berhasil tambah watchlist!");
+                echo json_encode(Message::print("Success"));
+            } else {
+                Message::add("Nama Kembar","Nama ini sudah dipakai!");
+                echo json_encode(Message::print("Nama Kembar"));
+            }
         }
     }
 ?>

@@ -1,3 +1,7 @@
+<?php
+    require_once "../config/config.php";
+    use Utils\Message;
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -119,6 +123,7 @@
                     </div>
                 </main>
             </div>
+            <div id="modal"></div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../assets/js/scripts.js"></script>
@@ -128,24 +133,22 @@
                 addchart=()=>{
                     const nama=$("#nama").val();
                     const keterangan=$("#keterangan").val();
+                    console.log(nama,keterangan);
                     $("#nama").val("");
                     $("#keterangan").val("");
-                    //Pengecekan inputan kosong
-                    if (nama==""||keterangan=="") {
-                        alert("Inputan ada yang kosong!");
-                    } else {
-                        $.ajax({
-                            method:"post",
-                            url:"../controllers/chart.php",
-                            data:{
-                                action:"addchart",
-                                nama:nama,
-                                keterangan:keterangan
-                            }
-                        }).done(()=>{
-                            cekupdate();
-                        })
-                    }
+                    $.ajax({
+                        method:"post",
+                        url:"../controllers/chart.php",
+                        data:{
+                            action:"addchart",
+                            nama:nama,
+                            keterangan:keterangan
+                        },
+                    }).done((data)=>{  
+                        $("#modal").html(data); 
+                        $()
+                        cekupdate();
+                    })
                 }
                 cekupdate=()=>{
                     let temp=-1;
@@ -169,6 +172,7 @@
                                 }
                             }).done((d)=>{
                                 arr=JSON.parse(d,true);
+                                console.log(arr[arr.length-1]);
                                 new TradingView.widget(
                                     {
                                     "container_id": "watchlist-chart-demo",

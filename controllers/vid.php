@@ -9,7 +9,7 @@
         //cek apakah ada field kosong
         $result = Validation::empty("kategorivideo","judulvideo", "linkvideo");
         if(!$result->status){
-            Message::add("error",$result->message);
+            Message::add("Error",$result->message);
             header("Location: ../public/halamanadmin.php");
             exit;
         }
@@ -32,7 +32,7 @@
         $video = new Video($judul, $k->id, $code);
         $video->addvideo();
         
-        Message::add("success", "Berhasil Insert Video!");
+        Message::add("Success", "Berhasil Insert Video!");
         header("Location: ../public/halamanadmin.php");
         exit;
     }
