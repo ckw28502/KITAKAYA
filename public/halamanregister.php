@@ -51,7 +51,7 @@
                     <table border='0' cellpadding='0' cellspacing='0' width='100%'>
                         
                         <tbody><tr>
-                            <td bgcolor='#9c5ecb' align='center'>
+                            <td bgcolor='#2f96d6' align='center'>
                                 <table border='0' cellpadding='0' cellspacing='0' width='100%' style='max-width:600px'>
                                     <tbody><tr>
                                         <td align='center' valign='top' style='padding:40px 10px 40px 10px'> </td>
@@ -60,7 +60,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor='#9c5ecb' align='center' style='padding:0px 10px 0px 10px'>
+                            <td bgcolor='#2f96d6' align='center' style='padding:0px 10px 0px 10px'>
                                 <table border='0' cellpadding='0' cellspacing='0' width='100%' style='max-width:600px'>
                                     <tbody><tr>
                                         <td bgcolor='#ffffff' align='center' valign='top' style='padding:40px 20px 20px 20px;border-radius:4px 4px 0px 0px;color:#111111;font-family:'Lato',Helvetica,Arial,sans-serif;font-size:48px;font-weight:400;letter-spacing:4px;line-height:48px
@@ -87,7 +87,7 @@
                                                     <td bgcolor='#ffffff' align='center' style='padding:20px 30px 60px 30px'>
                                                         <table border='0' cellspacing='0' cellpadding='0'>
                                                             <tbody><tr>
-                                                                <td align='center' style='border-radius:10px' bgcolor='#9C5ecb
+                                                                <td align='center' style='border-radius:10px' bgcolor='#2f96d6
                                                                         '><a href='localhost/KitaKaya/public/verify.php?hash=".$pass.
                                                                         "' style='font-size:20px;font-family:Helvetica,Arial,sans-serif;color:#ffffff;text-decoration:none;color:#ffffff;text-decoration:none;padding:15px 25px;border-radius:2px;display:inline-block'>Verify Account</a></td>
                                                             </tr>
