@@ -45,6 +45,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Add Video
                             </a>
+                            <a class="nav-link" href="../public/halamanadminlistvideo.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                List Video
+                            </a>
                             <a class="nav-link" href="../public/halamanaddchart.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Add Chart
@@ -52,6 +56,10 @@
                             <a class="nav-link" href="../public/halamanadminvalidasi.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Validasi Pembayaran Member
+                            </a>
+                            <a class="nav-link" href="../public/halamanhistorytrans.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                History Transaksi
                             </a>
                             <div class="sb-sidenav-menu-heading">Charts</div>
                             <a class="nav-link collapsed" href="../public/halamanchartumur.php">

@@ -16,47 +16,80 @@ use Models\comment;
     <link href="../assets/css/punyaadmin.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-        body{
-            width: 100%;
-            height: 100vh;
+        body {
             background-color: #b1bfd8;
-            /* background: linear-gradient(150deg, #9600FF 10%,#AEBAF8 50%); */
         }
-        #punyaeuser{
-            text-align: center;
+
+        .card {
+            box-shadow: 5px 6px 6px 2px #e9ecef;
+            border-radius: 4px;
+        }  
+
+        .badge{
+            padding: 7px;
+            padding-right: 9px;
+            padding-left: 16px;
+            box-shadow: 5px 6px 6px 2px #e9ecef;
         }
-        #asing{
-            border: 4px;
+
+
+        .form-check-input{
+            margin-top: 6px;
+            margin-left: -24px !important;
+            cursor: pointer;
         }
-        .coba{
-            border: 4px solid black;
-            border-radius: 10px;
+
+
+        .form-check-input:focus{
+            box-shadow: none;
+        }
+
+        .reply{
+
+            margin-left: 12px;
+        }
+
+        .reply small{
+
+            color: #b7b4b4;
+
+        }
+
+        .reply small:hover{
+            color: green;
+            cursor: pointer;
         }
         
     </style>
 
 </head>
 <body>
-    <div class="container-fluid px-6">
-        <main>
-            <div>
+    <div class="container mt-5">
+        <div class="row  d-flex justify-content-center">
+            <div class="col-md-8">
                 <form action="../controllers/forum.php" method="POST">
-                    <h1>Posts</h1>
-                    
-                    <div class="coba">
-                              
-                        <?php     
+                    <?php     
                         $idkategori=$_SESSION['idkategori'];
                         $posts = post::getbyidkategori($idkategori);                
                         foreach($posts as $post){
-                            
-                            ?> 
-                            <input id="punyaeuser" class="form-control" type="text" value="Judul Post : <?= $post->Judul?>" aria-label="readonly input example" readonly>
-                            <input id="punyaeuser" class="form-control" type="text" value="Isi Post : <?= $post->isi?>" aria-label="readonly input example" readonly>
-                            <input id="punyaeuser" class="form-control" type="text" value="Poster : <?= $post->namamember?>" aria-label="readonly input example" readonly>
-                            <input type="text" id="namamenu" name="isicomment" placeholder="Isi reply" class="form-control">
-                            <td><button class="btn btn-primary" name="comment[<?=$post->id?>]">Reply</button></a></td>
-                            <br>
+                            ?>
+                            <hr>
+                                <div class="card p-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span>
+                                            <form action="../controllers/forum.php" method="POST">
+                                                <h3>Posts</h3>
+                                                <h4>Judul Post : <?= $post->Judul?></h4>
+                                                <h4>Isi Post : <?= $post->isi?></h4>
+                                                <h4>Poster : <?= $post->namamember?></h4>
+                                                <input type="text" id="namamenu" name="isicomment" placeholder="Isi reply" class="form-control">
+                                                <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                                    <button class="btn btn-primary" name="comment[<?=$post->id?>]">Reply</button>
+                                                </div>
+                                            </form>
+                                        </span>
+                                    </div>
+                                </div>
                             <?php 
                                 
                             ?>   
@@ -66,14 +99,17 @@ use Models\comment;
                                 foreach($comments as $comment){
                                     
                                     ?> 
-                                     <form action="../controllers/forum.php" method="POST">
-                                    <br>
-                                    <input id="punyaeuser" class="form-control" type="text" value="Pereply : <?= $comment->namamember?>" aria-label="readonly input example" readonly>
-                                    <input id="punyaeuser" class="form-control" type="text" value="Isi : <?= $comment->isi?>" aria-label="readonly input example" readonly>
-                                    
-                                    <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control">
-                                    <td><button class="btn btn-primary" name="replycomment[<?=$idpost?>,<?=$comment->id?>]">Reply</button></a></td>
-                                    <br>
+                                    <form action="../controllers/forum.php" method="POST">
+                                        <br>
+                                        <span>
+                                            <h4 style="margin-left: 20px;">Pereply : <?= $comment->namamember?></h4>
+                                            <h4 style="margin-left: 20px;">Isi : <?= $comment->isi?></h4>
+                                            <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control" style="margin-left: 20px;">
+                                            <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                                <button style="margin-left: 20px;" class="btn btn-primary" name="replycomment[<?=$idpost?>,<?=$comment->id?>]">Reply</button>
+                                            </div>
+                                        </span>
+                                       
                                     </form>
 
                                     <?php
@@ -81,15 +117,18 @@ use Models\comment;
                                         $comments = comment::getbyidreply($idpost,$idcomment);
                                         foreach($comments as $comment){
                                     ?> 
-                                     <form action="../controllers/forum.php" method="POST">
+                                    <form action="../controllers/forum.php" method="POST">
+                                        <br>
+                                        <span>
+                                            <h4 style="margin-left: 40px;">Pereply : <?= $comment->namamember?></h4>
+                                            <h4 style="margin-left: 40px;">Isi : <?= $comment->isi?></h4>
+                                            <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control" style="margin-left: 40px;">
+                                            <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                                <button style="margin-left: 40px;" class="btn btn-primary" name="replycomment[<?=$idpost?>,<?=$comment->id?>]">Reply</button>
+                                            </div>
+                                        </span>
+                                    </form>
                                     <br>
-                                    <input id="punyaeuser" class="form-control" type="text" value="Pereply : <?= $comment->namamember?>" aria-label="readonly input example" readonly>
-
-                                        <input id="punyaeuser" class="form-control" type="text" value="Isi : <?= $comment->isi?>" aria-label="readonly input example" readonly>
-                                        <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control">
-                                        <td><button class="btn btn-primary" name="replycomment[<?=$idpost?>,<?=$comment->id?>]">Reply</button></a></td>
-                                        </form>
-                                    <br> 
                                     
                                     <?php
                                          $idcomment=$comment->id;                                  
@@ -98,45 +137,36 @@ use Models\comment;
                                             foreach($comments as $comment){
                                     
                                                 ?> 
-                                                <br>
-                                                <input id="punyaeuser" class="form-control" type="text" value="Penulis : <?= $comment->namamember?>" aria-label="readonly input example" readonly>
-
-                                                <input id="punyaeuser" class="form-control" type="text" value="Reply : <?= $comment->isi?>" aria-label="readonly input example" readonly>
-                                                <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control">
-                                                <td><button class="btn btn-primary" name="replycomment[<?=$idpost?>,<?=$comment->id?>]">Reply</button></a></td>
-            
-                                                <br>
+                                                    <br>
+                                                    <h4 style="margin-left: 60px;">Penulis : <?= $comment->namamember?></h4>
+                                                    <h4 style="margin-left: 60px;">Reply : <?= $comment->isi?></h4>
+                                                    <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control" style="margin-left: 60px;">
+                                                    <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                                        <button class="btn btn-primary" name="replycomment[<?=$idpost?>,<?=$comment->id?>]" style="margin-left: 60px;">Reply</button>
+                                                    </div>
                                                 <?php
-                                                $idcomment=$comment->id;
-                                                    
-                                                    
+                                                $idcomment=$comment->id;    
                                             } 
                                         }while ($comments!=null);   
 
                                         }
-                            
                                 }                                                                 
                             }
                         ?>
-                        <br>
-                    </div>
-                    </form>
-                    <br>
-                    <form action="../controllers/forum.php" method="POST">
-                        <h1>Post</h1>
-                        <input type="text" id="namamenu" name="judul" placeholder="Post Yang ingin disampaikan" class="form-control"> 
-                        <br>               
-                        <input type="text" id="namamenu" name="isi" placeholder="Isi Yang ingin disampaikan" class="form-control">
-                        <br>
-                        <button type="submit" class="btn btn-primary" name="btnaddpost" >Post</button>
-                        <br>
-                        <br>
-                        <button type="submit" class="btn btn-danger" name="balikae">Back To Dashboard</button>
-                    </form>
-                
-                <br>
+                </form>
             </div>
-        </main>
+        </div>
+        <form action="../controllers/forum.php" method="POST">
+            <h1>Post</h1>
+            <input type="text" id="namamenu" name="judul" placeholder="Post Yang ingin disampaikan" class="form-control"> 
+            <br>               
+            <input type="text" id="namamenu" name="isi" placeholder="Isi Yang ingin disampaikan" class="form-control">
+            <br>
+            <button type="submit" class="btn btn-primary" name="btnaddpost" >Post</button>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-danger" name="balikae">Back To Dashboard</button>
+        </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../assets/js/scripts.js"></script>
