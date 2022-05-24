@@ -1,12 +1,14 @@
 <?php
     use Utils\Message;
     use Models\service;
-
+    use Models\htransaksi;
     require_once "../config/config.php";
 
     // untuk nampilkan nama
     $user = $_SESSION["user"];
     $munculkan = $user->nama;
+    
+    
 ?>
 
 <!DOCTYPE html>
@@ -17,16 +19,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Halaman User Biasa</title>
+        <title>Dashboard Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="../assets/css/punyaadmin.css" rel="stylesheet" />
+        <link href="../assets/css/addvideo.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-
-        <style>
-            #btnkeluar{
-                margin-left: 45px;
-            }
-        </style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -76,7 +73,8 @@
                             <a class="nav-link" href="../public/halamanuserbiasacs.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Customer Service 
-                            </a>   
+                            </a> 
+                              
                         </div>
                     </div>
                 </nav>
@@ -84,73 +82,69 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Customer Service</h1>
+                        <h1 class="mt-4">History Transaksi</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Saham</li>
+                            <li class="breadcrumb-item active">Pembelian Member</li>
                         </ol>
-                        <form action="../controllers/service.php" method="POST">
-                            <label class="control-label"  for="namamenu">Pertanyaan</label>
-                            <br>
-                            <br>
-                            <div class="controls">
-                                <input type="text" class="form-control" id="namamenu" name="judul" placeholder="Pertanyaan">
-                            </div>   
-                            <br>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary" name="btnaddser">Add</button>
-                            </div>  
-                        </form>
-                        <br>
-                        <?php 
+                        <main>
+                        <?php  
                             $user = json_decode(json_encode($_SESSION["user"]), true);
-                            $idmember = $user["id"];
-                            $services = service::getbyidmember($idmember);
+                            $idmember = $user["id"];                           
+                            $transactions = htransaksi::getforhistorymember($idmember);
                         ?>
-                         <form action="../controllers/service.php" method="POST">
-                        <table class="table table-dark table-striped">
+                         <form action="../controllers/transaksi.php" method="POST">
+                         <table class="table table-dark table-striped">
                             <thead>
-                            <th>ID</th>
-
-                                <th>Judul Pertanyaan</th>
-                                <th>Rate</th>
-                                <th>Chat</th>
-
+                                <th>Nama Member</th>
+                                <th>Bukti Pembayaran</th>
+                                <th>Tanggal</th>
+                                <th>Status</th>
                             </thead>
                             <tbody>
-                                <?php   
-                                    foreach($services as $idx=> $service){
+                                <?php 
+                                    foreach($transactions as $transaction){
                                         ?>
                                         <tr>
                                             
-                                            <td><?=  $idx + 1?></td>
-                                            <td><?=  $service->judul?></td>
-                                            
+                                            <td><?=  $transaction->nama?></td>
+                                            <td><img style="width:120px;height:200px" src="../<?= $transaction->bukti ?>" /> </td>
+                                            <td><?=  $transaction->tgl?></td>
                                             <?php
-                                        if ( $service->rate!=null) {
-                                            
-                                            ?> 
-                                            <form action="../controllers/service.php" method="POST">
-                                            <td><?= $service->rate?></td>
-                                            <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
-                                            </form>
-                                            <?php
-                                        }
-                                        else{  
+                                                if ($transaction->status==0) {
+                                                    $status="Sedang Diproses";
+                                                }
+                                                else if ($transaction->status==1) {
+                                                    $status="Accepted";
+                                                }
+                                                else if ($transaction->status==-1) {
+                                                    $status="Rejected";
+                                                }
+
+
                                             ?>
-                                            <form action="../controllers/service.php" method="POST">
-                                            <td><input type="text" id="keteranganmenu" name="rate[<?=$service->id?>]"> <input type="submit" class="btn btn-success" name="submit[<?=$service->id?>]" value="Rate"/></input></td>
-                                            <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
-                                            </form>
-                                    <?php
-                                    }
+                                            <td><?=  $status?></td>
+
+
+
+                                        </tr>
+                                        <?php
                                     }
 
                                 ?>
                         </tbody>
                     </table>
-                    </form>
-                    </div>
+                    </form>              
+                    
                 </main>
+
+                        <div class="form-outline">
+                            <label class="form-label" for="form1">Search</label>
+                            <input type="search"/>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button> 
+                        </div>    
+                    </div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -161,8 +155,5 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../assets/js/datatables-simple-demo.js"></script>
     </body>
-    <?php 
-        Message::print("error");
-        Message::print("success");
-    ?>
+    
 </html>

@@ -9,10 +9,22 @@
 
     if (isset($_POST["btnTambah"])) {
         $file = File::get("fotobukti");
-        
-        $harga = $_POST["harga"];
+        if ($_POST["harga"]==120) {
+            $harga=120000;
+        }
+        else if ($_POST["harga"]==500) {
+            $harga=500000;           
+        }
+        else if ($_POST["harga"]==1) {
+            $harga=1100000;            
+        }
         $user = ($_SESSION["user"]);
+        $bulan = $_POST["bulan"];
         $iduser = $user->id;
+        $tz_object = new DateTimeZone('Asia/Jakarta');
+        $datetime = new DateTime();
+        $datetime->setTimezone($tz_object);
+        $transactiondate=$datetime->format('Y\-m\-d\ h:i:s');
         $transaksitemp = htransaksi::getByidmember($iduser);
         if($_FILES["fotobukti"]["name"]==""){
             Message::add("Error","Foto tidak boleh kosong");
@@ -25,7 +37,8 @@
             exit;
         }
         else{
-            $hasil = new htransaksi($iduser,$harga,File::$target_path.$iduser.".".$file->getExtension());
+            
+            $hasil = new htransaksi($iduser,$harga,File::$target_path.$iduser.".".$file->getExtension(),$transactiondate,$bulan);
             $hasil->save();
 
             $file->move($iduser.".".$file->getExtension());
@@ -51,7 +64,7 @@
         User::updateexpdate($iduser,$newDate);
 
         User::updaterole($iduser,1);
-        $transaksitemp = htransaksi::deletebyidtransaksi($idtransaksi);
+        $transaksitemp = htransaksi::acceptbyidtransaksi($idtransaksi);
         header("Location: ../public/halamanadminvalidasi.php");
 
 
@@ -59,7 +72,7 @@
     if(isset($_POST['reject'])){
         $idtransaksi=key($_POST['reject']);
         var_dump($idtransaksi);
-        $transaksitemp = htransaksi::deletebyidtransaksi($idtransaksi);
+        $transaksitemp = htransaksi::rejectbyidtransaksi($idtransaksi);
         header("Location: ../public/halamanadminvalidasi.php");
 
 

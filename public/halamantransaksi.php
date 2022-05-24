@@ -4,7 +4,7 @@
     require_once "../config/config.php";
 
     $bisa = $_GET["harga"];
-
+    $bulan = $_GET["bulan"];
     $ambilnama = $_GET["namacus"];
 ?>
 
@@ -187,6 +187,8 @@
                                 </div>
                                 <br>
                                 <input type="text" class="form-control" value="<?= $bisa?>" name="harga" hidden>
+                                <input type="text" class="form-control" value="<?= $bulan?>" name="bulan" hidden>
+
                                 <!-- <div class="d-grid gap-2 col-12 mx-auto">
                                     <button class="btn btn-primary" name="btnTambah">Kirim</button>
                                 </div> -->

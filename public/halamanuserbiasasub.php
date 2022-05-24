@@ -105,6 +105,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Upgrade To VIP Member
                             </a>
+                            <a class="nav-link" href="../public/halamanhistorytransmember.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                History Transaksi 
+                            </a>
                             <div class="sb-sidenav-menu-heading">Service</div>
                             <a class="nav-link" href="../public/halamanuserbiasacs.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -149,7 +153,7 @@
                                     </ul>
                                     <div class="card-body text-center">
                                     <form action="../controllers/auth.php" method="POST">
-                                        <a href="../public/halamantransaksi.php?harga=120.000&namacus=<?=$munculkan?>" class="btn btn-outline-primary btn-lg" style="border-radius:30px" name="btnbeli">Beli</a>
+                                        <a href="../public/halamantransaksi.php?harga=120.000&bulan=1&namacus=<?=$munculkan?>" class="btn btn-outline-primary btn-lg" style="border-radius:30px" name="btnbeli">Beli</a>
                                     </form>
                                     </div>
                                 </div>
@@ -180,7 +184,7 @@
                                     </ul>
                                     <div class="card-body text-center">
                                     <form action="../controllers/auth.php" method="POST">
-                                        <a href="../public/halamantransaksi.php?harga=500.000&namacus=<?=$munculkan?>" class="btn btn-outline-primary btn-lg" style="border-radius:30px">Beli</a>
+                                        <a href="../public/halamantransaksi.php?harga=500.000&bulan=6&namacus=<?=$munculkan?>" class="btn btn-outline-primary btn-lg" style="border-radius:30px">Beli</a>
                                     </form>
                                     </div>
                                 </div>
@@ -211,7 +215,7 @@
                                     </ul>
                                     <div class="card-body text-center">
                                     <form action="../controllers/auth.php" method="POST">
-                                        <a href="../public/halamantransaksi.php?harga=1.100.000&namacus=<?=$munculkan?>" class="btn btn-outline-primary btn-lg" style="border-radius:30px">Beli</a>
+                                        <a href="../public/halamantransaksi.php?harga=1.100.000&bulan=12&namacus=<?=$munculkan?>" class="btn btn-outline-primary btn-lg" style="border-radius:30px">Beli</a>
                                     </form>
                                     </div>
                                 </div>

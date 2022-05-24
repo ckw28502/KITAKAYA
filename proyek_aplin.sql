@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2022 at 09:25 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: May 24, 2022 at 02:27 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,14 +38,6 @@ CREATE TABLE `chat` (
   `pengirim` int(11) NOT NULL COMMENT '0 = member,\r\n1 = CS'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `chat`
---
-
-INSERT INTO `chat` (`id`, `service`, `isi`, `tanggal`, `pengirim`) VALUES
-(10, 2, 'bagus', '2022-05-23', 0),
-(11, 2, 'Kok Cerah', '2022-05-23', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -67,12 +59,11 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id`, `thread`, `namamember`, `isi`, `tanggal`, `reply`) VALUES
-(3, 0, 'Ikan', 'mosok', '2022-05-21', -1),
-(4, 0, 'Jojo', 'Iya Beneran', '2022-05-21', 3),
-(5, 0, 'Customer Service', 'Iya Beneran', '2022-05-21', 4),
-(6, 0, 'CobaGambars', 'ohya', '2022-05-23', 5),
-(7, 0, 'CobaGambars', 'Iya Beneran', '2022-05-23', 6),
-(8, 3, 'Customer Service', 'mosok', '2022-05-23', -1);
+(15, 11, 'Ibewe', 'mosok', '2022-05-23', -1),
+(16, 11, 'Ivander KW', 'Iya Beneran', '2022-05-23', 15),
+(17, 11, 'Ivander KW', 'mosok', '2022-05-23', -1),
+(18, 11, 'Ivander KW', 'Iya Beneran', '2022-05-23', 16),
+(19, 12, 'Ivander KW', 'mosok', '2022-05-23', -1);
 
 -- --------------------------------------------------------
 
@@ -172,14 +163,6 @@ CREATE TABLE `service` (
   `rate` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `service`
---
-
-INSERT INTO `service` (`id`, `judul`, `member`, `rate`) VALUES
-(1, 'Saham', 1, 2),
-(2, 'Langit bisakah', 35, 4);
-
 -- --------------------------------------------------------
 
 --
@@ -230,10 +213,9 @@ CREATE TABLE `thread_forum` (
 --
 
 INSERT INTO `thread_forum` (`id`, `Judul`, `isi`, `namamember`, `Kategori`) VALUES
-(1, 'Langit', 'bagus', 'Ikan', 1),
-(2, 'Langit', 'Kok Cerah', 'CobaGambars', 1),
-(3, 'Aku Mau Tanya', 'Rekomen', 'CobaGambars', 1),
-(4, 'Langit', 'Baiklah', 'Customer Service', 1);
+(11, 'Langit', 'bagus', 'Ibewe', 1),
+(12, 'Langit bisakah', 'Baiklah', 'Ivander KW', 1),
+(13, 'Aku bisa makan', 'hmm', 'Ivander KW', 1);
 
 -- --------------------------------------------------------
 
@@ -284,8 +266,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `password`, `nama`, `umur`, `role`, `status`, `expired`) VALUES
 (33, 'csKITAKAYA@gmail.com', '123', 'Customer Service', 25, 2, 1, NULL),
-(34, 'ivanderkw2@gmail.com', '$2y$10$XdcjL5UbDaxOWHv2rCUJE.s5VvU7gYcMfCcyBqZkVQXMVMp6OsKFS', 'Ikan', 17, 0, 0, NULL),
-(35, 'ibewe25@gmail.com', '$2y$10$TIE/0YrNsGWPklaIjbj4b.ZC9lPZKSk10PoRoajaYFoBvwWoB.dzO', 'CobaGambars', 17, 0, 1, '2022-08-23');
+(36, 'ibewe25@gmail.com', '$2y$10$4oSMnD.s7BHxvmUjwMIQr.9H2DSUh.5uNpzFmiLU6vmrmz8MKSVyu', 'Ibewe', 17, 0, 1, NULL),
+(37, 'ivanderkw2@gmail.com', '$2y$10$on6opiI7NfFrZHQJSWRlguoj5y..GsPWXIN/3gbXimq6msMJfauyO', 'Ivander KW', 21, 0, 1, NULL);
 
 --
 -- Indexes for dumped tables
@@ -382,7 +364,7 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `kategori_vid`
@@ -418,7 +400,7 @@ ALTER TABLE `thread`
 -- AUTO_INCREMENT for table `thread_forum`
 --
 ALTER TABLE `thread_forum`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
@@ -430,7 +412,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
