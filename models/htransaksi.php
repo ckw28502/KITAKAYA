@@ -64,6 +64,14 @@
                 "id"=>$id
             ]);           
         }
+        static function getbulan($id)
+        {
+            $db=Database::instance();
+            $temp=$db->query("SELECT bulan FROM transaksi WHERE id = :id",[
+                "id"=>$id
+            ]);
+            return $temp->fetch();
+        }
         function save(){
             
             $db = Database::instance();

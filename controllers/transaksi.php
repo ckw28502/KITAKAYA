@@ -54,12 +54,12 @@
         $ids = explode(",", $keys);
         $idtransaksi=(int)$ids[0];
         $iduser=(int)$ids[1]; 
-        
+        $bulan=htransaksi::getbulan($idtransaksi);
         $tz_object = new DateTimeZone('Asia/Jakarta');
         $datetime = new DateTime();
         $datetime->setTimezone($tz_object);
         $expireddate=$datetime->format('Y\-m\-d\ h:i:s');
-        $newDate = date('Y\-m\-d\ h:i:s', strtotime($expireddate. ' + 3 months'));
+        $newDate = date('Y\-m\-d\ h:i:s', strtotime($expireddate. ' + '.$bulan->bulan.' months'));
         
         User::updateexpdate($iduser,$newDate);
 
