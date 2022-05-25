@@ -46,9 +46,11 @@
             ]);
             return $temp->fetchAll();
         }
-        static function getforhistoryadmin(){
+        static function getforhistoryadmin($nama){
             $db=Database::instance();
-            $temp=$db->query("SELECT  t.id as id, u.id as id_member,u.nama as nama,t.bukti as bukti,t.tgl as tgl,t.status as status FROM transaksi t,user u WHERE t.id_member=u.id and t.status<>0 and bukti IS NOT NULL"
+            $temp=$db->query("SELECT t.id as id, u.id as id_member,u.nama as nama,t.bukti as bukti,t.tgl as tgl,t.status as status FROM transaksi t,user u WHERE t.id_member=u.id and t.status<>0 and bukti IS NOT NULL AND u.nama LIKE CONCAT('%',:nama,'%')",[
+                "nama"=>$nama
+            ]
             );
             return $temp->fetchAll();
         }

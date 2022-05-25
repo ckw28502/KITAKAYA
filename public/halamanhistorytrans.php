@@ -3,6 +3,13 @@
     use Models\Video;
     use Models\htransaksi;
     require_once "../config/config.php";
+    var_dump($_SESSION["history"]);
+    if (isset($_SESSION["history"])) {
+        $transactions=$_SESSION["history"];
+        unset($_SESSION["history"]);
+    } else {
+        $transactions = htransaksi::getforhistoryadmin("");  
+    }
 ?>
 
 <!DOCTYPE html>
@@ -99,62 +106,61 @@
                             <li class="breadcrumb-item active">Pembelian Member</li>
                         </ol>
                         <main>
-                        <?php                             
-                            $transactions = htransaksi::getforhistoryadmin();
-                        ?>
-                         <form action="../controllers/transaksi.php" method="POST">
-                         <table class="table table-dark table-striped">
-                            <thead>
-                                <th>Nama Member</th>
-                                <th>Bukti Pembayaran</th>
-                                <th>Tanggal</th>
-                                <th>Status</th>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                    foreach($transactions as $transaction){
-                                        ?>
-                                        <tr>
-                                            
-                                            <td><?=  $transaction->nama?></td>
-                                            <td><img style="width:120px;height:200px" src="../<?= $transaction->bukti ?>" /> </td>
-                                            <td><?=  $transaction->tgl?></td>
-                                            <?php
-                                                if ($transaction->status==0) {
-                                                    $status="Sedang Diproses";
-                                                }
-                                                else if ($transaction->status==1) {
-                                                    $status="Accepted";
-                                                }
-                                                else if ($transaction->status==-1) {
-                                                    $status="Rejected";
-                                                }
-
-
+                         <form action="../controllers/transaksi.php" method="post">
+                             <!--Fitur Search-->
+                            <div class="form-outline">
+                                <label class="form-label" for="form1">Search</label>
+                                <input type="search" name="nama">
+                                <button type="submit" class="btn btn-primary" name="search">
+                                    <i class="fas fa-search">Go!</i>
+                                </button> 
+                            </div> 
+                            <table class="table table-dark table-striped">
+                                <thead>
+                                    <th>Nama Member</th>
+                                    <th>Bukti Pembayaran</th>
+                                    <th>Tanggal</th>
+                                    <th>Status</th>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                        foreach($transactions as $transaction){
                                             ?>
-                                            <td><?=  $status?></td>
+                                            <tr>
+                                                
+                                                <td><?=  $transaction->nama?></td>
+                                                <td><img style="width:120px;height:200px" src="../<?= $transaction->bukti ?>" /> </td>
+                                                <td><?=  $transaction->tgl?></td>
+                                                <?php
+                                                    if ($transaction->status==0) {
+                                                        $status="Sedang Diproses";
+                                                    }
+                                                    else if ($transaction->status==1) {
+                                                        $status="Accepted";
+                                                    }
+                                                    else if ($transaction->status==-1) {
+                                                        $status="Rejected";
+                                                    }
+
+
+                                                ?>
+                                                <td><?=  $status?></td>
 
 
 
-                                        </tr>
-                                        <?php
-                                    }
+                                            </tr>
+                                            <?php
+                                        }
 
-                                ?>
-                        </tbody>
-                    </table>
+                                    ?>
+                            </tbody>
+                        </table>
                     </table>
                     </form>              
                     
-                </main>
+                        </main>
 
-                        <div class="form-outline">
-                            <label class="form-label" for="form1">Search</label>
-                            <input type="search"/>
-                            <button type="button" class="btn btn-primary">
-                                <i class="fas fa-search"></i>
-                            </button> 
-                        </div>    
+                           
                     </div>
             </div>
         </div>

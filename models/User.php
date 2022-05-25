@@ -74,7 +74,6 @@ class User {
             "role"=>$role
         ])->fetch();
     }
-
     function save(){
         $db = Database::instance();
         $cekemail = self::getByUsername($this->email);

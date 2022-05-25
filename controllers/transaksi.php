@@ -77,6 +77,11 @@
 
 
     }
+    if (isset($_POST["search"])) {
+        $nama=$_POST["nama"];
+        $_SESSION["history"]=htransaksi::getforhistoryadmin($nama);
+        header("Location: ../public/halamanhistorytrans.php");
+    }
     if (isset($_POST["balikae"])) {
         $user = json_decode(json_encode($_SESSION["user"]), true);
         $email=$user["email"];
