@@ -15,7 +15,7 @@
         else if ($_POST["harga"]==500) {
             $harga=500000;           
         }
-        else if ($_POST["harga"]==1) {
+        else if ($_POST["harga"]==1100) {
             $harga=1100000;            
         }
         $user = ($_SESSION["user"]);
@@ -42,7 +42,7 @@
             $hasil->save();
 
             $file->move($iduser.".".$file->getExtension());
-
+            Message::add("Success","Mohon menunggu validasi pembayaran Anda!");
             
             header("Location: ../public/halamanuserbiasa.php");
             exit;
