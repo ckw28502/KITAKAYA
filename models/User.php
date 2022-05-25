@@ -74,6 +74,14 @@ class User {
             "role"=>$role
         ])->fetch();
     }
+    static function getexpireddate($id)
+    {
+        $db = Database::instance();
+        return $db->query("SELECT expired FROM user WHERE id = :id",
+        [
+            "id"=>$id
+        ])->fetch();
+    }
     function save(){
         $db = Database::instance();
         $cekemail = self::getByUsername($this->email);

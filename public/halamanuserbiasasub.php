@@ -235,7 +235,7 @@
         <script src="../assets/js/datatables-simple-demo.js"></script>
         <?php 
             Message::print("Error");
-            Message::print("success");
+            Message::print("Success");
         ?>
     </body>
 </html>

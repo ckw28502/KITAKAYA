@@ -15,7 +15,7 @@
         else if ($_POST["harga"]==500) {
             $harga=500000;           
         }
-        else if ($_POST["harga"]==1100) {
+        else {
             $harga=1100000;            
         }
         $user = ($_SESSION["user"]);

@@ -5,7 +5,6 @@ require_once "../config/config.php";
 // include "../alert.php";
 
 use Models\User;
-use Models\toko;
 
 use Utils\Message;
 use Utils\Validation;
@@ -49,7 +48,17 @@ if(isset($_POST["login"])){
                     // cek pass sama hash sama tidak
                     if ($verifyPass) {
                         $_SESSION["user"] = $ecustomer;
-                        header("Location: ../public/halamanuservip.php");
+                        // cek expired date
+                        $id=$ecustomer->id;
+                        $now=new DateTime();
+                        $expire=new DateTime(User::getexpireddate($id)->expired);
+                        if ($now<$expire) {
+                            header("Location: ../public/halamanuservip.php");
+                        } else {
+                            User::updateexpdate($id,null);
+                            User::updaterole($id,0);
+                            header("Location: ../public/halamanuserbiasa.php");
+                        }                       
                         exit;
                     }
                     else{
