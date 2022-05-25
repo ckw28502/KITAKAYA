@@ -57,6 +57,7 @@ if(isset($_POST["login"])){
                         } else {
                             User::updateexpdate($id,null);
                             User::updaterole($id,0);
+                            Message::add("VIP Membership Expired","Masa berlaku membership VIP Anda sudah habis!");
                             header("Location: ../public/halamanuserbiasa.php");
                         }                       
                         exit;

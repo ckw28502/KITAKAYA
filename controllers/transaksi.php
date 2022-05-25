@@ -65,6 +65,7 @@
 
         User::updaterole($iduser,1);
         $transaksitemp = htransaksi::acceptbyidtransaksi($idtransaksi);
+        Message::add("VIP","Selamat!\nPendaftaran Anda sebagai VIP telah berhasil");
         header("Location: ../public/halamanadminvalidasi.php");
 
 
@@ -73,6 +74,7 @@
         $idtransaksi=key($_POST['reject']);
         var_dump($idtransaksi);
         $transaksitemp = htransaksi::rejectbyidtransaksi($idtransaksi);
+        Message::add("Gagal","Mohon maaf, pendaftaran Anda sebagai VIP ditolak");
         header("Location: ../public/halamanadminvalidasi.php");
 
 

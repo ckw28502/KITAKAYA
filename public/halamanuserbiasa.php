@@ -136,6 +136,8 @@
         <script src="../assets/js/datatables-simple-demo.js"></script>
         <?php
             Message::print("Success");
+            Message::print("VIP Membership Expired");
+            Message::print("Gagal");
         ?>
     </body>
 </html>
