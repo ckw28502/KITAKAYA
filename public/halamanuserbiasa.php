@@ -36,7 +36,7 @@
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <h3 style="color: white;">Welcome, <?= $munculkan?></h3>
+                    <h3 style="color: white;">Welcomes, <?= $munculkan?></h3>
                 </div>
             </form>
             <!-- Navbar-->
