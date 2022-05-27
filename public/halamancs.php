@@ -101,7 +101,7 @@ use Models\service;
                                             ?>
                                             <form action="../controllers/service.php" method="POST">
                                             <td><input type="text" id="keteranganmenu" name="rate[<?=$service->id?>]"> <input type="submit" class="btn btn-success" name="submit[<?=$service->id?>]" value="Rate"/></input></td>
-                                            <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
+                                            <td><button class="btn btn-primary" value="coba" name="chat[<?=$service->id?>]">Chat</button></a></td>
                                             </form>
                                     <?php
                                     }

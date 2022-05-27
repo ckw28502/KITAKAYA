@@ -10,6 +10,7 @@
         $nama = $_REQUEST["nama"];
         $email = $_REQUEST["email"];
         $pass = password_hash($_REQUEST["pass"], PASSWORD_DEFAULT);
+        $conpass = $_REQUEST["connpass"];
         $umur = $_REQUEST["umur"];
 
         if ($nama != "" && $email != "" && $pass != "" && $umur != "") {
@@ -19,108 +20,113 @@
             }
 
             if ($cekemail = true) {
-                echo("email e podo");
-                $user = new User($nama,$email,$pass,$umur);
-                $user->save();
-                try {
-                    $mail = new PHPMailer(true);
-                    $mail->SMTPDebug = 0;                   //Enable verbose debug output
-                    // Send using SMTP
-                    $mail->isSMTP();
-                    // Set the SMTP server to send through
-                    $mail->Host       = 'smtp.gmail.com';
-                    // Enable SMTP authentication
-                    $mail->SMTPAuth   = true;
-                    // SMTP username
-                    $mail->Username   = 'ibewe25@gmail.com';
-                    // SMTP password
-                    $mail->Password   = 'esek212121';
-                    // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged            
-                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-                    $mail->Port       = 587;
+                if ($pass == $conpass) {
+                    $user = new User($nama,$email,$pass,$umur);
+                    $user->save();
+                    try {
+                        $mail = new PHPMailer(true);
+                        $mail->SMTPDebug = 0;                   //Enable verbose debug output
+                        // Send using SMTP
+                        $mail->isSMTP();
+                        // Set the SMTP server to send through
+                        $mail->Host       = 'smtp.gmail.com';
+                        // Enable SMTP authentication
+                        $mail->SMTPAuth   = true;
+                        // SMTP username
+                        $mail->Username   = 'ibewe25@gmail.com';
+                        // SMTP password
+                        $mail->Password   = 'esek212121';
+                        // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged            
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                        // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+                        $mail->Port       = 587;
 
-                    //Recipients
-                    $mail->setFrom('ivanderkw2@gmail.com', 'KITA KAYA');
-                    $mail->addAddress($email, 'User');     // Add a recipient
-                    // Content
-                    $mail->isHTML(true);                                  // Set email format to HTML
-                    $mail->Subject = 'Email Verification';
+                        //Recipients
+                        $mail->setFrom('ivanderkw2@gmail.com', 'KITA KAYA');
+                        $mail->addAddress($email, 'User');     // Add a recipient
+                        // Content
+                        $mail->isHTML(true);                                  // Set email format to HTML
+                        $mail->Subject = 'Email Verification';
 
-                    $mail->Body ="<div id=':103' class='ii gt'>                        
-                    <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-                        
-                        <tbody><tr>
-                            <td bgcolor='#2f96d6' align='center'>
-                                <table border='0' cellpadding='0' cellspacing='0' width='100%' style='max-width:600px'>
-                                    <tbody><tr>
-                                        <td align='center' valign='top' style='padding:40px 10px 40px 10px'> </td>
-                                    </tr>
-                                </tbody></table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td bgcolor='#2f96d6' align='center' style='padding:0px 10px 0px 10px'>
-                                <table border='0' cellpadding='0' cellspacing='0' width='100%' style='max-width:600px'>
-                                    <tbody><tr>
-                                        <td bgcolor='#ffffff' align='center' valign='top' style='padding:40px 20px 20px 20px;border-radius:4px 4px 0px 0px;color:#111111;font-family:'Lato',Helvetica,Arial,sans-serif;font-size:48px;font-weight:400;letter-spacing:4px;line-height:48px
-                                        >
-                                            <h1 style='font-size:30px;font-weight:400;margin:2;'>Welcome, ".$nama." !</h1>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td bgcolor='#f4f4f4' align='center' style='padding:0px 10px 0px 10px'>
-                                <table border='0' cellpadding='0' cellspacing='0 width='100%' style='max-width:600px'>
-                                    <tbody><tr>
-                                        <td bgcolor='#ffffff' align='left' style='padding:20px 30px 40px 30px;color:#666666;font-family:'Lato',Helvetica,Arial,sans-serif;font-size:18px;font-weight:400;line-height:25px'>
-                                            <p style='margin-left:10%;margin-right:8%'>Terima kasih sudah mendaftarkan dirimu di KITAKAYA. Silahkan verifikasi alamat emailmu dengan klik tautan berikut :</p>
-                                            <br>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td bgcolor='#ffffff' align='left'>
-                                            <table width='100%' border='0' cellspacing='0' cellpadding='0'>
-                                                <tbody><tr>
-                                                    <td bgcolor='#ffffff' align='center' style='padding:20px 30px 60px 30px'>
-                                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                                            <tbody><tr>
-                                                                <td align='center' style='border-radius:10px' bgcolor='#2f96d6
-                                                                        '><a href='localhost/KitaKaya/public/verify.php?hash=".$pass.
-                                                                        "' style='font-size:20px;font-family:Helvetica,Arial,sans-serif;color:#ffffff;text-decoration:none;color:#ffffff;text-decoration:none;padding:15px 25px;border-radius:2px;display:inline-block'>Verify Account</a></td>
-                                                            </tr>
-                                                        </tbody></table>
-                                                    </td>
-                                                </tr>
-                                            </tbody></table>
-                                        </td>
-                                    </tr> 
-                                     
-                                    
-                                    <tr>
-                                        <td bgcolor='#ffffff' align='left' style='padding:0px 30px 20px 30px;color:#666666;font-family:'Lato',Helvetica,Arial,sans-serif;font-size:18px;font-weight:400;line-height:25px'>
-                                            <p style='margin-left:10%;margin-right:8%'>Penting untuk memiliki akun dengan alamat email yang akurat karena semua transaksi anda tercatat di KITAKAYA. Abaikan email ini bila kamu tidak pernah mendaftar ke KITAKAYA</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td bgcolor='#ffffff' align='left' style='padding:0px 30px 40px 30px;border-radius:'0px 0px 4px 4px';color:'#666666';font-family:'Lato',Helvetica,Arial,sans-serif;font-size:18px;font-weight:400;line-height:25px'>
-                                            <p style='margin-left:10%;margin-right:10%'>Best Regards,<br>KITAKAYA</p>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td>
-                        </tr>
-                        </tbody></table></div><div class='yj6qo'></div><div class='adL'>
-                    </div></div></div>";
+                        $mail->Body ="<div id=':103' class='ii gt'>                        
+                        <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+                            
+                            <tbody><tr>
+                                <td bgcolor='#2f96d6' align='center'>
+                                    <table border='0' cellpadding='0' cellspacing='0' width='100%' style='max-width:600px'>
+                                        <tbody><tr>
+                                            <td align='center' valign='top' style='padding:40px 10px 40px 10px'> </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td bgcolor='#2f96d6' align='center' style='padding:0px 10px 0px 10px'>
+                                    <table border='0' cellpadding='0' cellspacing='0' width='100%' style='max-width:600px'>
+                                        <tbody><tr>
+                                            <td bgcolor='#ffffff' align='center' valign='top' style='padding:40px 20px 20px 20px;border-radius:4px 4px 0px 0px;color:#111111;font-family:'Lato',Helvetica,Arial,sans-serif;font-size:48px;font-weight:400;letter-spacing:4px;line-height:48px
+                                            >
+                                                <h1 style='font-size:30px;font-weight:400;margin:2;'>Welcome, ".$nama." !</h1>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td bgcolor='#f4f4f4' align='center' style='padding:0px 10px 0px 10px'>
+                                    <table border='0' cellpadding='0' cellspacing='0 width='100%' style='max-width:600px'>
+                                        <tbody><tr>
+                                            <td bgcolor='#ffffff' align='left' style='padding:20px 30px 40px 30px;color:#666666;font-family:'Lato',Helvetica,Arial,sans-serif;font-size:18px;font-weight:400;line-height:25px'>
+                                                <p style='margin-left:10%;margin-right:8%'>Terima kasih sudah mendaftarkan dirimu di KITAKAYA. Silahkan verifikasi alamat emailmu dengan klik tautan berikut :</p>
+                                                <br>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td bgcolor='#ffffff' align='left'>
+                                                <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+                                                    <tbody><tr>
+                                                        <td bgcolor='#ffffff' align='center' style='padding:20px 30px 60px 30px'>
+                                                            <table border='0' cellspacing='0' cellpadding='0'>
+                                                                <tbody><tr>
+                                                                    <td align='center' style='border-radius:10px' bgcolor='#2f96d6
+                                                                            '><a href='localhost/KitaKaya/public/verify.php?hash=".$pass.
+                                                                            "' style='font-size:20px;font-family:Helvetica,Arial,sans-serif;color:#ffffff;text-decoration:none;color:#ffffff;text-decoration:none;padding:15px 25px;border-radius:2px;display:inline-block'>Verify Account</a></td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr> 
+                                        
+                                        
+                                        <tr>
+                                            <td bgcolor='#ffffff' align='left' style='padding:0px 30px 20px 30px;color:#666666;font-family:'Lato',Helvetica,Arial,sans-serif;font-size:18px;font-weight:400;line-height:25px'>
+                                                <p style='margin-left:10%;margin-right:8%'>Penting untuk memiliki akun dengan alamat email yang akurat karena semua transaksi anda tercatat di KITAKAYA. Abaikan email ini bila kamu tidak pernah mendaftar ke KITAKAYA</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td bgcolor='#ffffff' align='left' style='padding:0px 30px 40px 30px;border-radius:'0px 0px 4px 4px';color:'#666666';font-family:'Lato',Helvetica,Arial,sans-serif;font-size:18px;font-weight:400;line-height:25px'>
+                                                <p style='margin-left:10%;margin-right:10%'>Best Regards,<br>KITAKAYA</p>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                            </tbody></table></div><div class='yj6qo'></div><div class='adL'>
+                        </div></div></div>";
 
-                    $mail->send();
-                    echo("berhasil");
-                } catch(Exception $e) {
-                    echo($e);
+                        $mail->send();
+                        echo("berhasil");
+                    } catch(Exception $e) {
+                        echo($e);
+                    }
+                    header("Location: ../public/halamanregister.php");
                 }
-                header("Location: ../public/halamanregister.php");
+                else{
+                    $title = "Confirm Password Tidak Sama"; $msg = ""; $icon = "warning";
+                }
+                
             }else{
                 
                 
@@ -170,6 +176,12 @@
                     <div class="form-outline mb-4">
                         <label class="form-label" >Password</label>
                         <input type="password" id="form1Example23" class="form-control form-control-lg" name="pass"/>
+                    </div>
+
+                    <!-- Confirm Password input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" >Confirm Password</label>
+                        <input type="password" id="form1Example23" class="form-control form-control-lg" name="connpass"/>
                     </div>
 
                     <!-- Nama input -->
