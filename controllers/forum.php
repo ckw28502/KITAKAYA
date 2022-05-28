@@ -85,9 +85,8 @@
     if(isset($_POST['forum'])){
         $_SESSION['idkategori']=key($_POST['forum']);
         header("Location: ../public/forum.php");
-
-
     }
+    
     if (isset($_POST["balikae"])) {
         $user = json_decode(json_encode($_SESSION["user"]), true);
         $email=$user["email"];

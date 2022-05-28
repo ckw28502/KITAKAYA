@@ -13,7 +13,7 @@
     $kat = Video::getKategoribyId($idkategori->id); //rasae kok ws g perlu ini
     $video = Video::getVideobyKategoriLIMIT($idkategori->id);
     
-    
+
 
     if (isset($_POST['btnback'])) {
         header("Location: halamanuserbiasa.php");
@@ -53,6 +53,10 @@
                 <ol class="breadcrumb mb-4">
                     <li id="tulisan">Kumpulan Video </li>
                 </ol>
+                <form action="../controllers/forum.php" method="POST">
+                    <button class="btn btn-success" name="forum[<?=$idkategori->id?>]">Forum</button>
+                </form>
+                <br>
                 <table class="table table-dark table-striped">
                     <thead>
                         <th>No</th>
@@ -74,7 +78,9 @@
                     </tbody>
                 </table>
                 
-                <h2>Subscribe untuk mendapatkan full access</h2>
+                <h2>Subscribe untuk mendapatkan full access</h2><br><br>
+
+                
                 <form action="" method="POST">
                     <button type="submit" class="btn btn-primary" name="btnback" id="kembali">Back</button>
                 </form>

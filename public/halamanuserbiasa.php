@@ -115,7 +115,7 @@
                                             <td><?= $video->nama_kategori ?></td>
                                             <td><progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress></td>
                                             <td>
-                                                <a href="../controllers/vid.php?idvidBIASA=true&id=<?=$video->nama_kategori?>">Detail</a>
+                                                <a href="../controllers/vid.php?idvidBIASA=true&id=<?=$video->nama_kategori?>&idkategori=<?=$video->id?>">Detail</a>
                                             </td>
                                         </tr>
                                         <?php
