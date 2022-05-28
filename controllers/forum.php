@@ -12,7 +12,7 @@
         //cek apakah ada field kosong
         $result = Validation::empty("judul","isi");
         if(!$result->status){
-            Message::add("error",$result->message);
+            Message::add("Error",$result->message);
             header("Location: ../public/forum.php");
             exit;
         }
@@ -24,7 +24,7 @@
         $post = new post($judul,$isi,$namauser,$idkategori);
         $post->addpost();
         
-        Message::add("success", "Berhasil Post!");
+        Message::add("Success", "Berhasil Post!");
         header("Location: ../public/forum.php");
         exit;
     }
@@ -32,7 +32,7 @@
         //cek apakah ada field kosong
         $result = Validation::empty("isicomment");
         if(!$result->status){
-            Message::add("error",$result->message);
+            Message::add("Error",$result->message);
             header("Location: ../public/forum.php");
             exit;
         }
@@ -49,7 +49,7 @@
         $comment = new comment($idpost,$namauser,$isicomment,$waktureply,$reply);
         $comment->addcomment();
         
-        Message::add("success", "Berhasil reply!");
+        Message::add("Success", "Berhasil reply!");
         header("Location: ../public/forum.php");
         exit;
     }
@@ -57,7 +57,7 @@
         //cek apakah ada field kosong
         $result = Validation::empty("isireplycomment");
         if(!$result->status){
-            Message::add("error",$result->message);
+            Message::add("Error",$result->message);
             header("Location: ../public/forum.php");
             exit;
         }
@@ -77,7 +77,7 @@
         $comment = new comment($idpost,$namauser,$isireplycomment,$waktureply,$idreply);
         $comment->addcomment();
         
-        Message::add("success", "Berhasil reply!");
+        Message::add("Success", "Berhasil reply!");
         header("Location: ../public/forum.php");
         exit;
     }
