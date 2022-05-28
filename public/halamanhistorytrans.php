@@ -3,7 +3,7 @@
     use Models\Video;
     use Models\htransaksi;
     require_once "../config/config.php";
-    var_dump($_SESSION["history"]);
+    //var_dump($_SESSION["history"]);
     if (isset($_SESSION["history"])) {
         $transactions=$_SESSION["history"];
         unset($_SESSION["history"]);
@@ -58,23 +58,27 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Menu Admin</div>
                             <a class="nav-link" href="../public/halamanadmin.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-play-circle"></i></div>
                                 Add Video
                             </a>
                             <a class="nav-link" href="../public/halamanadminlistvideo.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-video"></i></div>
                                 List Video
                             </a>
                             <a class="nav-link" href="../public/halamanaddchart.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Add Chart
                             </a>
+                            <a class="nav-link" href="../public/halamanadminlistchart.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                                List Chart
+                            </a>
                             <a class="nav-link" href="../public/halamanadminvalidasi.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>
                                 Validasi Pembayaran Member
                             </a>
                             <a class="nav-link" href="../public/halamanhistorytrans.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
                                 History Transaksi
                             </a>
                             <div class="sb-sidenav-menu-heading">Charts</div>

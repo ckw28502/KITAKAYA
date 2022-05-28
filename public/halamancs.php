@@ -43,11 +43,11 @@ use Models\service;
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Customer Service Menu</div>
                         <a class="nav-link" href="../public/halamancs.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="far fa-comment-dots"></i></div>
                             Chat
                         </a>
                         <a class="nav-link" href="../public/halamancsforum.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-suitcase"></i></div>
                             Forum
                         </a>
                     </div>
@@ -101,7 +101,7 @@ use Models\service;
                                             ?>
                                             <form action="../controllers/service.php" method="POST">
                                             <td><input type="text" id="keteranganmenu" name="rate[<?=$service->id?>]"> <input type="submit" class="btn btn-success" name="submit[<?=$service->id?>]" value="Rate"/></input></td>
-                                            <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
+                                            <td><button class="btn btn-primary" value="coba" name="chat[<?=$service->id?>]">Chat</button></a></td>
                                             </form>
                                     <?php
                                     }

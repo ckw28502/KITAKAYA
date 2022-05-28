@@ -94,15 +94,15 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Menu User</div>
                             <a class="nav-link" href="../public/halamanuserbiasa.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-video"></i></div>
                                 Video
                             </a>
                             <a class="nav-link" href="../public/halamanuserbiasaforum.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-suitcase"></i></div>
                                 Forum
                             </a>
                             <a class="nav-link" href="../public/halamanuserbiasasub.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-door-open"></i></div>
                                 Upgrade To VIP Member
                             </a>
                             <a class="nav-link" href="../public/halamanhistorytransmember.php">
@@ -111,7 +111,7 @@
                             </a>
                             <div class="sb-sidenav-menu-heading">Service</div>
                             <a class="nav-link" href="../public/halamanuserbiasacs.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-headphones"></i></div>
                                 Customer Service
                             </a>   
                         </div>
