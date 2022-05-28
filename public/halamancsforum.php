@@ -44,11 +44,11 @@
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Customer Service Menu</div>
                         <a class="nav-link" href="../public/halamancs.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Chats
+                            <div class="sb-nav-link-icon"><i class="far fa-comment-dots"></i></div>
+                            Chat
                         </a>
                         <a class="nav-link" href="../public/halamancsforum.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-suitcase"></i></div>
                             Forum
                         </a>
                     </div>

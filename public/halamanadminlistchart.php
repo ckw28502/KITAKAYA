@@ -1,3 +1,9 @@
+<?php
+    use Utils\Message;
+    use Models\Video;
+    require_once "../config/config.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,7 +13,9 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="../assets/css/punyaadmin.css" rel="stylesheet" />
+        <link href="../assets/css/addvideo.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -89,109 +97,23 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Chart Perkembangan Member</h1>
+                        <h1 class="mt-4">List Chart</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Members</li>
-                        </ol>
-                        <br>
-                        <select name="" id="tahun"></select>
-                        <canvas id="chart"></canvas>
-                        <div style="height: 100vh"></div>
-                        <div class="card mb-4"><div class="card-body">Ini Untuk Bagian Bawah jika diperlukan</div></div>
+                            <li class="breadcrumb-item active">Saham</li>
+                        </ol>     
+                        
                     </div>
                 </main>
+                <?php 
+                ?>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../assets/js/scripts.js"></script>
-        <script src="../utils/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                var chart;
-                $.ajax({
-                    method:"get",
-                    url:"../controllers/trans.php",
-                    data:{
-                        action:"gettahun"
-                    }
-                }).done((data)=>{
-                    let temp=JSON.parse(data);
-                    temp.forEach(el => {
-                        let opt=document.createElement("option");
-                        opt.value=el["tahun"];
-                        opt.innerHTML=el["tahun"];
-                        $("#tahun").append(opt);
-                    });
-                    getdata();
-                });
-                function getdata() {
-                    $.ajax({
-                    method:"get",
-                    url:"../controllers/trans.php",
-                    data:{
-                        action:"getbyyear",
-                        tahun:document.getElementById("tahun").value
-                    }
-                }).done((d)=>{
-                    let temp=JSON.parse(d);
-                    const bulan=["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agt","Sep","Okt","Nov","Des"];
-                    let qty=[];
-                    for (let index = 1; index < 13; index++) {
-                        let bulan_qty=0;
-                        temp.forEach(el => {
-                            if (el["bulan"]==index) {
-                                bulan_qty=el["qty"];
-                            }
-                        });
-                        qty.push(bulan_qty);
-                    }
-                    const labels = bulan;
-                    const data = {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Bulan',
-                            data: qty,
-                            backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgba(255, 205, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(201, 203, 207, 0.2)'
-                            ],
-                            borderColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(255, 159, 64)',
-                            'rgb(255, 205, 86)',
-                            'rgb(75, 192, 192)',
-                            'rgb(54, 162, 235)',
-                            'rgb(153, 102, 255)',
-                            'rgb(201, 203, 207)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    };
-                    const config={
-                        type:"bar",
-                        data: data,
-                        options: {
-                            scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                            }
-                        },
-                    };
-                    chart=new Chart($("canvas"),config);
-                });
-                };
-                $("select").on("change",function () {
-                    chart.destroy();
-                    getdata();
-                });
-            });
-        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="../assets/demo/chart-area-demo.js"></script>
+        <script src="../assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="../assets/js/datatables-simple-demo.js"></script>
     </body>
 </html>

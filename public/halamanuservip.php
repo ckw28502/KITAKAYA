@@ -59,20 +59,20 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Menu User</div>
                             <a class="nav-link" href="../public/halamanuservip.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-video"></i></div>
                                 Video
                             </a>
                             <a class="nav-link" href="../public/halamanuserviprekomendasi.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-teacher"></i></div>
                                 Rekomendasi Saham
                             </a>
                             <a class="nav-link" href="../public/halamanuservipforum.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-suitcase"></i></div>
                                 Forum
                             </a>
                             <div class="sb-sidenav-menu-heading">Service</div>
                             <a class="nav-link" href="../public/halamanuservipcs.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-headphones"></i></div>
                                 Customer Service 
                             </a>   
                         </div>
