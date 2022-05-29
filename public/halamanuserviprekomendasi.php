@@ -64,6 +64,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-suitcase"></i></div>
                                 Forum
                             </a>
+                            <a class="nav-link" href="../public/halamanhistorytransvip.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                History Transaksi 
+                            </a>
                             <div class="sb-sidenav-menu-heading">Service</div>
                             <a class="nav-link" href="../public/halamanuservipcs.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-headphones"></i></div>

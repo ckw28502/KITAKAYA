@@ -4,7 +4,7 @@
     require_once "../config/config.php";
 
     $bisa = $_GET["harga"];
-    echo "<script>alert($bisa)</script>";
+    // echo "<script>alert($bisa)</script>";
     $bulan = $_GET["bulan"];
     $ambilnama = $_GET["namacus"];
 ?>

@@ -24,6 +24,11 @@
         <link href="../assets/css/punyaadmin.css" rel="stylesheet" />
         <link href="../assets/css/addvideo.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            #btnkeluar{
+                margin-left: 45px;
+            }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -87,6 +92,13 @@
                             <li class="breadcrumb-item active">Pembelian Member</li>
                         </ol>
                         <main>
+                        <div class="form-outline">
+                            <label class="form-label" for="form1">Search</label>
+                            <input type="search"/>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button> 
+                        </div> 
                         <?php  
                             $user = json_decode(json_encode($_SESSION["user"]), true);
                             $idmember = $user["id"];                           
@@ -135,15 +147,7 @@
                     </table>
                     </form>              
                     
-                </main>
-
-                        <div class="form-outline">
-                            <label class="form-label" for="form1">Search</label>
-                            <input type="search"/>
-                            <button type="button" class="btn btn-primary">
-                                <i class="fas fa-search"></i>
-                            </button> 
-                        </div>    
+                </main>   
                     </div>
             </div>
         </div>

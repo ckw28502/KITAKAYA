@@ -1,9 +1,15 @@
 <?php
-    use Models\Video;
     require_once "../config/config.php";
+    use Models\htransaksi;
+    use Utils\Message;
+    use Models\service;
 
+    // untuk nampilkan nama
     $user = $_SESSION["user"];
     $munculkan = $user->nama;
+
+    
+    
 ?>
 
 <!DOCTYPE html>
@@ -81,36 +87,64 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Forum</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Saham</li>
-                        </ol>
-                        <form action="../controllers/forum.php" method="POST">
-
-                        <table class="table table-dark table-striped">
+                        <h1 class="mt-4">Kumpulan Video</h1>
+                        <main>
+                        <div class="form-outline">
+                            <label class="form-label" for="form1">Search</label>
+                            <input type="search"/>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button> 
+                        </div> 
+                        <?php  
+                            $user = json_decode(json_encode($_SESSION["user"]), true);
+                            $idmember = $user["id"];                           
+                            $transactions = htransaksi::getforhistorymember($idmember);
+                        ?>
+                         <form action="../controllers/transaksi.php" method="POST">
+                         <table class="table table-dark table-striped">
                             <thead>
-                            <th>Nama Kategori</th>
-                            <th>Forum</th>
-                            
+                                <th>Nama Member</th>
+                                <th>Bukti Pembayaran</th>
+                                <th>Tanggal</th>
+                                <th>Status</th>
                             </thead>
                             <tbody>
-                            <?php 
-                                $categories = video::getAll();
-                                
-                            ?>       
-                                <?php                     
-                                    foreach($categories as $category){
+                                <?php 
+                                    foreach($transactions as $transaction){
                                         ?>
                                         <tr>
-                                            <td><?=  $category->nama_kategori?></td>
-                                            <td><button class="btn btn-primary" name="forum[<?=$category->id?>]">Forum</button></a></td>
+                                            
+                                            <td><?=  $transaction->nama?></td>
+                                            <td><img style="width:120px;height:200px" src="../<?= $transaction->bukti ?>" /> </td>
+                                            <td><?=  $transaction->tgl?></td>
+                                            <?php
+                                                if ($transaction->status==0) {
+                                                    $status="Sedang Diproses";
+                                                }
+                                                else if ($transaction->status==1) {
+                                                    $status="Accepted";
+                                                }
+                                                else if ($transaction->status==-1) {
+                                                    $status="Rejected";
+                                                }
+
+
+                                            ?>
+                                            <td><?=  $status?></td>
+
+
+
                                         </tr>
                                         <?php
                                     }
+
                                 ?>
-                            </tbody>
-                        </table>
-                        </form>
+                        </tbody>
+                    </table>
+                    </form>              
+                    
+                </main>   
                     </div>
                 </main>
             </div>
@@ -122,5 +156,8 @@
         <script src="../assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../assets/js/datatables-simple-demo.js"></script>
+        <?php
+            Message::print("VIP");
+        ?>
     </body>
 </html>
