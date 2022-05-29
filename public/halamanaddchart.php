@@ -50,11 +50,11 @@
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Menu Admin</div>
                         <a class="nav-link" href="../public/halamanadmin.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-play-circle"></i></div>
                             Add Video
                         </a>
                         <a class="nav-link" href="../public/halamanadminlistvideo.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-video"></i></div>
                             List Video
                         </a>
                         <a class="nav-link" href="../public/halamanaddchart.php">
@@ -62,11 +62,11 @@
                             Add Chart
                         </a>
                         <a class="nav-link" href="../public/halamanadminvalidasi.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>
                             Validasi Pembayaran Member
                         </a>
                         <a class="nav-link" href="../public/halamanhistorytrans.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
                             History Transaksi
                         </a>
                         <div class="sb-sidenav-menu-heading">Charts</div>
@@ -111,7 +111,7 @@
                     </div>
                     <div style="height: 100vh">
                         <!-- Add Watchlist nama harus sesuai dengan di trading view kalo gak error-->
-                        <button data-bs-toggle="modal" data-bs-target="#exampleModal">Add Watchlist</button>
+                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Add Watchlist</button>
                     </div>
                     <div class="card mb-4">
                         <div class="card-body">Ini Untuk Bagian Bawah jika diperlukan</div>
