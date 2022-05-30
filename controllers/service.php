@@ -10,6 +10,7 @@
     {
         $user = json_decode(json_encode($_SESSION["user"]), true);
         $email=$user["email"];
+        
         $cekusercs = User::getRole($email,2);
         if ($cekusercs == true) {
             
@@ -35,8 +36,8 @@
         $result = Validation::empty("judul");
         if(!$result->status){
             Message::add("error","gagal Insert Service");
-            header("Location: ../public/halamanuserbiasacs.php");
-            exit;
+            back();
+
         }
         $judul = $_POST['judul'];
         $user = json_decode(json_encode($_SESSION["user"]), true);
@@ -46,8 +47,8 @@
         $service->addservice();
         
         Message::add("success", "Berhasil Insert Service!");
-        header("Location: ../public/halamanuserbiasacs.php");
-        exit;
+        back();
+
     }
 
     if(isset($_POST['chat'])){
@@ -57,6 +58,26 @@
         // $id = $_SESSION['idvideo'];
         // echo $id;
         header("Location: ../public/showvideo_admin.php");
+    }
+    if(isset($_POST['submitrating'])){
+        if (isset($_POST['rating'])==null) {
+            Message::add("error", "rate harus diisi!");
+            back();
+        }
+        $rate = ($_POST['rating']);
+        foreach ($rate as $value) {
+            $rate=$value;
+        }
+        $keyrate = key($_POST['rating']);
+        
+
+        
+        if ($rate>0 && $rate<6) {
+            service::rate($rate,$keyrate);
+            Message::add("success", "Berhasil Rate Service!");
+            back();
+        }     
+        
     }
     if(isset($_POST['submit'])){
         

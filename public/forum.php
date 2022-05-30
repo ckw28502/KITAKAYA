@@ -72,9 +72,9 @@ use Models\comment;
                         $idkategori=$_SESSION['idkategori'];
                         $posts = post::getbyidkategori($idkategori);                
                         foreach($posts as $post){
-                            $input = $comment->tanggal;
+                            $input = $post->tanggal;
                             $lengkap = strtotime($input);
-                            $date=date('d/M/Y', $lengkap);
+                            $date=date('d-M-Y', $lengkap);
                             $time=date('h:i:s', $lengkap);
                             ?>
                             <hr>
@@ -83,7 +83,9 @@ use Models\comment;
                                         <span>
                                             <form action="../controllers/forum.php" method="POST">
                                                 <h3>Posts</h3>
-                                                <h4><?= $post->tanggal?></h4>
+                                                <h4><?= $date?></h4>
+                                                <h4><?= $time?></h4>
+
                                                 <h4>Judul Post : <?= $post->Judul?></h4>
                                                 <h4>Isi Post : <?= $post->isi?></h4>
                                                 <h4>Poster : <?= $post->namamember?></h4>
@@ -104,13 +106,14 @@ use Models\comment;
                                 foreach($comments as $comment){
                                     $input = $comment->tanggal;
                                     $lengkap = strtotime($input);
-                                    $date=date('d/M/Y', $lengkap);
+                                    $date=date('d-M-Y', $lengkap);
                                     $time=date('h:i:s', $lengkap);
                                     ?> 
                                     <form action="../controllers/forum.php" method="POST">
                                         <br>
                                         <span>
-                                            <h4><?= $comment->tanggal?></h4>
+                                            <h4 style="margin-left: 20px;"><?= $date?></h4>
+                                            <h4 style="margin-left: 20px;"><?= $time?></h4>
                                             <h4 style="margin-left: 20px;">Pereply : <?= $comment->namamember?></h4>
                                             <h4 style="margin-left: 20px;">Isi : <?= $comment->isi?></h4>
                                             <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control" style="margin-left: 20px;">
@@ -127,13 +130,14 @@ use Models\comment;
                                         foreach($comments as $comment){
                                             $input = $comment->tanggal;
                                             $lengkap = strtotime($input);
-                                            $date=date('d/M/Y', $lengkap);
+                                            $date=date('d-M-Y', $lengkap);
                                             $time=date('h:i:s', $lengkap);
                                     ?> 
                                     <form action="../controllers/forum.php" method="POST">
                                         <br>
                                         <span>
-                                        <h4><?= $comment->tanggal?></h4>
+                                            <h4 style="margin-left: 40px;"><?= $date?></h4>
+                                            <h4 style="margin-left: 40px;"><?= $time?></h4>
                                             <h4 style="margin-left: 40px;">Pereply : <?= $comment->namamember?></h4>
                                             <h4 style="margin-left: 40px;">Isi : <?= $comment->isi?></h4>
                                             <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control" style="margin-left: 40px;">
@@ -149,15 +153,24 @@ use Models\comment;
                                          do {
                                             $comments = comment::getbyidreply($idpost,$idcomment);
                                             foreach($comments as $comment){
-                                    
+                                                $input = $comment->tanggal;
+                                                $lengkap = strtotime($input);
+                                                $date=date('d-M-Y', $lengkap);
+                                                $time=date('h:i:s', $lengkap);
                                                 ?> 
+                                                <form action="../controllers/forum.php" method="POST">
+                                                <span>
                                                     <br>
+                                                    <h4 style="margin-left: 60px;"><?= $date?></h4>
+                                                    <h4 style="margin-left: 60px;"><?= $time?></h4>
                                                     <h4 style="margin-left: 60px;">Penulis : <?= $comment->namamember?></h4>
                                                     <h4 style="margin-left: 60px;">Reply : <?= $comment->isi?></h4>
                                                     <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control" style="margin-left: 60px;">
                                                     <div class="action d-flex justify-content-between mt-2 align-items-center">
                                                         <button class="btn btn-primary" name="replycomment[<?=$idpost?>,<?=$comment->id?>]" style="margin-left: 60px;">Reply</button>
                                                     </div>
+                                                    </span>
+                                                </form>
                                                 <?php
                                                 $idcomment=$comment->id;    
                                             } 

@@ -21,8 +21,92 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 
         <style>
-            #btnkeluar{
+           #btnkeluar{
                 margin-left: 45px;
+            }
+            .rate{
+
+            border-bottom-right-radius: 12px;
+            border-bottom-left-radius: 12px;
+
+            }
+
+            .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            margin-right: 72%;
+            }
+
+            .rating>input {
+            display: none
+            }
+
+            .rating>label {
+            position: relative;
+            width: 1em;
+            font-size: 30px;
+            font-weight: 300;
+            color: #FFD600;
+            cursor: pointer
+            }
+
+            .rating>label::before {
+            content: "\2605";
+            position: absolute;
+            opacity: 0
+            }
+
+            .rating>label:hover:before,
+            .rating>label:hover~label:before {
+            opacity: 1 !important
+            }
+
+            .rating>input:checked~label:before {
+            opacity: 1
+            }
+
+            .rating:hover>input:checked~label:before {
+            opacity: 0.4
+            }
+            
+            .ratingg {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            margin-right: 70%;
+            }
+
+            .ratingg>input {
+            display: none
+            }
+
+            .ratingg>label {
+            position: relative;
+            width: 1em;
+            font-size: 30px;
+            font-weight: 300;
+            color: #FFD600;
+            cursor: pointer
+            }
+
+            .ratingg>label::before {
+            content: "\2605";
+            position: absolute;
+            opacity: 0
+            }
+
+            .ratingg>label:hover:before,
+            .ratingg>label:hover~label:before {
+            opacity: 1 !important
+            }
+
+            .ratingg>input:checked~label:before {
+            opacity: 1
+            }
+
+            .ratingg:hover>input:checked~label:before {
+            opacity: 0.4
             }
         </style>
     </head>
@@ -129,15 +213,92 @@
                                             
                                             ?> 
                                             <form action="../controllers/service.php" method="POST">
-                                            <td><?= $service->rate?></td>
+                                            <td>
+                                            <?php
+                                            if ( $service->rate==5) {
+                                            
+                                            ?> 
+                                            <div class="rating">
+                                            <input type="radio" name="rating" value="5" id="5" checked><label for="5">☆</label> 
+                                            <input type="radio" name="rating" value="4" id="4" disabled><label for="4">☆</label> 
+                                            <input type="radio" name="rating" value="3" id="3" disabled><label for="3">☆</label> 
+                                            <input type="radio" name="rating" value="2" id="2" disabled><label for="2">☆</label> 
+                                            <input type="radio" name="rating" value="1" id="1" disabled><label for="1">☆</label>
+                                            </div>
+                                            <?php
+                                            }
+                                            else if ($service->rate==4) {
+                                                ?> 
+                                            <div class="rating">
+                                            <input type="radio" name="rating" value="5" id="5" disabled><label for="5">☆</label> 
+                                            <input type="radio" name="rating" value="4" id="4" checked><label for="4">☆</label> 
+                                            <input type="radio" name="rating" value="3" id="3" disabled><label for="3">☆</label> 
+                                            <input type="radio" name="rating" value="2" id="2" disabled><label for="2">☆</label> 
+                                            <input type="radio" name="rating" value="1" id="1" disabled><label for="1">☆</label>
+                                            </div>
+                                            <?php
+                                            }
+                                            else if ($service->rate==3) {
+                                                ?> 
+                                            <div class="rating">
+                                            <input type="radio" name="rating" value="5" id="5" disabled><label for="5">☆</label> 
+                                            <input type="radio" name="rating" value="4" id="4" disabled><label for="4">☆</label> 
+                                            <input type="radio" name="rating" value="3" id="3" checked><label for="3">☆</label> 
+                                            <input type="radio" name="rating" value="2" id="2" disabled><label for="2">☆</label> 
+                                            <input type="radio" name="rating" value="1" id="1" disabled><label for="1">☆</label>
+                                            </div>
+                                                <?php
+                                            }
+                                            else if ($service->rate==2) {
+                                                ?> 
+                                            <div class="rating">
+                                            <input type="radio" name="rating" value="5" id="5" disabled><label for="5">☆</label> 
+                                            <input type="radio" name="rating" value="4" id="4" disabled><label for="4">☆</label> 
+                                            <input type="radio" name="rating" value="3" id="3" disabled><label for="3">☆</label> 
+                                            <input type="radio" name="rating" value="2" id="2" checked><label for="2">☆</label> 
+                                            <input type="radio" name="rating" value="1" id="1" disabled><label for="1">☆</label>
+                                            </div>
+                                            <?php
+                                            }
+                                            else if ($service->rate==1) {
+                                                ?> 
+                                            <div class="rating">
+
+                                            <input type="radio" name="rating" value="5" id="5" disabled><label for="5">☆</label> 
+                                            <input type="radio" name="rating" value="4" id="4" disabled><label for="4">☆</label> 
+                                            <input type="radio" name="rating" value="3" id="3" disabled><label for="3">☆</label> 
+                                            <input type="radio" name="rating" value="2" id="2" disabled><label for="2">☆</label> 
+                                            <input type="radio" name="rating" value="1" id="1" checked><label for="1">☆</label>
+                                            </div>
+                                            <?php
+                                            }
+                                            ?>
+                                            </td>
                                             <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
                                             </form>
                                             <?php
                                         }
                                         else{  
                                             ?>
+                                            <td>
                                             <form action="../controllers/service.php" method="POST">
-                                            <td><input type="text" id="keteranganmenu" name="rate[<?=$service->id?>]"> <input type="submit" class="btn btn-success" name="submit[<?=$service->id?>]" value="Rate"/></input></td>
+
+                                            <div class="ratingg">  
+                                                
+                                                <button name="submitrating[<?=$service->id?>]">Submit</button>
+                                                <input type="radio" name="rating[<?=$service->id?>]" value="5" id="5"><label for="5">☆</label> 
+                                                <input type="radio" name="rating[<?=$service->id?>]" value="4" id="4"><label for="4">☆</label> 
+                                                <input type="radio" name="rating[<?=$service->id?>]" value="3" id="3"><label for="3">☆</label> 
+                                                <input type="radio" name="rating[<?=$service->id?>]" value="2" id="2"><label for="2">☆</label> 
+                                                <input type="radio" name="rating[<?=$service->id?>]" value="1" id="1"><label for="1">☆</label>
+                                            
+                                               
+                                            
+                                            </div>
+                                           
+                                            </td>   
+                                            
+                                            <!-- <td><input type="text" id="keteranganmenu" name="rate[<?=$service->id?>]"><input type="submit" class="btn btn-success" name="submit[<?=$service->id?>]" value="Rate"/></input></td> -->
                                             <td><button class="btn btn-primary" name="chat[<?=$service->id?>]">Chat</button></a></td>
                                             </form>
                                     <?php

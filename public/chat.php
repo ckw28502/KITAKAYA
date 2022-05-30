@@ -58,19 +58,14 @@ use Models\service;
 
                                     if ($chat->pengirim==1) {         
                                     ?> 
-                                    
-                                    <h4</h4>
-                                    <h4><?= $time?></h4>
 
-                                        <input id="punyaecs" class="form-control" type="text" value="<?= $date?> <?= $time?>Customer Service : <?= $chat->isi?>" aria-label="readonly input example" readonly>
+                                        <input id="punyaecs" class="form-control" type="text" value="(<?= $date?> <?= $time?>)   Customer Service : <?= $chat->isi?>" aria-label="readonly input example" readonly>
                                         <br>
                                     <?php
                                     }
                                     else {
                                         ?> 
-                                    <h4><?= $date?></h4>                   
-                                    <h4><?= $time?></h4>
-                                        <input id="punyaeuser" class="form-control" type="text" value="Me : <?= $chat->isi?>      <?= $date?> <?= $time?>" aria-label="readonly input example" readonly>
+                                        <input id="punyaeuser" class="form-control" type="text" value="Me :<?= $chat->isi?>   (<?= $date?> <?= $time?>)" aria-label="readonly input example" readonly>
                                         <br>
                                         <?php
                                     }
