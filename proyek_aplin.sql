@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2022 at 02:27 PM
+-- Generation Time: May 30, 2022 at 05:15 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -34,9 +34,17 @@ CREATE TABLE `chat` (
   `id` int(11) NOT NULL,
   `service` int(11) NOT NULL,
   `isi` text NOT NULL,
-  `tanggal` date NOT NULL,
+  `tanggal` datetime NOT NULL,
   `pengirim` int(11) NOT NULL COMMENT '0 = member,\r\n1 = CS'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`id`, `service`, `isi`, `tanggal`, `pengirim`) VALUES
+(17, 5, 'Benarkah saham itu judi?', '2022-05-29 00:00:00', 0),
+(18, 5, 'Bukan dong dengan analisa yang baik kamu pasti bisa!', '2022-05-29 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -50,7 +58,7 @@ CREATE TABLE `comment` (
   `thread` int(11) NOT NULL,
   `namamember` text NOT NULL,
   `isi` text NOT NULL,
-  `tanggal` date NOT NULL,
+  `tanggal` datetime NOT NULL,
   `reply` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -59,11 +67,9 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id`, `thread`, `namamember`, `isi`, `tanggal`, `reply`) VALUES
-(15, 11, 'Ibewe', 'mosok', '2022-05-23', -1),
-(16, 11, 'Ivander KW', 'Iya Beneran', '2022-05-23', 15),
-(17, 11, 'Ivander KW', 'mosok', '2022-05-23', -1),
-(18, 11, 'Ivander KW', 'Iya Beneran', '2022-05-23', 16),
-(19, 12, 'Ivander KW', 'mosok', '2022-05-23', -1);
+(23, 16, 'Ibewe', 'mosok', '2022-05-29 00:00:00', -1),
+(24, 16, 'Ivander KW', 'Iya Beneran', '2022-05-29 00:00:00', 23),
+(25, 16, 'Ivander KW', 'mosok', '2022-05-30 00:00:00', -1);
 
 -- --------------------------------------------------------
 
@@ -100,7 +106,7 @@ INSERT INTO `kategori_vid` (`id`, `nama_kategori`) VALUES
 (3, 'pemula'),
 (4, 'ivander cupu'),
 (5, 'kategori baru'),
-(6, 'Coba');
+(7, 'Saham');
 
 -- --------------------------------------------------------
 
@@ -121,7 +127,10 @@ CREATE TABLE `progressbar` (
 --
 
 INSERT INTO `progressbar` (`id`, `refuser`, `refkategori`, `refthread`) VALUES
-(1, 35, 2, 3);
+(1, 35, 2, 3),
+(2, 36, 2, 3),
+(3, 37, 2, 3),
+(4, 37, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -147,7 +156,7 @@ INSERT INTO `rekomendasi` (`id`, `name`, `keterangan`) VALUES
 (7, 'GOOG', 'Google'),
 (8, 'TSLA', 'Tesla'),
 (9, 'FB', 'Meta'),
-(10, 'BBRI', 'qwe');
+(11, 'BBRI', 'Bisa');
 
 -- --------------------------------------------------------
 
@@ -162,6 +171,16 @@ CREATE TABLE `service` (
   `member` int(11) NOT NULL,
   `rate` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`id`, `judul`, `member`, `rate`) VALUES
+(3, 'Aku bisa makan', 36, 4),
+(4, 'Langit bisakah', 36, 5),
+(5, 'Saham Itu Judi?', 37, 5),
+(6, 'Saham', 37, NULL);
 
 -- --------------------------------------------------------
 
@@ -191,7 +210,9 @@ INSERT INTO `thread` (`id`, `judul`, `video`, `status_video`, `f_kategori`) VALU
 (7, 'tutor saham', 'NjsUrZ1NL0k', 1, 4),
 (8, 'cara beli saham', 'IzsYTb2WdGs', 1, 4),
 (9, 'Luna nglawak', 'Eg35QIxiRg8', 1, 4),
-(10, 'Bisa', '_BjLo-BYtjg', 1, 6);
+(10, 'Bisa', '_BjLo-BYtjg', 1, 6),
+(11, 'Streaming saham', 'jj9CbhJ2byg', 1, 7),
+(12, 'streaminmg', 'vd15S0opLmY', 1, 7);
 
 -- --------------------------------------------------------
 
@@ -205,6 +226,7 @@ CREATE TABLE `thread_forum` (
   `Judul` text NOT NULL,
   `isi` text NOT NULL,
   `namamember` text NOT NULL,
+  `tanggal` datetime NOT NULL,
   `Kategori` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -212,10 +234,8 @@ CREATE TABLE `thread_forum` (
 -- Dumping data for table `thread_forum`
 --
 
-INSERT INTO `thread_forum` (`id`, `Judul`, `isi`, `namamember`, `Kategori`) VALUES
-(11, 'Langit', 'bagus', 'Ibewe', 1),
-(12, 'Langit bisakah', 'Baiklah', 'Ivander KW', 1),
-(13, 'Aku bisa makan', 'hmm', 'Ivander KW', 1);
+INSERT INTO `thread_forum` (`id`, `Judul`, `isi`, `namamember`, `tanggal`, `Kategori`) VALUES
+(16, 'Saham Gorengan', 'bagus', 'Ibewe', '2022-05-30 22:13:09', 1);
 
 -- --------------------------------------------------------
 
@@ -239,8 +259,9 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `id_member`, `tgl`, `bulan`, `subtotal`, `bukti`, `status`) VALUES
-(1, -1, '2022-05-17', 6, 500000, NULL, 1),
-(2, -1, '2022-05-26', 6, 500000, NULL, 1);
+(4, 37, '2022-05-29', 1, 120000, 'uploads/37.png', 1),
+(5, 36, '2022-05-30', 5, 120000, 'uploads/37.png', 1),
+(6, 37, '2022-05-30', 1, 120000, 'uploads/37.png', 1);
 
 -- --------------------------------------------------------
 
@@ -267,7 +288,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `email`, `password`, `nama`, `umur`, `role`, `status`, `expired`) VALUES
 (33, 'csKITAKAYA@gmail.com', '123', 'Customer Service', 25, 2, 1, NULL),
 (36, 'ibewe25@gmail.com', '$2y$10$4oSMnD.s7BHxvmUjwMIQr.9H2DSUh.5uNpzFmiLU6vmrmz8MKSVyu', 'Ibewe', 17, 0, 1, NULL),
-(37, 'ivanderkw2@gmail.com', '$2y$10$on6opiI7NfFrZHQJSWRlguoj5y..GsPWXIN/3gbXimq6msMJfauyO', 'Ivander KW', 21, 0, 1, NULL);
+(37, 'ivanderkw2@gmail.com', '$2y$10$on6opiI7NfFrZHQJSWRlguoj5y..GsPWXIN/3gbXimq6msMJfauyO', 'Ivander KW', 21, 1, 1, '2022-06-30');
 
 --
 -- Indexes for dumped tables
@@ -358,55 +379,55 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `kategori_vid`
 --
 ALTER TABLE `kategori_vid`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `progressbar`
 --
 ALTER TABLE `progressbar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `rekomendasi`
 --
 ALTER TABLE `rekomendasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `thread`
 --
 ALTER TABLE `thread`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `thread_forum`
 --
 ALTER TABLE `thread_forum`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`

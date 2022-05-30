@@ -53,26 +53,45 @@
                 <ol class="breadcrumb mb-4">
                     <li id="tulisan">Kumpulan Video </li>
                 </ol>
-                <table class="table table-dark table-striped">
+                <!-- <table class="table table-dark table-striped">
                     <thead>
                         <th>No</th>
                         <th>Judul</th>
                         <th>Video</th>
                     </thead>
-                    <tbody>
+                    <tbody> -->
+                <h2>Subscribe untuk mendapatkan full access</h2><br><br>
+                    <div class="container px-4">
+                        <div class="row gx-5 row row-cols-3">  
                         <?php 
                             foreach($video as $idx => $video){
                                 ?>
-                                <tr>
+                                <!-- <tr>
                                     <td><label > <?= $idx + 1 ?> </label></td>
                                     <td><label ><?= $video->judul ?></label></td>
                                     <td><a  href="../controllers/vid.php?watch=true&idyt=<?=$video->video?>&idv=<?=$video->id?>">Watch</a> </td>
-                                </tr>
+                                </tr> -->
+                                <div class="col">
+                                    <div class="p-5 border bg-light">
+                                        <div class="row row-cols-2">
+                                            <div>
+                                                <div><?= $video->judul ?></div>
+                                                <progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress>
+                                                <div><a  href="../controllers/vid.php?watch=true&idyt=<?=$video->video?>&idv=<?=$video->id?>">Watch</a></div>
+                                            </div>
+
+                                            <div>tes</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
                                 <?php
                             }
                         ?>
-                    </tbody>
-                </table>
+                    </div>
+                </div>
+                    <!-- </tbody>
+                </table> -->
 
                 <form action="" method="POST">
                     <button type="submit" class="btn btn-primary" name="btnback" id="kembali">Back</button>

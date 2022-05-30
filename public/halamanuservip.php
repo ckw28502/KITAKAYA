@@ -90,14 +90,16 @@
                         <?php 
                             $video = Video::getVideo();
                         ?>
-                        <table class="table table-dark table-striped">
+                        <!-- <table class="table table-dark table-striped">
                             <thead>
                                 <th>No</th>
                                 <th>Kategori</th>
                                 <th>Progress</th>
                                 <th>Action</th>
                             </thead>
-                            <tbody>
+                            <tbody> -->
+                            <div class="container px-4">
+                                <div class="row gx-5 row row-cols-3">
                                 <?php 
                                     $user = $_SESSION["user"];
                                     $userid = $user->id;
@@ -112,19 +114,30 @@
                                         $min = Video::VideoWatchedPB($userid, $video->id);
                                         $min = $min->c;
                                         ?>
-                                        <tr>
+                                        <!-- <tr>
                                             <td><?= $idx + 1 ?></td>
                                             <td><?= $video->nama_kategori ?></td>
                                             <td><progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress></td>
                                             <td>
                                                 <a href="../controllers/vid.php?idvidVIP=true&id=<?=$video->nama_kategori?>">Detail</a>
                                             </td>
-                                        </tr>
+                                        </tr> -->
+
+                                        <div class="col">
+                                                <div class="p-5 border bg-light">
+                                                    <div><?= $video->nama_kategori ?></div>
+                                                    <progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress>
+                                                    <div><a href="../controllers/vid.php?idvidVIP=true&id=<?=$video->nama_kategori?>&idkategori=<?=$video->id?>">Detail</a></div>
+                                                </div>
+                                                <br>
+                                            </div>
                                         <?php
                                     }
                                 ?>
-                            </tbody>
-                        </table>
+                                </div>
+                            </div>
+                            <!-- </tbody>
+                        </table> -->
                     </div>
                 </main>
             </div>

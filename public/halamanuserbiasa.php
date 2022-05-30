@@ -91,15 +91,17 @@
                         <?php 
                             $video = Video::getVideo();
                         ?>
-                        <table class="table table-dark table-striped">
+                        <!-- <table class="table table-dark table-striped">
                             <thead>
                                 <th>No</th>
                                 <th>Kategori</th>
                                 <th>Progress</th>
                                 <th>Action</th>
                             </thead>
-                            <tbody>
-                                <?php 
+                            <tbody> -->
+                            <div class="container px-4">
+                                <div class="row gx-5 row row-cols-3">
+                                <?php
                                     $user = $_SESSION["user"];
                                     $userid = $user->id;
                                     // $kategori = $_SESSION['namakategori'];
@@ -113,19 +115,37 @@
                                         $min = Video::VideoWatchedPB($userid, $video->id);
                                         $min = $min->c;
                                         ?>
-                                        <tr>
-                                            <td><?= $idx + 1 ?></td>
-                                            <td><?= $video->nama_kategori ?></td>
-                                            <td><progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress></td>
-                                            <td>
-                                                <a href="../controllers/vid.php?idvidBIASA=true&id=<?=$video->nama_kategori?>&idkategori=<?=$video->id?>">Detail</a>
-                                            </td>
-                                        </tr>
+                                            <!-- <div class="container">
+                                                <div class="row row-cols-1">
+                                                    <div class="col"><?= $video->nama_kategori ?></div>
+                                                    <div class="col"><progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress></div>
+                                                    <div class="col"><a href="../controllers/vid.php?idvidBIASA=true&id=<?=$video->nama_kategori?>&idkategori=<?=$video->id?>">Detail</a></div>
+                                                </div>
+                                            </div> -->
+                                            
+                                            
+                                            <div class="col">
+                                                <div class="p-5 border bg-light">
+                                                    <div class="row row-cols-2">
+                                                        <div>
+                                                            <div><?= $video->nama_kategori ?></div>
+                                                            <progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress>
+                                                            <div><a href="../controllers/vid.php?idvidBIASA=true&id=<?=$video->nama_kategori?>&idkategori=<?=$video->id?>">Detail</a></div>
+                                                        </div>
+
+                                                        <div>tes</div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                            
                                         <?php
                                     }
                                 ?>
-                            </tbody>
-                        </table>
+                                </div>
+                            </div>
+                            <!-- </tbody>
+                        </table> -->
                     </div>
                 </main>
             </div>
