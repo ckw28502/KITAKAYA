@@ -107,8 +107,7 @@
                             <thead>
                                 <th>Nama Member</th>
                                 <th>Bukti Pembayaran</th>
-                                <th>Accept</th>
-                                <th>Reject</th>
+                                <th>Action</th>
                             </thead>
                             <tbody>
                                 <?php 
@@ -118,9 +117,26 @@
                                             
                                             <td><?=  $transaction->nama?></td>
                                             <td><img style="width:120px;height:200px" src="../<?= $transaction->bukti ?>" /> </td>
-                                            <td><button class="btn btn-primary" name="accept[<?=$transaction->id?>,<?=$transaction->id_member?>]">Accept</button></td>
-                                            <td><button class="btn btn-primary" name="reject[<?=$transaction->id?>]">Reject</button></td>
-
+                                            
+                                            <?php
+                                                    if ($transaction->status==0) {         
+                                                        ?> 
+                                                        <td><button style="margin:20px;" class="btn btn-primary" name="accept[<?=$transaction->id?>,<?=$transaction->id_member?>]">Accept</button><button style="margin:5px;" class="btn btn-primary" name="reject[<?=$transaction->id?>]">Reject</button></td>
+                                                 
+                                                        <?php
+                                                        }
+                                                        else if ($transaction->status==1){
+                                                            ?> 
+                                                            <td>Accepted</td>
+                                                            <?php
+                                                        }
+                                                        else if ($transaction->status==-1){
+                                                            ?> 
+                                                            <td>Rejected</td>
+                                                            <?php
+                                                        }
+                                                ?>
+                                                
                                         </tr>
                                         <?php
                                     }

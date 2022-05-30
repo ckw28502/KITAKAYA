@@ -72,6 +72,10 @@ use Models\comment;
                         $idkategori=$_SESSION['idkategori'];
                         $posts = post::getbyidkategori($idkategori);                
                         foreach($posts as $post){
+                            $input = $comment->tanggal;
+                            $lengkap = strtotime($input);
+                            $date=date('d/M/Y', $lengkap);
+                            $time=date('h:i:s', $lengkap);
                             ?>
                             <hr>
                                 <div class="card p-3">
@@ -98,7 +102,10 @@ use Models\comment;
                                 $idpost=$post->id;
                                 $comments = comment::getbyidcomment($idpost);                
                                 foreach($comments as $comment){
-                                    
+                                    $input = $comment->tanggal;
+                                    $lengkap = strtotime($input);
+                                    $date=date('d/M/Y', $lengkap);
+                                    $time=date('h:i:s', $lengkap);
                                     ?> 
                                     <form action="../controllers/forum.php" method="POST">
                                         <br>
@@ -118,6 +125,10 @@ use Models\comment;
                                         $idcomment=$comment->id;
                                         $comments = comment::getbyidreply($idpost,$idcomment);
                                         foreach($comments as $comment){
+                                            $input = $comment->tanggal;
+                                            $lengkap = strtotime($input);
+                                            $date=date('d/M/Y', $lengkap);
+                                            $time=date('h:i:s', $lengkap);
                                     ?> 
                                     <form action="../controllers/forum.php" method="POST">
                                         <br>

@@ -51,18 +51,26 @@ use Models\service;
                         ?>       
                             <?php                     
                                 foreach($chats as $chat){
-                                    
+                                    $input = $chat->tanggal;
+                                    $lengkap = strtotime($input);
+                                    $date=date('d/M/Y', $lengkap);
+                                    $time=date('h:i:s', $lengkap);
+
                                     if ($chat->pengirim==1) {         
                                     ?> 
-                                    <h4><?= $chat->tanggal?></h4>
-                                        <input id="punyaecs" class="form-control" type="text" value="Customer Service : <?= $chat->isi?>" aria-label="readonly input example" readonly>
+                                    
+                                    <h4</h4>
+                                    <h4><?= $time?></h4>
+
+                                        <input id="punyaecs" class="form-control" type="text" value="<?= $date?> <?= $time?>Customer Service : <?= $chat->isi?>" aria-label="readonly input example" readonly>
                                         <br>
                                     <?php
                                     }
                                     else {
                                         ?> 
-                                    <h4><?= $chat->tanggal?></h4>
-                                        <input id="punyaeuser" class="form-control" type="text" value="Me : <?= $chat->isi?>" aria-label="readonly input example" readonly>
+                                    <h4><?= $date?></h4>                   
+                                    <h4><?= $time?></h4>
+                                        <input id="punyaeuser" class="form-control" type="text" value="Me : <?= $chat->isi?>      <?= $date?> <?= $time?>" aria-label="readonly input example" readonly>
                                         <br>
                                         <?php
                                     }
