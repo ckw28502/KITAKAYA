@@ -79,6 +79,7 @@ use Models\comment;
                                         <span>
                                             <form action="../controllers/forum.php" method="POST">
                                                 <h3>Posts</h3>
+                                                <h4><?= $post->tanggal?></h4>
                                                 <h4>Judul Post : <?= $post->Judul?></h4>
                                                 <h4>Isi Post : <?= $post->isi?></h4>
                                                 <h4>Poster : <?= $post->namamember?></h4>
@@ -102,6 +103,7 @@ use Models\comment;
                                     <form action="../controllers/forum.php" method="POST">
                                         <br>
                                         <span>
+                                            <h4><?= $comment->tanggal?></h4>
                                             <h4 style="margin-left: 20px;">Pereply : <?= $comment->namamember?></h4>
                                             <h4 style="margin-left: 20px;">Isi : <?= $comment->isi?></h4>
                                             <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control" style="margin-left: 20px;">
@@ -120,6 +122,7 @@ use Models\comment;
                                     <form action="../controllers/forum.php" method="POST">
                                         <br>
                                         <span>
+                                        <h4><?= $comment->tanggal?></h4>
                                             <h4 style="margin-left: 40px;">Pereply : <?= $comment->namamember?></h4>
                                             <h4 style="margin-left: 40px;">Isi : <?= $comment->isi?></h4>
                                             <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control" style="margin-left: 40px;">

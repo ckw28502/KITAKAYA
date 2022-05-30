@@ -5,27 +5,30 @@
         private string $judul;
         private string $isi;
         private string $namamember;
+        private string $tanggal;
         private int $kategori;
        
 
 
         //Untuk buat object post. Wajib sebelum tambah post ke db
-        function __construct($judul,$isi,$namamember,$kategori)
+        function __construct($judul,$isi,$namamember,$tanggal,$kategori)
         {
             $this->judul=$judul;
             $this->isi=$isi;
             $this->namamember=$namamember;
+            $this->tanggal=$tanggal;
             $this->kategori=$kategori;
         }
         //Tambah post
         public function addpost()
         {
             $db=Database::instance();
-            $temp=$db->query("INSERT INTO thread_forum(judul,isi,namamember,kategori) VALUES(:judul,:isi,:namamember,:kategori)",[
+            $temp=$db->query("INSERT INTO thread_forum(judul,isi,namamember,tanggal,kategori) VALUES(:judul,:isi,:namamember,:tanggal,:kategori)",[
                 "judul"=>$this->judul,
-                "isi"=>$this->isi,
+                "isi"=>$this->isi,               
                 "namamember"=>$this->namamember,
-                "kategori"=>$this->kategori,
+                "tanggal"=>$this->tanggal,
+                "kategori"=>$this->kategori
             ]);
         }
         //Ambil post dengan kategori

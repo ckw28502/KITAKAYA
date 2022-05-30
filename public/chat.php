@@ -51,14 +51,17 @@ use Models\service;
                         ?>       
                             <?php                     
                                 foreach($chats as $chat){
+                                    
                                     if ($chat->pengirim==1) {         
                                     ?> 
+                                    <h4><?= $chat->tanggal?></h4>
                                         <input id="punyaecs" class="form-control" type="text" value="Customer Service : <?= $chat->isi?>" aria-label="readonly input example" readonly>
                                         <br>
                                     <?php
                                     }
                                     else {
                                         ?> 
+                                    <h4><?= $chat->tanggal?></h4>
                                         <input id="punyaeuser" class="form-control" type="text" value="Me : <?= $chat->isi?>" aria-label="readonly input example" readonly>
                                         <br>
                                         <?php

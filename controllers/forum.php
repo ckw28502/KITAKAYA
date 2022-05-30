@@ -21,7 +21,11 @@
         $namauser=$user["nama"];
         $isi = $_POST['isi'];  
         $idkategori =$_SESSION['idkategori'];
-        $post = new post($judul,$isi,$namauser,$idkategori);
+        $tz_object = new DateTimeZone('Asia/Jakarta');
+        $datetime = new DateTime();
+        $datetime->setTimezone($tz_object);
+        $waktupost=$datetime->format('Y\-m\-d\ h:i:s'); 
+        $post = new post($judul,$isi,$namauser,$waktupost,$idkategori);
         $post->addpost();
         
         Message::add("Success", "Berhasil Post!");
