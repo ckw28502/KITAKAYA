@@ -3,7 +3,6 @@
     use Models\Video;
     use Models\htransaksi;
     require_once "../config/config.php";
-    //var_dump($_SESSION["history"]);
     if (isset($_SESSION["history"])) {
         $transactions=$_SESSION["history"];
         unset($_SESSION["history"]);
@@ -111,8 +110,11 @@
                             <div class="form-outline">
                                 <label class="form-label" for="form1">Search</label>
                                 <input type="search" name="nama">
+                                <br>
+                                Tanggal Transaksi :
+                                <input type="date" name="dateawal" id=""> - <input type="date" name="dateakhir" id="">
                                 <button type="submit" class="btn btn-primary" name="search">
-                                    <i class="fas fa-search">Go!</i>
+                                    <i class="fas fa-search"></i>
                                 </button> 
                             </div> 
                             <table class="table table-dark table-striped">

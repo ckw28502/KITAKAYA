@@ -79,11 +79,6 @@
 
 
     }
-    if (isset($_POST["search"])) {
-        $nama=$_POST["nama"];
-        $_SESSION["history"]=htransaksi::getforhistoryadmin($nama);
-        header("Location: ../public/halamanhistorytrans.php");
-    }
     if (isset($_POST["balikae"])) {
         $user = json_decode(json_encode($_SESSION["user"]), true);
         $email=$user["email"];
@@ -103,5 +98,14 @@
                 exit;
             }
         }
+    }
+    if (isset($_POST["search"])) {
+        $nama=$_POST["nama"];
+        $tglawal=$_POST["dateawal"];
+        $tglakhir=$_POST["dateakhir"];
+        var_dump($tglakhir);
+        $_SESSION["history"]=($tglawal==null||$tglakhir==null) ? htransaksi::getforhistoryadmin($nama) : htransaksi::getforhistoryadmin($nama,$tglawal,$tglakhir) ;
+        var_dump($_SESSION["history"]);
+        header("Location: ../public/halamanhistorytrans.php");
     }
 ?>

@@ -2,8 +2,13 @@
     use Utils\Message;
     use Models\Video;
     use Models\htransaksi;
-
     require_once "../config/config.php";
+    if (isset($_SESSION["history"])) {
+        $transactions=$_SESSION["history"];
+        unset($_SESSION["history"]);
+    } else {
+        $transactions = htransaksi::getforhistoryadmin("");  
+    }
 ?>
 
 <!DOCTYPE html>
@@ -99,10 +104,18 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Transfer</li>
                         </ol> 
-                        <?php                             
-                            $transactions = htransaksi::getforvalidation();
-                        ?>
                          <form action="../controllers/transaksi.php" method="POST">
+                             <!--Fitur Search-->
+                            <div class="form-outline">
+                                <label class="form-label" for="form1">Nama</label>
+                                <input type="search" name="nama">
+                                <br>
+                                Tanggal Transaksi :
+                                <input type="date" name="dateawal" id=""> - <input type="date" name="dateakhir" id="">
+                                <button type="submit" class="btn btn-primary" name="search">
+                                    <i class="fas fa-search"></i>
+                                </button> 
+                            </div> 
                         <table class="table table-dark table-striped">
                             <thead>
                                 <th>Nama Member</th>

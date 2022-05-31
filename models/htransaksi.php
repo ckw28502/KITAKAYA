@@ -30,10 +30,8 @@
             $temp=$db->query("SELECT * FROM transaksi WHERE id_member=:id_member and status=0",[
                 "id_member"=>$id_member
             ]);
-            return $temp->fetchAll();
-            
+            return $temp->fetchAll();    
         }
-
         static function getforvalidation(){
             $db=Database::instance();
             $temp=$db->query("SELECT  t.id as id, u.id as id_member,u.nama as nama,t.bukti as bukti,t.tgl as tgl,t.status as status FROM transaksi t,user u WHERE t.id_member=u.id and bukti IS NOT NULL");
@@ -46,12 +44,21 @@
             ]);
             return $temp->fetchAll();
         }
-        static function getforhistoryadmin($nama){
+        static function getforhistoryadmin(...$data){
             $db=Database::instance();
-            $temp=$db->query("SELECT t.id as id, u.id as id_member,u.nama as nama,t.bukti as bukti,t.tgl as tgl,t.status as status FROM transaksi t,user u WHERE t.id_member=u.id and t.status<>0 and bukti IS NOT NULL AND u.nama LIKE CONCAT('%',:nama,'%') ORDER BY t.tgl DESC",[
-                "nama"=>$nama
-            ]
-            );
+            if (count($data)>1) {
+                $temp=$db->query("SELECT t.id as id, u.id as id_member,u.nama as nama,t.bukti as bukti,t.tgl as tgl,t.status as status FROM transaksi t,user u WHERE t.id_member=u.id and bukti IS NOT NULL AND u.nama LIKE CONCAT('%',:nama,'%') AND t.tgl>=STR_TO_DATE(:tglawal,'%Y-%m-%dT%H%i') AND t.tgl<=STR_TO_DATE(:tglakhir,'%Y-%m-%dT%H%i') ORDER BY t.tgl DESC",[
+                        "nama"=>$data[0],
+                        "tglawal"=>$data[1],
+                        "tglakhir"=>$data[2]
+                    ]
+                );
+            } else {
+                $temp=$db->query("SELECT t.id as id, u.id as id_member,u.nama as nama,t.bukti as bukti,t.tgl as tgl,t.status as status FROM transaksi t,user u WHERE t.id_member=u.id and bukti IS NOT NULL AND u.nama LIKE CONCAT('%',:nama,'%') ORDER BY t.tgl DESC",[
+                        "nama"=>$data[0]
+                    ]
+                );
+            }
             return $temp->fetchAll();
         }
         static function acceptbyidtransaksi($id){
