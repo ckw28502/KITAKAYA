@@ -111,7 +111,8 @@
                     </div>
                     <div style="height: 100vh">
                         <!-- Add Watchlist nama harus sesuai dengan di trading view kalo gak error-->
-                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Add Watchlist</button>
+                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Add
+                            Watchlist</button>
                     </div>
                     <div class="card mb-4">
                         <div class="card-body">Ini Untuk Bagian Bawah jika diperlukan</div>
@@ -135,103 +136,100 @@
                 <div class="modal-body p-0">
                     <div class="container-fluid">
                         <div class="row gy-4">
-                            <div class="col-lg-4 col-sm-12 bg-cover">
-                                <img src="assets/img/fotologin.jpg" class="img-fluid" style="min-height:300px" alt="">
-                                <div>
-
+                            <center>
+                                <div class="col-lg-8">
+                                    <div class="col-lg-6">
+                                        <label for="userName" class="form-label">Nama</label>
+                                        <input type="text" class="form-control" placeholder="AAPL" id="nama"
+                                            name="nama">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="userName" class="form-label">keterangan</label><br>
+                                        <textarea name="keterangan" id="keterangan" cols="30" rows="10"></textarea>
+                                    </div>
+                                    <br>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary" name="login"
+                                            data-bs-dismiss="modal" onclick="addchart()">Add</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="col-lg-6">
-                                    <label for="userName" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" placeholder="AAPL" id="nama" name="nama">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="userName" class="form-label">keterangan</label><br>
-                                    <textarea name="keterangan" id="keterangan" cols="30" rows="10"></textarea>
-                                </div>
-                                <br>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary" name="login"
-                                        onclick="addchart()">Add</button>
-                                </div>
-                            </div>
+                            </center>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="modal"></div>
-        <script>
-            $(document).ready(new function () {
-                addchart = () => {
-                    const nama = $("#nama").val();
-                    const keterangan = $("#keterangan").val();
-                    $("#nama").val("");
-                    $("#keterangan").val("");
-                    $.ajax({
-                        method: "post",
-                        url: "../controllers/chart.php",
-                        data: {
-                            action: "addchart",
-                            nama: nama,
-                            keterangan: keterangan
-                        },
-                    }).done((data) => {
-                        $("#modal").html(data);
-                        cekupdate();
-                    })
-                }
-                cekupdate = () => {
-                    let temp = -1;
-                    //get max id
-                    $.ajax({
-                        method: "get",
-                        url: "../controllers/chart.php",
-                        data: {
-                            action: "getmax"
-                        }
-                    }).done((data) => {
-                        temp = JSON.parse(data, true);
-                        //Kalau max id > id sekarang, data diupdate
-                        if (temp > id) {
-                            id = temp;
-                            $.ajax({
-                                method: "get",
-                                url: "../controllers/chart.php",
-                                data: {
-                                    action: "getall"
-                                }
-                            }).done((d) => {
-                                arr = JSON.parse(d, true);
-                                new TradingView.widget({
-                                    "container_id": "watchlist-chart-demo",
-                                    "width": "100%",
-                                    "height": "100%",
-                                    "autosize": true,
-                                    "symbol": "NASDAQ:AAPL",
-                                    "interval": "D",
-                                    "timezone": "exchange",
-                                    "theme": "light",
-                                    "style": "1",
-                                    "toolbar_bg": "#f1f3f6",
-                                    "withdateranges": true,
-                                    "allow_symbol_change": true,
-                                    "save_image": false,
-                                    "watchlist": arr,
-                                    "locale": "en"
-                                });
+    </div>
+    <div id="modal"></div>
+    <script>
+        $(document).ready(new function () {
+            modaladd=$("#exampleModal");
+            addchart = () => {
+                const nama = $("#nama").val();
+                const keterangan = $("#keterangan").val();
+                $.ajax({
+                    method: "post",
+                    url: "../controllers/chart.php",
+                    data: {
+                        action: "addchart",
+                        nama: nama,
+                        keterangan: keterangan
+                    },
+                }).done((data) => {
+                    $("#modal").html(data);
+                    cekupdate();
+                })
+            }
+            cekupdate = () => {
+                let temp = -1;
+                //get max id
+                $.ajax({
+                    method: "get",
+                    url: "../controllers/chart.php",
+                    data: {
+                        action: "getmax"
+                    }
+                }).done((data) => {
+                    temp = JSON.parse(data, true);
+                    //Kalau max id > id sekarang, data diupdate
+                    if (temp > id) {
+                        id = temp;
+                        $.ajax({
+                            method: "get",
+                            url: "../controllers/chart.php",
+                            data: {
+                                action: "getall"
+                            }
+                        }).done((d) => {
+                            arr = JSON.parse(d, true);
+                            new TradingView.widget({
+                                "container_id": "watchlist-chart-demo",
+                                "width": "100%",
+                                "height": "100%",
+                                "autosize": true,
+                                "symbol": "NASDAQ:AAPL",
+                                "interval": "D",
+                                "timezone": "exchange",
+                                "theme": "light",
+                                "style": "1",
+                                "toolbar_bg": "#f1f3f6",
+                                "withdateranges": true,
+                                "allow_symbol_change": true,
+                                "save_image": false,
+                                "watchlist": arr,
+                                "locale": "en"
                             });
-                        }
-                    });
-                };
-                var id = -1;
-                //Untuk cek update per detik
-                if (id < 0) {
-                    setInterval(cekupdate, 1000);
-                };
-            });
-        </script>
+                        });
+                    }
+                });
+            };
+            var id = -1;
+            //Untuk cek update per detik
+            if (id < 0) {
+                setInterval(cekupdate, 1000);
+            };
+        });
+    </script>
 </body>
 
 </html>
