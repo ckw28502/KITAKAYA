@@ -98,10 +98,17 @@
                         <li class="breadcrumb-item active">Saham</li>
                     </ol>
                     <br>
-                    <div class="card mb-4" style="height : 500px;">
+                    <div style="height: 100vh">
+                        <!-- Add Watchlist nama harus sesuai dengan di trading view kalo gak error-->
+                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Add
+                            Watchlist</button><br>
+                    </div>
+                    <div class="card mb-4" style="height : 500px; margin-top: -45%;">
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            onchange="change()"></select><br>
                         <!-- TradingView Widget BEGIN -->
                         <div class="tradingview-widget-container">
-                            <div id="watchlist-chart-demo"></div>
+                            <div id="tradingview_5e0cc"></div>
                             <div class="tradingview-widget-copyright"><a
                                     href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener"
                                     target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
@@ -109,11 +116,8 @@
                         </div>
                         <!-- TradingView Widget END -->
                     </div>
-                    <div style="height: 100vh">
-                        <!-- Add Watchlist nama harus sesuai dengan di trading view kalo gak error-->
-                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Add
-                            Watchlist</button>
-                    </div>
+                    <h3>Keterangan</h3>
+                    <h5></h5>
                     <div class="card mb-4">
                         <div class="card-body">Ini Untuk Bagian Bawah jika diperlukan</div>
                     </div>
@@ -163,7 +167,24 @@
     <div id="modal"></div>
     <script>
         $(document).ready(new function () {
-            modaladd=$("#exampleModal");
+            change = () => {
+                $("h5").text($("select option:selected").val());
+                new TradingView.widget({
+                    "autosize": true,
+                    "width": "100%",
+                    "height": "100%",
+                    "symbol": $("select option:selected").text(),
+                    "interval": "D",
+                    "timezone": "Etc/UTC",
+                    "theme": "light",
+                    "style": "1",
+                    "locale": "en",
+                    "toolbar_bg": "#f1f3f6",
+                    "enable_publishing": false,
+                    "allow_symbol_change": false,
+                    "container_id": "tradingview_5e0cc"
+                });
+            }
             addchart = () => {
                 const nama = $("#nama").val();
                 const keterangan = $("#keterangan").val();
@@ -202,25 +223,16 @@
                             }
                         }).done((d) => {
                             arr = JSON.parse(d, true);
-                            new TradingView.widget({
-                                "container_id": "watchlist-chart-demo",
-                                "width": "100%",
-                                "height": "100%",
-                                "autosize": true,
-                                "symbol": "NASDAQ:AAPL",
-                                "interval": "D",
-                                "timezone": "exchange",
-                                "theme": "light",
-                                "style": "1",
-                                "toolbar_bg": "#f1f3f6",
-                                "withdateranges": true,
-                                "allow_symbol_change": true,
-                                "save_image": false,
-                                "watchlist": arr,
-                                "locale": "en"
+                            $("select").html("");
+                            arr.forEach(el => {
+                                let opt = document.createElement("option");
+                                opt.value = el.keterangan;
+                                opt.innerText = el.name;
+                                $("select").append(opt);
                             });
+                            change();
                         });
-                    }
+                    };
                 });
             };
             var id = -1;

@@ -31,7 +31,7 @@
         public static function getAll()
         {
             $db=Database::instance();
-            $temp=$db->query("SELECT name FROM rekomendasi");
+            $temp=$db->query("SELECT * FROM rekomendasi ORDER BY id DESC");
             return $temp->fetchAll();
         }
         //Ambil id terbesar

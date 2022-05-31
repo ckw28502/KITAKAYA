@@ -22,11 +22,7 @@
             echo json_encode(getmax()->id);
         } else if ($_GET["action"]=="getall") {
             $temp=getall();
-            $arr=array();
-            foreach ($temp as $k => $v) {
-                array_push($arr,$v->name);
-            }
-            echo json_encode($arr)."\n";
+            echo json_encode($temp);
         }
     }
     if (isset($_POST["action"])) {
