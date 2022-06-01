@@ -92,6 +92,44 @@
             return $temp->fetch();
         }
 
+        public static function changeKategoriName($id, $input)
+        {
+            $db=Database::instance();
+            $temp=$db->query("UPDATE kategori_vid SET nama_kategori =:nama WHERE id=:id",[
+                "nama"=>$input,
+                "id"=>$id,
+            ]);
+            return $temp->fetch();
+        }
+
+        public static function changeVideoName($id, $input)
+        {
+            $db=Database::instance();
+            $temp=$db->query("UPDATE thread SET judul =:nama WHERE id=:id",[
+                "nama"=>$input,
+                "id"=>$id,
+            ]);
+            return $temp->fetch();
+        }
+
+        public static function deleteVideo($id)
+        {
+            $db=Database::instance();
+            $temp=$db->query("UPDATE thread SET status_video = 0 WHERE id=:nama",[
+                "nama"=>$id
+            ]);
+            return $temp->fetch();
+        }
+
+        public static function getVideobyId($nama)
+        {
+            $db=Database::instance();
+            $temp=$db->query("SELECT judul FROM thread WHERE id=:nama",[
+                "nama"=>$nama
+            ]);
+            return $temp->fetch();
+        }
+
         public static function getVideo()
         {
             $db=Database::instance();

@@ -100,6 +100,7 @@
                         <?php 
                             $video = Video::getVideo();
                         ?>
+                        
                         <table class="table table-dark table-striped">
                             <thead>
                                 <th>No</th>

@@ -60,7 +60,7 @@
                         <th>Video</th>
                     </thead>
                     <tbody> -->
-                <h2>Subscribe untuk mendapatkan full access</h2><br><br>
+     
                     <div class="container px-4">
                         <div class="row gx-5 row row-cols-3">  
                         <?php 

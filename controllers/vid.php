@@ -90,6 +90,68 @@
         Video::deleteKategori($idkategori);
         header("Location: ../public/halamanadminlistvideo.php");
     }
+
+    if (isset($_POST['btnedit'])) {
+        $idkategori = $_POST['idkategori'];
+        unset($_SESSION['idkategori']);
+        $_SESSION['idkategori'] = $idkategori;
+        // echo $idkategori;
+        
+        header("Location: ../public/editkategori.php");
+    }
+
+    if (isset($_POST['btnsave'])) {
+        $result = Validation::empty("namakategori");
+        if(!$result->status){
+            Message::add("Error",$result->message);
+            header("Location: ../public/editkategori.php");
+            exit;
+        }
+
+        $idkategori = $_SESSION['idkategori'];
+        $input = $_POST['namakategori'];
+        $hasil = Video::cekKategori($input);
+        
+        if($hasil == 0){ 
+            Video::changeKategoriName($idkategori, $input);
+            Message::add("Success", "Berhasil update nama");
+        }else if($hasil == 1){
+            Message::add("Error", "Nama Kategori sudah terdaftar");
+        }
+        
+        header("Location: ../public/editkategori.php");
+    }
+
+    if (isset($_POST['btndeletevid'])) {
+        $idvideo = $_POST['idvideo'];
+        Video::deleteVideo($idvideo);
+        header("Location: ../public/showvideo_admin.php");
+    }
+
+    if (isset($_POST['btneditvid'])) {
+        $idvideo = $_POST['idvideo'];
+        unset($_SESSION['idvideo']);
+        $_SESSION['idvideo'] = $idvideo;
+        // echo $idkategori;
+        
+        header("Location: ../public/editvideo.php");
+    }
     
+    if (isset($_POST['btnsavevid'])) {
+        $result = Validation::empty("namavideo");
+        if(!$result->status){
+            Message::add("Error",$result->message);
+            header("Location: ../public/editvideo.php");
+            exit;
+        }
+
+        $idvideo = $_SESSION['idvideo'];
+        $input = $_POST['namavideo'];
+
+        Video::changeVideoName($idvideo, $input);
+        Message::add("Success", "Berhasil update nama");
+        
+        header("Location: ../public/showvideo_admin.php");
+    }
     
 ?>

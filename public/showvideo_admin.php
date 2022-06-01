@@ -2,6 +2,7 @@
 <?php
     require_once "../config/config.php";
     use Models\Video;
+    use Utils\Message;
 
     $kategori = $_SESSION['namakategori'];
     
@@ -57,6 +58,7 @@
                         <th>No</th>
                         <th>Judul</th>
                         <th>Video</th>
+                        <th>Action</th>
                     </thead>
                     <tbody>
                         <?php 
@@ -66,6 +68,13 @@
                                     <td><label style="line-height: 350px;"> <?= $idx + 1 ?> </label></td>
                                     <td><label style="line-height: 350px;"><?= $video->judul ?></label></td>
                                     <td><object width="500" height="300" data="http://www.youtube.com/v/<?=$video->video?>" type="application/x-shockwave-flash"><param name="src" value="http://www.youtube.com/v/<?=$video->video?>" /></object></td> 
+                                    <td>
+                                        <form action="../controllers/vid.php" method="POST" style="line-height: 350px;">
+                                            <button type="submit" class="btn btn-primary" name="btneditvid" id="edit" >Edit</button>
+                                            <button type="submit" class="btn btn-danger" name="btndeletevid" id="delete" onclick="return confirm('Are you sure?')">Delete</button>
+                                            <input type="hidden" name="idvideo" value="<?= $video->id ?>"/>
+                                        </form>
+                                    </td>
                                 </tr>
                                 <?php
                             }
@@ -79,5 +88,9 @@
             </div>
         </main>
     </div>
+    <?php 
+            Message::print("Error");
+            Message::print("Success");
+        ?>
 </body>
 </html>
