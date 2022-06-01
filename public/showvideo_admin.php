@@ -16,7 +16,7 @@
     $video = Video::getVideobyKategori($idkategori->id);
     
     if (isset($_POST['btnback'])) {
-        header("Location: halamanadmin.php");
+        header("Location: halamanadminlistvideo.php");
     }
 ?>
 

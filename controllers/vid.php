@@ -82,6 +82,13 @@
 
         header("Location: ../public/showvideo_userbiasa.php");
     }
+
+
+    if (isset($_POST['btndelete'])) {
+        $idkategori = $_POST['idkategori'];
+        // echo $idkategori;
+        
+    }
     
     
 ?>

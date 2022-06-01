@@ -75,12 +75,11 @@
                                     <div class="p-5 border bg-light">
                                         <div class="row row-cols-2">
                                             <div>
-                                                <div><?= $video->judul ?></div>
-                                                <progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress>
+                                                <div><h5><?= $video->judul ?></h5></div><br>
                                                 <div><a  href="../controllers/vid.php?watch=true&idyt=<?=$video->video?>&idv=<?=$video->id?>">Watch</a></div>
                                             </div>
 
-                                            <div>tes</div>
+                                            <div> <img src="http://img.youtube.com/vi/<?=$video->video?>/maxresdefault.jpg" alt="Flowers" style="width:180px; margin-left: -30px; "></div>
                                         </div>
                                     </div>
                                     <br>

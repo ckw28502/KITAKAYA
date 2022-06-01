@@ -105,6 +105,7 @@
                                 <th>No</th>
                                 <th>Kategori</th>
                                 <th>Action</th>
+                                <th>Action</th>
                             </thead>
                             <tbody>
                                 <?php 
@@ -114,7 +115,15 @@
                                             <td><?= $idx + 1 ?></td>
                                             <td><?= $video->nama_kategori ?></td>
                                             <td>
-                                                <a href="../controllers/vid.php?idvid=true&id=<?=$video->nama_kategori?>">Detail</a>
+                                                <!-- <a href="../controllers/vid.php?idvid=true&id=<?=$video->nama_kategori?>">Detail</a> -->
+                                                <input type="button" value="Detail" onclick="window.location.href='../controllers/vid.php?idvid=true&id=<?=$video->nama_kategori?>'" />
+                                            </td>
+                                            <td>
+                                                <form action="../controllers/vid.php" method="POST">
+                                                    <button type="submit" class="btn btn-primary" name="btnback" id="edit">Edit</button>
+                                                    <button type="submit" class="btn btn-danger" name="btndelete" id="delete" onclick="return confirm('Are you sure?')">Delete</button>
+                                                    <input type="hidden" name="idkategori" value="<?= $video->id ?>"/>
+                                                </form>
                                             </td>
                                         </tr>
                                         <?php
