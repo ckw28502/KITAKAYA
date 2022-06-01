@@ -87,7 +87,8 @@
     if (isset($_POST['btndelete'])) {
         $idkategori = $_POST['idkategori'];
         // echo $idkategori;
-        
+        Video::deleteKategori($idkategori);
+        header("Location: ../public/halamanadminlistvideo.php");
     }
     
     

@@ -83,6 +83,15 @@
             return $temp->fetch();
         }
 
+        public static function deleteKategori($id)
+        {
+            $db=Database::instance();
+            $temp=$db->query("UPDATE kategori_vid SET status = 0 WHERE id=:nama",[
+                "nama"=>$id
+            ]);
+            return $temp->fetch();
+        }
+
         public static function getVideo()
         {
             $db=Database::instance();

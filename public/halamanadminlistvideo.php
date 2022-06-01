@@ -120,7 +120,7 @@
                                             </td>
                                             <td>
                                                 <form action="../controllers/vid.php" method="POST">
-                                                    <button type="submit" class="btn btn-primary" name="btnback" id="edit">Edit</button>
+                                                    <button type="submit" class="btn btn-primary" name="btnedit" id="edit">Edit</button>
                                                     <button type="submit" class="btn btn-danger" name="btndelete" id="delete" onclick="return confirm('Are you sure?')">Delete</button>
                                                     <input type="hidden" name="idkategori" value="<?= $video->id ?>"/>
                                                 </form>
