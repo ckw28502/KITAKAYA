@@ -101,7 +101,7 @@
                             <div>
                                 <div class="col-lg-6">
                                     <label for="userName" class="form-label">Kategori Video</label>
-                                    <input type="text" class="form-control" placeholder="Beginner (ganti place holder di line 91 halamanadmin.php)" id="nama" name="kategorivideo">
+                                    <input type="text" class="form-control" placeholder="Beginner" id="nama" name="kategorivideo">
                                 </div>
                                 <br>
                                 <div class="col-lg-6">

@@ -90,6 +90,7 @@
                         </ol>
                         <?php 
                             $video = Video::getVideo();
+                            
                         ?>
                         <!-- <table class="table table-dark table-striped">
                             <thead>
@@ -114,6 +115,10 @@
 
                                         $min = Video::VideoWatchedPB($userid, $video->id);
                                         $min = $min->c;
+
+                                        
+                                        $th = Video::getVideobyKategoriLast($video->id);
+                                        
                                         ?>
                                             <!-- <div class="container">
                                                 <div class="row row-cols-1">
@@ -133,7 +138,12 @@
                                                             <div><a href="../controllers/vid.php?idvidBIASA=true&id=<?=$video->nama_kategori?>&idkategori=<?=$video->id?>">Detail</a></div>
                                                         </div>
 
-                                                        <div>tes</div>
+                                                        <?php 
+                                                        if ($max > 0) {
+                                                            ?><div><img src="http://img.youtube.com/vi/<?=$th->video?>/maxresdefault.jpg" alt="Flowers" style="width:180px; margin-left: -30px; "></div><?php
+                                                        } 
+                                                        ?>
+                                                        
                                                     </div>
                                                 </div>
                                                 <br>

@@ -113,6 +113,8 @@
 
                                         $min = Video::VideoWatchedPB($userid, $video->id);
                                         $min = $min->c;
+
+                                        $th = Video::getVideobyKategoriLast($video->id);
                                         ?>
                                         <!-- <tr>
                                             <td><?= $idx + 1 ?></td>
@@ -124,13 +126,24 @@
                                         </tr> -->
 
                                         <div class="col">
-                                                <div class="p-5 border bg-light">
-                                                    <div><?= $video->nama_kategori ?></div>
-                                                    <progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress>
-                                                    <div><a href="../controllers/vid.php?idvidVIP=true&id=<?=$video->nama_kategori?>&idkategori=<?=$video->id?>">Detail</a></div>
+                                            <div class="p-5 border bg-light">
+                                                <div class="row row-cols-2">
+                                                    <div>
+                                                        <div><?= $video->nama_kategori ?></div>
+                                                        <progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress>
+                                                        <div><a href="../controllers/vid.php?idvidVIP=true&id=<?=$video->nama_kategori?>&idkategori=<?=$video->id?>">Detail</a></div>
+                                                    </div>
+
+                                                    <?php 
+                                                    if ($max > 0) {
+                                                        ?><div><img src="http://img.youtube.com/vi/<?=$th->video?>/maxresdefault.jpg" alt="Flowers" style="width:180px; margin-left: -30px; "></div><?php
+                                                    } 
+                                                    ?>
+                                                    
                                                 </div>
-                                                <br>
                                             </div>
+                                            <br>
+                                        </div>
                                         <?php
                                     }
                                 ?>

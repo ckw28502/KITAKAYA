@@ -157,6 +157,15 @@
             return $temp->fetchAll();
         }
 
+        public static function getVideobyKategoriLast($id)
+        {
+            $db=Database::instance();
+            $temp=$db->query("SELECT t.id, t.judul, t.video, k.nama_kategori FROM thread t, kategori_vid k WHERE t.f_kategori=k.id and t.status_video = 1 and t.f_kategori = :kategori",[
+                "kategori"=>$id
+            ]);
+            return $temp->fetch();
+        }
+
         public static function getVideobyKategoriLIMIT($id)
         {
             $db=Database::instance();
