@@ -292,7 +292,7 @@
 
                                             <div class="ratingg">  
                                                 
-                                                <button name="submitrating[<?=$service->id?>]">Submit</button>
+                                                <button class="btn btn-primary" name="submitrating[<?=$service->id?>]">Submit</button>
                                                 <input type="radio" name="rating[<?=$service->id?>]" value="5" id="5"><label for="5">☆</label> 
                                                 <input type="radio" name="rating[<?=$service->id?>]" value="4" id="4"><label for="4">☆</label> 
                                                 <input type="radio" name="rating[<?=$service->id?>]" value="3" id="3"><label for="3">☆</label> 
