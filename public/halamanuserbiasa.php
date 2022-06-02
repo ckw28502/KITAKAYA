@@ -137,7 +137,7 @@
                                                             <progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress>
                                                             <div><a href="../controllers/vid.php?idvidBIASA=true&id=<?=$video->nama_kategori?>&idkategori=<?=$video->id?>">Detail</a></div>
                                                         </div>
-
+                                                       
                                                         <?php 
                                                         if ($max > 0) {
                                                             ?><div><img src="http://img.youtube.com/vi/<?=$th->video?>/maxresdefault.jpg" alt="Flowers" style="width:180px; margin-left: -30px; "></div><?php

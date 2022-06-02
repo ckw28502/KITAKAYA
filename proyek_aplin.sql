@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2022 at 05:15 PM
+-- Generation Time: Jun 02, 2022 at 08:11 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -93,20 +93,21 @@ CREATE TABLE `completion` (
 DROP TABLE IF EXISTS `kategori_vid`;
 CREATE TABLE `kategori_vid` (
   `id` int(11) NOT NULL,
-  `nama_kategori` text NOT NULL
+  `nama_kategori` text NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kategori_vid`
 --
 
-INSERT INTO `kategori_vid` (`id`, `nama_kategori`) VALUES
-(1, 'tesKategori'),
-(2, 'tes'),
-(3, 'pemula'),
-(4, 'ivander cupu'),
-(5, 'kategori baru'),
-(7, 'Saham');
+INSERT INTO `kategori_vid` (`id`, `nama_kategori`, `status`) VALUES
+(1, 'tesKategori', 0),
+(2, 'Beginner', 1),
+(3, 'pemula', 0),
+(4, 'Intermediate', 1),
+(5, 'Exprettt', 1),
+(7, 'Saham', 0);
 
 -- --------------------------------------------------------
 
@@ -130,7 +131,8 @@ INSERT INTO `progressbar` (`id`, `refuser`, `refkategori`, `refthread`) VALUES
 (1, 35, 2, 3),
 (2, 36, 2, 3),
 (3, 37, 2, 3),
-(4, 37, 4, 4);
+(4, 37, 4, 4),
+(5, 37, 2, 15);
 
 -- --------------------------------------------------------
 
@@ -203,16 +205,27 @@ CREATE TABLE `thread` (
 
 INSERT INTO `thread` (`id`, `judul`, `video`, `status_video`, `f_kategori`) VALUES
 (1, 'Bisa', '-w7KOoMWlNo', 1, 6),
-(3, 'testing', 'HLLofrwRlBg', 1, 2),
-(4, 'testing video', 'XqZsoesa55w', 1, 4),
-(5, 'asdasd', 'pL8XPZp4-5c', 1, 5),
-(6, '11asasdasdad', 'fDek6cYijxI', 1, 2),
-(7, 'tutor saham', 'NjsUrZ1NL0k', 1, 4),
-(8, 'cara beli saham', 'IzsYTb2WdGs', 1, 4),
-(9, 'Luna nglawak', 'Eg35QIxiRg8', 1, 4),
+(3, 'testing nama', 'HLLofrwRlBg', 0, 2),
+(4, 'testing video', 'XqZsoesa55w', 0, 4),
+(5, 'asdasd', 'pL8XPZp4-5c', 0, 5),
+(6, 'tes change name video', 'fDek6cYijxI', 0, 2),
+(7, 'tutor saham', 'NjsUrZ1NL0k', 0, 4),
+(8, 'Cara Beli Saham', 'IzsYTb2WdGs', 1, 4),
+(9, 'Luna nglawak', 'Eg35QIxiRg8', 0, 4),
 (10, 'Bisa', '_BjLo-BYtjg', 1, 6),
 (11, 'Streaming saham', 'jj9CbhJ2byg', 1, 7),
-(12, 'streaminmg', 'vd15S0opLmY', 1, 7);
+(12, 'streaminmg', 'vd15S0opLmY', 1, 7),
+(13, 'Belajar Saham dari Nol', 'NjsUrZ1NL0k', 1, 2),
+(14, 'Manfaat Saham', 'UCcC8fH0uJU', 1, 2),
+(15, 'Investasi Sejak Dini', 'c9PrrJlntos', 1, 2),
+(16, 'Beli Saham', 'SVgKDk77BzQ', 1, 2),
+(17, 'Pahami Candlestick', 'TJfqFCm2Pi0', 1, 4),
+(18, 'Indikator Analisa', 'u9ibE2-Xurs', 1, 4),
+(19, 'Belajar analisa TEKNIKAL', 'OC17b9MxIsg', 1, 4),
+(20, 'Support Resisten', 'z_P20U6LgSo', 1, 5),
+(21, 'Indikator MACD', 'KO2HCXqNdKo', 1, 5),
+(22, 'Warning 2022', '2NyFOJD6KEU', 1, 5),
+(23, 'Bursa Dunia Crash', 'Snm0Ez8Y7qo', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -397,7 +410,7 @@ ALTER TABLE `kategori_vid`
 -- AUTO_INCREMENT for table `progressbar`
 --
 ALTER TABLE `progressbar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `rekomendasi`
@@ -415,7 +428,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `thread`
 --
 ALTER TABLE `thread`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `thread_forum`
