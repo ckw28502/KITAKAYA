@@ -103,9 +103,8 @@
         $nama=$_POST["nama"];
         $tglawal=$_POST["dateawal"];
         $tglakhir=$_POST["dateakhir"];
-        var_dump($tglakhir);
-        $_SESSION["history"]=($tglawal==null||$tglakhir==null) ? htransaksi::getforhistoryadmin($nama) : htransaksi::getforhistoryadmin($nama,$tglawal,$tglakhir) ;
-        var_dump($_SESSION["history"]);
-        header("Location: ../public/halamanhistorytrans.php");
+        $status=$_POST["status"];
+        $_SESSION["history"]=($tglawal==null||$tglakhir==null) ? htransaksi::getforhistoryadmin($nama,$status) : htransaksi::getforhistoryadmin($nama,$status,$tglawal,$tglakhir,) ;
+        header("Location: ../public/halamanadminvalidasi.php");
     }
 ?>

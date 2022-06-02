@@ -7,7 +7,7 @@
         $transactions=$_SESSION["history"];
         unset($_SESSION["history"]);
     } else {
-        $transactions = htransaksi::getforhistoryadmin("");  
+        $transactions = htransaksi::getforhistoryadmin("","all");  
     }
 ?>
 
@@ -109,6 +109,14 @@
                                 <br>
                                 Tanggal Transaksi :
                                 <input type="date" name="dateawal" id=""> - <input type="date" name="dateakhir" id="">
+                                <br>
+                                Status :
+                                <select name="status" id="">
+                                    <option value="all">All</option>
+                                    <option value="0">Not Verified</option>
+                                    <option value="1">Accepted</option>
+                                    <option value="-1">Rejected</option>
+                                </select>
                                 <button type="submit" class="btn btn-primary" name="search">
                                     <i class="fas fa-search"></i>
                                 </button> 
@@ -117,7 +125,8 @@
                             <thead>
                                 <th>Nama Member</th>
                                 <th>Bukti Pembayaran</th>
-                                <th>Action</th>
+                                <th>Tanggal</th>
+                                <th>Status</th>
                             </thead>
                             <tbody>
                                 <?php 
@@ -127,7 +136,7 @@
                                             
                                             <td><?=  $transaction->nama?></td>
                                             <td><img style="width:120px;height:200px" src="../<?= $transaction->bukti ?>" /> </td>
-                                            
+                                            <td><?=  $transaction->tgl?></td>
                                             <?php
                                                     if ($transaction->status==0) {         
                                                         ?> 

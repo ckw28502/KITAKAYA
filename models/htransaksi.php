@@ -46,18 +46,32 @@
         }
         static function getforhistoryadmin(...$data){
             $db=Database::instance();
-            if (count($data)>1) {
-                $temp=$db->query("SELECT t.id as id, u.id as id_member,u.nama as nama,t.bukti as bukti,t.tgl as tgl,t.status as status FROM transaksi t,user u WHERE t.id_member=u.id and bukti IS NOT NULL AND u.nama LIKE CONCAT('%',:nama,'%') AND t.tgl>=STR_TO_DATE(:tglawal,'%Y-%m-%dT%H%i') AND t.tgl<=STR_TO_DATE(:tglakhir,'%Y-%m-%dT%H%i') ORDER BY t.tgl DESC",[
+            if (count($data)==4) {
+                if ($data[1]!="all") {
+                    $temp=$db->query("SELECT t.id as id, u.id as id_member,u.nama as nama,t.bukti as bukti,t.tgl as tgl,t.status as status FROM transaksi t,user u WHERE t.id_member=u.id and bukti IS NOT NULL AND u.nama LIKE CONCAT('%',:nama,'%') AND t.tgl>=STR_TO_DATE(:tglawal,'%Y-%m-%dT%H%i') AND t.tgl<=STR_TO_DATE(:tglakhir,'%Y-%m-%dT%H%i') AND t.status=:status ORDER BY t.tgl DESC",[
                         "nama"=>$data[0],
-                        "tglawal"=>$data[1],
-                        "tglakhir"=>$data[2]
-                    ]
-                );
+                        "tglawal"=>$data[2],
+                        "tglakhir"=>$data[3],
+                        "status"=>$data[1]
+                    ]);
+                } else {
+                    $temp=$db->query("SELECT t.id as id, u.id as id_member,u.nama as nama,t.bukti as bukti,t.tgl as tgl,t.status as status FROM transaksi t,user u WHERE t.id_member=u.id and bukti IS NOT NULL AND u.nama LIKE CONCAT('%',:nama,'%') AND t.tgl>=STR_TO_DATE(:tglawal,'%Y-%m-%dT%H%i') AND t.tgl<=STR_TO_DATE(:tglakhir,'%Y-%m-%dT%H%i') ORDER BY t.tgl DESC",[
+                        "nama"=>$data[0],
+                        "tglawal"=>$data[2],
+                        "tglakhir"=>$data[3]
+                    ]);
+                }
             } else {
-                $temp=$db->query("SELECT t.id as id, u.id as id_member,u.nama as nama,t.bukti as bukti,t.tgl as tgl,t.status as status FROM transaksi t,user u WHERE t.id_member=u.id and bukti IS NOT NULL AND u.nama LIKE CONCAT('%',:nama,'%') ORDER BY t.tgl DESC",[
+                if ($data[1]!="all") {
+                    $temp=$db->query("SELECT t.id as id, u.id as id_member,u.nama as nama,t.bukti as bukti,t.tgl as tgl,t.status as status FROM transaksi t,user u WHERE t.id_member=u.id and bukti IS NOT NULL AND u.nama LIKE CONCAT('%',:nama,'%') AND t.status=:status ORDER BY t.tgl DESC",[
+                        "nama"=>$data[0],
+                        "status"=>$data[1]
+                    ]);
+                } else {
+                    $temp=$db->query("SELECT t.id as id, u.id as id_member,u.nama as nama,t.bukti as bukti,t.tgl as tgl,t.status as status FROM transaksi t,user u WHERE t.id_member=u.id and bukti IS NOT NULL AND u.nama LIKE CONCAT('%',:nama,'%') ORDER BY t.tgl DESC",[
                         "nama"=>$data[0]
-                    ]
-                );
+                    ]);
+                }
             }
             return $temp->fetchAll();
         }
