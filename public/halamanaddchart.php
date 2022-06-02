@@ -65,10 +65,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>
                             Validasi Pembayaran Member
                         </a>
-                        <a class="nav-link" href="../public/halamanhistorytrans.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
-                            History Transaksi
-                        </a>
+                        
                         <div class="sb-sidenav-menu-heading">Charts</div>
                         <a class="nav-link collapsed" href="../public/halamanchartumur.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
