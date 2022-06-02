@@ -34,7 +34,7 @@
     <style>
         body{
             width: 100%;
-            height: 100vh;
+            height: 100%;
             background: linear-gradient(135deg, #9600FF 10%,#AEBAF8 50%);
         }
         #buatkata{

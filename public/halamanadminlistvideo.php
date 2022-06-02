@@ -114,12 +114,12 @@
                                             <td><?= $video->nama_kategori ?></td>
                                             <td>
                                                 <!-- <a href="../controllers/vid.php?idvid=true&id=<?=$video->nama_kategori?>">Detail</a> -->
-                                                <input type="button" value="Detail" onclick="window.location.href='../controllers/vid.php?idvid=true&id=<?=$video->nama_kategori?>'" />
+                                                <input type="button" class="btn btn-primary" value="Detail" onclick="window.location.href='../controllers/vid.php?idvid=true&id=<?=$video->nama_kategori?>'" />
                                             </td>
                                             <td>
                                                 <form action="../controllers/vid.php" method="POST">
                                                     <button type="submit" class="btn btn-primary" name="btnedit" id="edit">Edit</button>
-                                                    <button type="submit" class="btn btn-danger" name="btndelete" id="delete" onclick="return confirm('Are you sure?')">Delete</button>
+                                                    <button type="submit" class="btn btn-danger" name="btndelete" id="delete" onclick="return confirm('Apakah yakin ingin menghapus ini?')">Delete</button>
                                                     <input type="hidden" name="idkategori" value="<?= $video->id ?>"/>
                                                 </form>
                                             </td>

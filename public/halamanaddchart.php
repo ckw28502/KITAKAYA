@@ -100,7 +100,7 @@
                         <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Add
                             Watchlist</button><br>
                     </div>
-                    <div class="card mb-4" style="height : 500px; margin-top: -47%;">
+                    <div class="card mb-4" style="height : 500px; margin-top: -54%;">
                         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
                             onchange="change()"></select><br>
                         <!-- TradingView Widget BEGIN -->

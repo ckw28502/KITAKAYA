@@ -85,18 +85,25 @@
                             <li class="breadcrumb-item active">Saham</li>
                         </ol>
                         <div class="card mb-4" style="height : 500px;">
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                                onchange="change()"></select><br>
                             <!-- TradingView Widget BEGIN -->
                             <div class="tradingview-widget-container">
-                                <div id="watchlist-chart-demo"></div>
-                                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
+                                <div id="tradingview_5e0cc"></div>
+                                <div class="tradingview-widget-copyright"><a
+                                        href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener"
+                                        target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
                                 <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
                             </div>
                             <!-- TradingView Widget END -->
                         </div>
+                        <h3>Keterangan</h3>
+                        <h5></h5>
                     </div>
                 </main>
             </div>
         </div>
+        <div id="modal"></div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../assets/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -106,58 +113,81 @@
         <script src="../assets/js/datatables-simple-demo.js"></script>
         <script src="../utils/jquery-3.6.0.min.js"></script>
         <script>
-            $(document).ready(new function(){
-                cekupdate=()=>{
-                    let temp=-1;
-                    //get max id
-                    $.ajax({
-                        method:"get",
-                        url:"../controllers/chart.php",
-                        data:{
-                            action:"getmax"
-                        }
-                    }).done((data)=>{
-                        temp=JSON.parse(data,true);
-                        //Kalau max id > id sekarang, data diupdate
-                        if (temp>id) {
-                            id=temp;
-                            $.ajax({
-                                method:"get",
-                                url:"../controllers/chart.php",
-                                data:{
-                                    action:"getall"
-                                }
-                            }).done((d)=>{
-                                arr=JSON.parse(d,true);
-                                new TradingView.widget(
-                                    {
-                                    "container_id": "watchlist-chart-demo",
-                                    "width": "100%",
-                                    "height": "100%",
-                                    "autosize": true,
-                                    "symbol": "NASDAQ:"+arr[arr.length-1],
-                                    "interval": "D",
-                                    "timezone": "exchange",
-                                    "theme": "light",
-                                    "style": "1",
-                                    "toolbar_bg": "#f1f3f6",
-                                    "withdateranges": true,
-                                    "allow_symbol_change": true,
-                                    "save_image": false,
-                                    "watchlist": arr,
-                                    "locale": "en"
-                                    }
-                                );
+            $(document).ready(new function () {
+            change = () => {
+                $("h5").text($("select option:selected").val());
+                new TradingView.widget({
+                    "autosize": true,
+                    "width": "100%",
+                    "height": "100%",
+                    "symbol": $("select option:selected").text(),
+                    "interval": "D",
+                    "timezone": "Etc/UTC",
+                    "theme": "light",
+                    "style": "1",
+                    "locale": "en",
+                    "toolbar_bg": "#f1f3f6",
+                    "enable_publishing": false,
+                    "allow_symbol_change": false,
+                    "container_id": "tradingview_5e0cc"
+                });
+            }
+            addchart = () => {
+                const nama = $("#nama").val();
+                const keterangan = $("#keterangan").val();
+                $.ajax({
+                    method: "post",
+                    url: "../controllers/chart.php",
+                    data: {
+                        action: "addchart",
+                        nama: nama,
+                        keterangan: keterangan
+                    },
+                }).done((data) => {
+                    $("#modal").html(data);
+                    cekupdate();
+                })
+            }
+            cekupdate = () => {
+                let temp = -1;
+                //get max id
+                $.ajax({
+                    method: "get",
+                    url: "../controllers/chart.php",
+                    data: {
+                        action: "getmax"
+                    }
+                }).done((data) => {
+                    temp = JSON.parse(data, true);
+                    //Kalau max id > id sekarang, data diupdate
+                    if (temp > id) {
+                        id = temp;
+                        $.ajax({
+                            method: "get",
+                            url: "../controllers/chart.php",
+                            data: {
+                                action: "getall"
+                            }
+                        }).done((d) => {
+                            arr = JSON.parse(d, true);
+                            $("select").html("");
+                            arr.forEach(el => {
+                                let opt = document.createElement("option");
+                                opt.value = el.keterangan;
+                                opt.innerText = el.name;
+                                $("select").append(opt);
                             });
-                        }
-                    });
-                };
-                var id=-1;
-                //Untuk cek update per detik
-                if (id<0) {
-                    setInterval(cekupdate,1000);
-                };
-            });
+                            change();
+                        });
+                    };
+                });
+            };
+            var id = -1;
+            //Untuk cek update per detik
+            if (id < 0) {
+                setInterval(cekupdate, 1000);
+            };
+        });
         </script>
     </body>
 </html>
