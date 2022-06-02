@@ -28,6 +28,9 @@
             #btnkeluar{
                 margin-left: 45px;
             }
+            #atur{
+                margin-left: -10%;
+            }
         </style>
     </head>
     <body class="sb-nav-fixed">
@@ -87,6 +90,9 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Kumpulan Video</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Saham</li>
+                        </ol>
                         <?php 
                             $video = Video::getVideo();
                         ?>
@@ -128,7 +134,7 @@
                                         <div class="col">
                                             <div class="p-5 border bg-light">
                                                 <div class="row row-cols-2">
-                                                    <div>
+                                                    <div id="atur">
                                                         <div><?= $video->nama_kategori ?></div>
                                                         <progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress>
                                                         <div><a href="../controllers/vid.php?idvidVIP=true&id=<?=$video->nama_kategori?>&idkategori=<?=$video->id?>">Detail</a></div>
@@ -136,7 +142,7 @@
 
                                                     <?php 
                                                     if ($max > 0) {
-                                                        ?><div><img src="http://img.youtube.com/vi/<?=$th->video?>/maxresdefault.jpg" alt="Flowers" style="width:180px; margin-left: -30px; "></div><?php
+                                                        ?><div><img src="http://img.youtube.com/vi/<?=$th->video?>/maxresdefault.jpg" alt="Flowers" style="width:180px; margin-left: 15px; "></div><?php
                                                     } 
                                                     ?>
                                                     

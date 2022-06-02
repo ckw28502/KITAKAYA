@@ -33,7 +33,7 @@
     <style>
         body{
             width: 100%;
-            height: 100vh;
+            height: 100%;
             background: linear-gradient(135deg, #9600FF 10%,#AEBAF8 50%);
         }
         #buatkata{
@@ -41,6 +41,9 @@
         }
         #tulisan{
             color: black;
+        }
+        #atur{
+            margin-left: 5%;
         }
     </style>
 </head>
@@ -75,11 +78,10 @@
                                     <div class="p-5 border bg-light">
                                         <div class="row row-cols-2">
                                             <div>
-                                                <div><h5><?= $video->judul ?></h5></div><br>
-                                                <div><a  href="../controllers/vid.php?watch=true&idyt=<?=$video->video?>&idv=<?=$video->id?>">Watch</a></div>
+                                                <div id="atur"><h5><?= $video->judul ?></h5></div><br>
+                                                <img src="http://img.youtube.com/vi/<?=$video->video?>/maxresdefault.jpg" alt="Flowers" style="width:180px; margin-left: 5%; margin-top:-10%;">
+                                                <div id="atur"><a  href="../controllers/vid.php?watch=true&idyt=<?=$video->video?>&idv=<?=$video->id?>">Watch</a></div>
                                             </div>
-
-                                            <div> <img src="http://img.youtube.com/vi/<?=$video->video?>/maxresdefault.jpg" alt="Flowers" style="width:180px; margin-left: -30px; "></div>
                                         </div>
                                     </div>
                                     <br>

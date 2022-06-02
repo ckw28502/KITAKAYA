@@ -25,6 +25,9 @@
             #btnkeluar{
                 margin-left: 45px;
             }
+            #atur{
+                margin-left: -10%;
+            }
         </style>
     </head>
     <body class="sb-nav-fixed">
@@ -132,7 +135,7 @@
                                             <div class="col">
                                                 <div class="p-5 border bg-light">
                                                     <div class="row row-cols-2">
-                                                        <div>
+                                                        <div id="atur">
                                                             <div><?= $video->nama_kategori ?></div>
                                                             <progress id="pb" value="<?=$min?>" max="<?=$max?>"></progress>
                                                             <div><a href="../controllers/vid.php?idvidBIASA=true&id=<?=$video->nama_kategori?>&idkategori=<?=$video->id?>">Detail</a></div>
@@ -140,7 +143,7 @@
                                                        
                                                         <?php 
                                                         if ($max > 0) {
-                                                            ?><div><img src="http://img.youtube.com/vi/<?=$th->video?>/maxresdefault.jpg" alt="Flowers" style="width:180px; margin-left: -30px; "></div><?php
+                                                            ?><div><img src="http://img.youtube.com/vi/<?=$th->video?>/maxresdefault.jpg" alt="Flowers" style="width:180px; margin-left: 15px; "></div><?php
                                                         } 
                                                         ?>
                                                         
