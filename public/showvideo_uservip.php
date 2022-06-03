@@ -56,6 +56,9 @@
                 <ol class="breadcrumb mb-4">
                     <li id="tulisan">Kumpulan Video </li>
                 </ol>
+                <form action="../controllers/forum.php" method="POST">
+                    <button class="btn btn-success" name="forum[<?=$idkategori->id?>]">Forum</button>
+                </form>
                 <!-- <table class="table table-dark table-striped">
                     <thead>
                         <th>No</th>

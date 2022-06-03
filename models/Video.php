@@ -41,8 +41,9 @@
         public static function insertKategori($nama)
         {
             $db=Database::instance();
-            $temp=$db->query("INSERT INTO kategori_vid(nama_kategori) VALUES(:nama)",[
-                "nama"=>$nama
+            $temp=$db->query("INSERT INTO kategori_vid(nama_kategori, status) VALUES(:nama, :status)",[
+                "nama"=>$nama,
+                "status"=>1,
             ]);
             return $temp->fetch();
         }
