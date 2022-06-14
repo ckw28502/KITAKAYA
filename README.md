@@ -1,13 +1,13 @@
 # KITAKAYA Repository!
 Berikut Beberapa Foto Aplikasi KITAKAYA
 
-> 1. Foto Tampilan Awal
+1. Foto Tampilan Awal
 <p align="center"><img src="https://git.sib.stts.edu/APLIN2022/KITAKAYA/raw/master/Foto_Tampilan/1.jpg" width="300"></a></p>
 
-> 2. Foto Fitur Add Chart Saham dan Tampilan Chart
+2. Foto Fitur Add Chart Saham dan Tampilan Chart
 <p align="center"><img src="https://git.sib.stts.edu/APLIN2022/KITAKAYA/raw/master/Foto_Tampilan/2.jpg" width="300"></a></p>
  
-> 3. Foto Tampilan Chart Umur
+3. Foto Tampilan Chart Umur
 <p align="center"><img src="https://git.sib.stts.edu/APLIN2022/KITAKAYA/raw/master/Foto_Tampilan/3.jpg" width="300"></a></p>
 
 > 4. Foto Tampilan Chart Perkembangan Member
